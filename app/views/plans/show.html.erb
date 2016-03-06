@@ -1,0 +1,112 @@
+<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><%= @plan.name %></h1>
+</div>
+<p>
+  <strong>Number:</strong>
+  <%= @plan.number %>
+</p>
+<p>
+  <strong>类型:</strong>
+  <%= @plan.plan_type %>
+</p>
+<p>
+  <strong>规模:</strong>
+  <%= @plan.scale %>
+</p>
+<p>
+  <strong>开始日期:</strong>
+  <%= @plan.start_date %>
+</p>
+
+<p>
+  <strong>结束日期:</strong>
+  <%= @plan.end_date %>
+</p>
+
+<p>
+  <strong>管理费:</strong>
+  <%= @plan.management_fee %>
+</p>
+
+<p>
+  <strong>投资经理:</strong>
+  <%= @plan.investment_manager %>
+</p>
+
+<p>
+  <strong>部门:</strong>
+  <%= @plan.department %>
+</p>
+
+<p>
+  <strong>费率:</strong>
+  <%= @plan.rate %>
+</p>
+
+<p>
+  <strong>费用金额:</strong>
+  <%= @plan.fee %>
+</p>
+
+<p>
+  <strong>注释:</strong>
+  <%= @plan.notes %>
+</p>
+
+<!-- <%= link_to 'Projects', plan_projects_path(@plan) %> |  -->
+<%= link_to '编辑', edit_plan_path(@plan) %> |
+<%= link_to '返回', plans_path %>
+
+<% if @plan.plan_type == Plan::PLAN_TYPE[1] %>
+<h1>我的项目列表</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Plan Name</th>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Scale</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Management fee</th>
+      <th>Investment manager</th>
+      
+      <th>Department</th>
+      <th>Rate</th>
+      <th>Fee</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plan.projects.each do |project| %>
+      <tr>
+        <td><%= project.plan.name %></td>
+        <td><%= project.number %></td>
+        <td><%= link_to project.name , project_path(project) %></td>
+        <td><%= project.scale %></td>
+        
+        <td><%= project.start_date %></td>
+        <td><%= project.end_date %></td>
+        <td><%= project.management_fee %></td>
+        <td><%= project.investment_manager %></td>
+        
+        <td><%= project.department.name %></td>
+        <td><%= project.rate %></td>
+        <td><%= project.fee %></td>
+        <td><%= project.notes %></td>
+        <td><%= link_to 'Show', project_path(project) %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新建项目', new_plan_project_path(@plan) %>
+<%end%>

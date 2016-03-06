@@ -1,0 +1,179 @@
+<%- model_class = Task -%>
+<div class="page-header">
+  <h1>考核指标</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th> ID </th>
+      <th> 指标名称 </th>
+      <th> 指标类型 </th>
+      <th> 数量 </th>
+      <th> 开始时间 </th>
+      <th> 结束时间 </th>
+      <th> 描述 </th>
+      <th> 任务类型 </th>
+      <th> 任务ID </th>
+      <th> 创建时间 </th>
+      <th> 操作 </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.id, task_path(task) %></td>
+        <td><%= task.name %></td>
+        <td><%= task.task_type %></td>
+        <td><%= task.amount %></td>
+        <td><%= task.start_date %></td>
+        <td><%= task.end_date %></td>
+        <td><%= task.description %></td>
+        <td><%= task.taskable_type %></td>
+        <td><%= task.taskable_id %></td>
+        <td><%=l task.created_at %></td>
+        <td>
+          <%= link_to :编辑,
+                      edit_task_path(task), :class => 'btn btn-default btn-xs' %>
+          <%= link_to :删除,
+                      task_path(task),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="btn-group btn-group-justified">
+  <a href="#" class="btn btn-default">一季度管理费规模<%=f2 current_user.count_first_fee %></a>
+  <a href="#" class="btn btn-default">二季度管理费规模<%=f2 current_user.count_second_fee %></a>
+  <a href="#" class="btn btn-default">三季度管理费规模<%=f2 current_user.count_third_fee %></a>
+  <a href="#" class="btn btn-default">四季度管理费规模<%=f2 current_user.count_fourth_fee %></a>
+</div>
+<div class="btn-group btn-group-justified">
+  <a href="#" class="btn btn-default">一季度管理费任务<%=f2 current_user.count_first_task %></a>
+  <a href="#" class="btn btn-default">二季度管理费任务<%=f2 current_user.count_first_task %></a>
+  <a href="#" class="btn btn-default">三季度管理费任务<%=f2 current_user.count_first_task %></a>
+  <a href="#" class="btn btn-default">四季度管理费任务<%=f2 current_user.count_first_task %></a>
+</div>
+<br>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_task_path,
+            :class => 'btn btn-primary' %>
+
+
+
+
+
+<div class="page-header">
+  <h1>我的资管计划列表</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>资管计划编号</th>
+      <th>资管计划名称</th>
+      <th>资管计划类型</th>
+      <th>规模</th>
+      
+      <th>开始日期</th>
+      <th>结束日期</th>
+      <th>管理费</th>
+      <th>投资经理</th>
+      
+      <th>部门</th>
+      <th>费率</th>
+      <th>费用金额</th>
+      <th>注释</th>
+      <th>操作</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.plans.each do |plan| %>
+      <tr>
+        <td><%= link_to plan.number, plan_path(plan), :class=>"btn btn-link" %></td>
+        <td><%= plan.name %></td>
+        <!-- <td><%= link_to plan.name, plan_path(plan), :class=>"btn btn-link" %></td> -->
+        <td><%= plan.plan_type %></td>
+        <td><%= plan.scale %></td>
+        
+        <td><%= plan.start_date %></td>
+        <td><%= plan.end_date %></td>
+        <td><%= f2 plan.count_fee %></td>
+        <td><%= plan.investment_manager %></td>
+        <td><%= plan.department.name %></td>
+        <td><%= plan.rate %></td>
+        <td><%= plan.fee %></td>
+        <td><%= plan.notes %></td>
+         <td>
+          <%= link_to :编辑,
+                      edit_plan_path(plan), :class => 'btn btn-default btn-xs' %>
+          <%= link_to :删除,
+                      plan,
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to :新建资管计划,
+            new_plan_path,
+            :class => 'btn btn-primary' %>
+
+<div class="page-header">
+  <h1>我的项目列表</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>计划名称</th>
+      <th>项目编号</th>
+      <th>项目名称</th>
+      <th>项目规模</th>
+      <th>资产价格</th>
+      <th>入池价格</th>
+      <th>开始日期</th>
+      <th>结束日期</th>
+      <th>管理费</th>
+      <th>投资经理</th>
+      <th>部门</th>
+      <th>费率</th>
+      <th>费用金额</th>
+      <th>注释</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.plan.name, plan_path(project.plan), :class=>"btn btn-link" %></td>
+        <td><%= link_to project.number, project_path(project), :class=>"btn btn-link" %></td>
+        <td><%= project.name %></td>
+        <!-- <td><%= link_to project.name, project_path(project), :class=>"btn btn-link" %></td> -->
+        <td><%= project.scale %></td>
+        <td><%= project.asset_price %></td>
+        <td><%= project.pool_price %></td>
+        <td><%= project.start_date %></td>
+        <td><%= project.end_date %></td>
+        <td><%= f2 project.count_fee %></td>
+        <td><%= project.investment_manager %></td>
+        <td><%= project.department.name %></td>
+        <td><%= project.rate %></td>
+        <td><%= project.fee %></td>
+        <td><%= project.notes %></td>
+        <td><%= link_to '编辑', edit_project_path(project) , :class => 'btn btn-default btn-xs'%>
+        <%= link_to '删除', project_path(project), method: :delete, data: { confirm: 'Are you sure?'}, :class => 'btn btn-xs btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

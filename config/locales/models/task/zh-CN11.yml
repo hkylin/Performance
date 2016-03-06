@@ -1,0 +1,14 @@
+zh-CN:
+  activerecord:
+    models:
+      task: 任务
+    attributes:
+      task:
+        name: 名称
+        amount: 数量
+        task_type: 任务类型
+        profit: 收益
+        description: 描述信息
+        created_at: 添加日期
+        updated_at: 更新日期
+        actions: 行为

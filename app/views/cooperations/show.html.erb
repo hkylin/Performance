@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @cooperation.user %>
+</p>
+
+<p>
+  <strong>Project modification:</strong>
+  <%= @cooperation.project_modification %>
+</p>
+
+<p>
+  <strong>Ratio:</strong>
+  <%= @cooperation.ratio %>
+</p>
+
+<%= link_to 'Edit', edit_cooperation_path(@cooperation) %> |
+<%= link_to 'Back', cooperations_path %>

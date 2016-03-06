@@ -1,0 +1,73 @@
+<%= form_for @project do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="field">
+    <%= f.label "计划名称: #{@plan.name}" %><br>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br>
+    <%= f.text_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :asset_price %><br>
+    <%= f.text_field :asset_price %>
+  </div>
+  <div class="field">
+    <%= f.label :pool_price %><br>
+    <%= f.text_field :pool_price %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :management_fee %><br>
+    <%= f.text_field :management_fee %>
+  </div>
+  <div class="field">
+    <%= f.label :investment_manager %><br>
+    <%= f.text_field :investment_manager %>
+  </div>
+  <div class="field">
+    <%= f.label :parter %><br>
+    <%= f.text_field :parter %>
+  </div>
+  <div class="field">
+    <%= f.label :department_id %><br>
+    <%= f.select :department_id, @departments, :prompt => "选择该计划隶属的部门"%> 
+  </div>
+  <div class="field">
+    <%= f.label :rate %><br>
+    <%= f.text_field :rate %>
+  </div>
+  <div class="field">
+    <%= f.label :fee %><br>
+    <%= f.text_field :fee %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

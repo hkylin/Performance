@@ -1,0 +1,84 @@
+<%= form_for @project_modification, url: project_project_modifications_path(@project, @project_modification), :html => { :class => "form-horizontal task" }  do |f| %>
+
+  <% if @project_modification.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@project_modification.errors.count, "error") %> prohibited this project_modification from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @project_modification.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "项目名称", :class => 'control-label col-lg-2' %>
+   <div class="col-lg-10">
+     <%= f.label "#{@project.name}", :class => 'control-label col-lg-2' %>
+    </div>
+  </div>
+
+<div class="form-group">
+    <%= f.label :编号, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :scale, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:scale) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :开始日期, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.date_select :start_date, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:start_date) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :结束日期, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.date_select :end_date, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:end_date) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :管理费, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :management_fee, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:management_fee) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :费率, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :rate, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:rate) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :费用金额, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :fee, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:fee) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :备注, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :notes, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:notes) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit :新建—项目调整, :class => 'btn btn-primary' %>
+      <%= link_to :取消,
+                project_project_modifications_path(@project), :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

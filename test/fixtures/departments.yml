@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sup_department_id: 
+  name: MyString
+  parent: false
+
+two:
+  sup_department_id: 
+  name: MyString
+  parent: false

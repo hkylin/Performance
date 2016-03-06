@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+<h1>我的资管计划列表</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>资管计划编号</th>
+      <th>资管计划名称</th>
+      <th>资管计划类型</th>
+      <th>规模</th>
+      <th>开始日期</th>
+      <th>结束日期</th>
+      <th>管理费</th>
+      <th>投资经理</th>
+      <th>部门</th>
+      <th>费率</th>
+      <th>费用金额</th>
+      <th>注释</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plans.each do |plan| %>
+      <tr>
+        <td><%= plan.number %></td>
+        <td><%= plan.name %></td>
+        <td><%= plan.plan_type %></td>
+        <td><%= plan.scale %></td>
+        <td><%= plan.start_date %></td>
+        <td><%= plan.end_date %></td>
+        <td><%= plan.management_fee %></td>
+        <td><%= plan.investment_manager %></td>
+        <td><%= plan.department %></td>
+        <td><%= plan.rate %></td>
+        <td><%= plan.fee %></td>
+        <td><%= plan.notes %></td>
+        <td><%= link_to 'Show', plan %></td>
+        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+        <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新建资管计划', new_plan_path %>

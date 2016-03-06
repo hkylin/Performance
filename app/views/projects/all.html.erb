@@ -1,0 +1,50 @@
+<h1>Listing Projects</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>PlanName</th>
+      <th>Number</th>
+      <th>项目金额</th>
+      <th>资产价格</th>
+      <th>入池价格</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Management fee</th>
+      <th>Investment manager</th>
+      <th>Department</th>
+      <th>Rate</th>
+      <th>Fee</th>
+      <th>Notes</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.plan.name, plan_path(project.plan) %></td>
+        <td><%= project.number %></td>
+        <td><%= project.name %></td>
+        <td><%= project.scale %></td>
+        <td><%= project.asset_price %></td>
+        <td><%= project.pool_price %></td>
+        <td><%= project.start_date %></td>
+        <td><%= project.end_date %></td>
+        <td><%= project.management_fee %></td>
+        <td><%= project.investment_manager %></td>
+        <td><%= project.department %></td>
+        <td><%= project.rate %></td>
+        <td><%= project.fee %></td>
+        <td><%= project.notes %></td>
+        <td><%= link_to 'To Plan', plan_path(project.plan) %></td>
+        <td><%= link_to 'Show', project_path(project) %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
