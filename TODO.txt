@@ -1,0 +1,202 @@
+TODO
+1、学习git 确保 项目代码可以版本支持，避免写坏了的出现，还可以比较自动化脚本做了哪些修改。
+2、建立项目考核指标。。。。。。部门考核指标。个人考核指标。这里面就有那种层级关系
+
+设置新的格式
+rails g bootstrap:themed Products
+
+测试代码：
+task.taskable = Department.find_by_name '财富管理事业部'
+department=Department.find_by_name '财富管理事业部'
+department.department_users
+
+#rails 命令
+rails g migration add_username_to_users
+rails g migration AddUsertypeToUsers
+rails g model order user:references number payment_state shipment_state
+rails g scoffold Plan number: 
+rails g model department_user department:references user:references
+rails destroy scaffold product
+rails g model catalog parent_catalog:references name parent:boolean
+rails g scaffold product name price:decimal description:text
+rails g scaffold Plan number:integer name this_amount:decimal year_amount:decimal start_date:date end_date:date management_fee:decimal investment_manager a_class b_class department:references rate:decimal fee:decimal notes:text
+ 
+rails g scaffold Project plan:references number:integer name this_amount:decimal year_amount:decimal start_date:date end_date:date management_fee:decimal investment_manager a_class b_class department:references rate:decimal fee:decimal notes:text
+
+rails g scaffold ProjectModification project:references start_date:date end_date:date management_fee:decimal rate:decimal fee:decimal notes:text
+
+rails g scaffold cooperation user:references project_modification:references ratio:decimal
+
+#migration
+rake db:drop ; rake db:create ; rake db:migrate; rake db:seed
+add_column :users, :username, :string
+
+＃运行命令
+rails runner lib/somefile.rb
+rails aux | grep 'rails s'
+rails -Al | grep 'rails s'
+
+＃试图
+<!-- 
+  <div class="field">
+    <%= f.label :plan_id %><br>
+    <%= f.select :plan_id, @plans, :prompt => "选择该项目隶属的计划"%> 
+  </div> 
+  -->
+
+<div class="field">
+    <%= f.label :department_id %><br>
+    <%= f.select :department_id, @departments, :prompt => "选择该计划隶属的部门"%> 
+  </div>
+
+类型：
+模型部分：
+  JOB_TYPE = %w(Full-time Part-time Contract Internship Other)
+  OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
+                'QA/Testing', 'Other']
+
+  validates_inclusion_of :job_type, in: JOB_TYPE
+  validates_inclusion_of :occupation, in: OCCUPATION
+
+视图类型处理：
+  <div class="field reset">
+  <%= f.label :job_type, t("job.type") %>
+    <% Job::JOB_TYPE.each do |t| %>
+                        <%= f.radio_button :job_type, t %> <%= f.label :job_type, t, :value => t, :class => "inline" %>
+    <% end %>
+  </div>
+
+nano /clean    #自定义命令  可以组合命令 
+sh /dbreset    #rake db:drop; rake db:create; rake db:migrate; rake db:seed;
+
+技术问题：
+	f.select Project如何默认选择Plan的？
+
+崇明岛薰衣草庄园旅行项目：
+
+   	崇明岛薰衣草庄园遇见未知的你
+
+	项目发起人：宅食锦  乔士茏
+	互联网农业，好土、好水、好管家。
+
+   	支持1元：无限额
+非常感谢您的支持，我们将由京东众筹官方在支持者中抽取幸运用户，每200名抽奖一次，不满200名也抽取。获得薰衣草庄园全家套票，有效期截止到2016年10月15日。抽奖规则以及中奖名单将在话题区公布。由项目方发货。
+	配送费用： 免运费
+	预计回报发送时间：项目成功结束后15天内
+
+   支持25元 崇明岛薰衣草庄园生态旅游节门票  限制6000位
+	非常感谢您的支持，您获得
+	1、薰衣草庄园全家套票（只包含门票），有效期截止到2016年10月15日。
+
+   支持50元 崇明岛薰衣草庄园生态旅游节门票 限制6000位
+	非常感谢您的支持，您获得
+	1、薰衣草庄园全家套票（只包含门票），有效期截止到2016年10月15日。
+   	2、时令水果/蔬菜采摘3公斤
+   	3、花卉种子1袋。
+
+   支持100元 崇明岛薰衣草庄园生态旅游节门票  限制3000位
+   	1、薰衣草庄园全家套票（只包含门票），有效期截止到2016年10月15日。  	
+   	2、专业摄影工作室艺术摄影9张
+   	3、有机农场中餐，全部蔬菜为当日采摘
+   	4、花卉种子1袋
+
+   	支持2万元 限制100位
+   	合伙人计划：直接持有崇明岛薰衣草庄园股权，股权比例为。。。。，但个人上限10万。
+
+
+园林布局：（这个还是要讲究点，避免铺大饼，最好有一些起伏）
+	要有层叠，最好有小山或者坡度，这样照相效果会很好，避免出现一眼望尽。
+
+   	
+集装箱餐饮：
+http://www.landscape.cn/news/events/project/foreign/2015/1110/177074.html
+http://photo.china.com.cn/news/2014-12/24/content_34396777.htm
+http://news.zhulong.com/read171737.薰衣草庄园
+
+   	花海介绍
+   		htm
+   	有机蔬菜
+   	地理位置
+   	拍照
+   	视频：
+   	图片
+   2、
+
+Termal命令行：
+Ctrl + h        退格删除一个字符，相当于通常的Backspace键
+Ctrl + u        删除光标之前到行首的字符
+Ctrl + k        删除光标到行尾的字符
+Ctrl + c        取消(cancel)当前行输入的命令，相当于Ctrl + Break
+Ctrl + a        光标移动到行首（Ahead of line），相当于通常的Home键
+Ctrl + e        光标移动到行尾（End of line）
+
+Ctrl + l        清屏，相当于执行clear命令
+Ctrl + p        调出命令历史中的前一条（Previous）命令，相当于通常的上箭头
+Ctrl + n        调出命令历史中的下一条（Next）命令，相当于通常的上箭头
+
+Ctrl + w        删除从光标位置前到当前所处单词（Word）的开头
+Ctrl + y        粘贴最后一次被删除的单词
+Alt+←           光标单词间移动（向左）
+Alt+→           光标单词向右移动
+
+
+pm_hash={name: 'magq test data', project_id: 1, user_id: 3 cooperations: {[{user_id: 1,ratio:0.3}]}}
+pm=ProjectModification.create(pm_hash)
+pm.cooperations
+
+
+需求：
+任何区间  个人+部门 管理费收入
+任何区间  管理规模的余额。（事业部、部门、人）
+任何区间  日均管理规模的余额。
+计划  项目 增加合作机构   民生银行资产管理部  （恒丰银行  金融市场部 产品）
+增加外部机构的规模收入。
+
+计划区分
+一对一  
+一对多  保腾  会赢。
+对计划的统计
+
+
+权限：
+  个人
+  梁奉
+  复核岗   个人发起  总监|复核岗  复核。
+
+
+console 创建计划  
+Plan.create(name: '民生加银资管永昌地产集团专项资产管理计划', plan_type: Plan::PLAN_TYPE[0], number: :WDC15015, user: User.find(3), department: Department.find(3),parter: :民生银行, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
+p=Project.find(1)
+p.count_fee2(Date.new(2016,2,4),Date.new(2017,2,3)).to_i
+
+
+可能用到的插件
+  whenever   执行定时任务
+  paper_trail 记录model数据的变化
+  acts_as_list  给model中的对象进行排序记录在position字段中
+  ecursive-open-struct 生成嵌套的OpenStruct
+  cancancan 权限管理
+
+
+rails generate rspec:model product
+rails generate rspec:controller products
+
+% rspec   全部执行 
+% rspec spec/models/
+% rspec spec/routing/products_routing_spec.rb
+% rspec spec/models/product_spec.rb:10   运行某一个测试用例，需要指定用例开始的行数
+
+
+rails generate rspec:model user
+
+
+
+
+
+
+
+
+rails g cancan:ability
+      create  app/models/ability.rb
+
+

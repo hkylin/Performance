@@ -1,0 +1,40 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
+
+
+考核指标有几种类型：
+   规模  管理费   收入（是否需要？ 收入怎么计算?）目前只有这三种？，并且简化，即使调整也是全年的任务，不是一段时间的（例如一个季度的）。
+   管理费=(endd-startd)*scale*rate/365   #计算管理费,特殊情况会有/360 的情况
+  
+
+   涉及到计算指标的方式。
+
+   新建计划：集合类项目指定部门后，是否需要指定投资经理，目前可能只能指定一个人为投资经理。
+   这里有一个指定部门后，投资经理必须时其部门的人，联动的这个逻辑在里面类似，城市，区这个实现在里面。
+   
