@@ -200,3 +200,11 @@ rails g cancan:ability
       create  app/models/ability.rb
 
 
+
+git
+echo "# Performance" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/yours2008/Performance.git
+git push -u origin master
