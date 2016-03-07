@@ -1,6 +1,9 @@
 <!--  事业部 层级显示下属部门的考核，不再显示个人的考核 -->
-<% if(@department.has_sub_departments) %>
 
+<% if(@department.has_sub_departments) %>
+<div class="page-header">
+  <h1>您管理的部门业绩考核情况</h1>
+</div>
   <table class="table table-striped table-hover ">
     <thead>
       <tr>
@@ -13,7 +16,10 @@
       </tr>
     </thead>
     <tbody>
+      <% logger.info "==========#{@department.sub_departments.size}=========" %>
       <% @department.sub_departments.each do |department| %>
+      <% logger.info "==========#{department.name}=========" %>
+
       <% logger.info department.tasks %>
       <tr>
         <td><%=department.name%>管理费规模</td>

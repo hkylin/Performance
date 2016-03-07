@@ -8,7 +8,9 @@ class ProjectsController < ApplicationController
   def index
     # @projects = Project.all
     @projects = @plan.projects
-
+    # @plans = current_user.plans
+    # @projects = current_user.projects
+    # @tasks = current_user.tasks
   end
 
   def all
@@ -89,6 +91,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:plan_id, :number, :name, :this_amount, :year_amount, :start_date, :end_date, :management_fee, :investment_manager, :a_class, :b_class, :department_id, :rate, :fee, :notes)
+      params.require(:project).permit(:plan_id, :number, :name, :scale, :start_date, :end_date, :management_fee, :investment_manager, :parter, :department_id, :rate, :fee, :notes)
     end
 end

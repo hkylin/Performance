@@ -26,7 +26,7 @@ Department.create(name: '资本市场小组', sup_department: qj)
 Department.create(name: '综合管理部', sup_department: qj)
 yg=Department.create(name: '业务管理部', sup_department: mj)
 
-hlw=Department.create(name: '互联网金融部', sup_department: yg)
+hlw=Department.create(name: '互联网金融部', sup_department: cf)
 jg=Department.create(name: '机构客户中心', sup_department: cf)
 gr=Department.create(name: '个人客户中心', sup_department: cf)
 cpyf=Department.create(name: '产品研发中心', sup_department: cf)

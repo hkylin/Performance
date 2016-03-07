@@ -152,6 +152,9 @@ pm.cooperations
 计划  项目 增加合作机构   民生银行资产管理部  （恒丰银行  金融市场部 产品）
 增加外部机构的规模收入。
 
+事业部领导  主管  是否还有指标？
+
+
 计划区分
 一对一  
 一对多  保腾  会赢。
@@ -162,6 +165,30 @@ pm.cooperations
   个人
   梁奉
   复核岗   个人发起  总监|复核岗  复核。
+
+细化需求：
+365 360 项目和计划，特例 每月30天。
+组合管理、滚动投资：业绩报酬？
+项目和计划都有提前结束。目前好像只做了项目。管理费分段。修改过程未校验，增加时间轴的检验
+。
+
+变更保留历史。如何展现。
+外部机构 
+
+每个模式的费率表。
+收费：
+
+数据透视表。
+曲线图 任务完成情况。
+业务分析。
+
+项目、计划存在风险。 增加过滤功能，单独过滤风险项目
+
+马总的事业不完成情况是否计算了马总和金融的个人完成情况。是否汇总了。
+
+bug  为什么 在编辑的时候 会报唯一性错误。
+Number has already been taken
+错误信息 要修改成中文的
 
 
 console 创建计划  
@@ -208,3 +235,38 @@ git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/yours2008/Performance.git
 git push -u origin master
+
+
+
+<ul class="nav nav-tabs">
+  <li class=""><a href="#home" data-toggle="tab" aria-expanded="false">Home</a></li>
+  <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Profile</a></li>
+  <li class="disabled"><a>Disabled</a></li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      Dropdown <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
+      <li class="divider"></li>
+      <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+    </ul>
+  </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade" id="home">
+    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+  </div>
+  <div class="tab-pane fade active in" id="profile">
+    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+  </div>
+  <div class="tab-pane fade" id="dropdown1">
+    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+  </div>
+  <div class="tab-pane fade" id="dropdown2">
+    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+  </div>
+</div>
+
+
+

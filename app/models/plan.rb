@@ -7,6 +7,10 @@ class Plan < ActiveRecord::Base
   
   validates_inclusion_of :plan_type, in: PLAN_TYPE
   # validates_presence_of :department
+  validates_presence_of :start_date, :end_date, :name, :number, :plan_type, :rate   #, :parter
+  validates_length_of :name, :minimum => 2 # 最少 2
+  validates_numericality_of :scale, :greater_than => 30000000
+  validates_uniqueness_of :number, :name
 
 
   def count_fee_between(startd,endd)

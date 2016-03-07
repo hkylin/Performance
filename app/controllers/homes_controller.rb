@@ -10,7 +10,17 @@ class HomesController < ApplicationController
 
   def department
   	@department=Department.find (params[:department_id])  #解决传递参数问题
-  	# @department=Department.find_by_name('互联网金融部')
+    admin_departments=current_user.admin_departments 
+
+    if ( admin_departments.size > 0 )
+      ids=admin_departments.collect{|x| x.id}
+      logger.debug("----------#{ids}----------")
+      if(ids.include?(params[:department_id].to_i))
+        return
+      else
+        redirect_to homes_index_path, notice: '越权访问' 
+      end
+    end
   end
 
   def user

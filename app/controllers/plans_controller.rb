@@ -6,7 +6,7 @@ class PlansController < ApplicationController
   # GET /plans.json
   def index
     # @plans = Plan.where(plan_type: Plan::PLAN_TYPE[0]).all  #单一资金资管计划
-    @plans = Plan.all
+    @plans = current_user.plans
   end
 
   # GET /plans/1
@@ -73,6 +73,6 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:number, :name, :this_amount, :year_amount, :start_date, :end_date, :management_fee, :investment_manager, :a_class, :b_class, :department_id, :rate, :fee, :notes, :plan_type)
+      params.require(:plan).permit(:number, :name, :this_amount, :year_amount, :start_date, :end_date, :management_fee, :investment_manager, :scale, :department_id, :rate, :fee, :notes, :plan_type, :parter)
     end
 end
