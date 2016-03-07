@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   belongs_to :department
   has_many :project_modifications, :dependent => :destroy
 
-  validates_presence_of :start_date, :end_date, :name, :number, :plan_type, :rate   #, :parter
+  validates_presence_of :start_date, :end_date, :name, :number, :rate   #, :parter
   validates_length_of :name, :minimum => 2 # 最少 2
   validates_numericality_of :scale, :greater_than => 30000000
   validates_uniqueness_of :number, :name

@@ -24,6 +24,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :规模 %><br>
+    <%= f.text_field :scale %>
+  </div>
+  <div class="field">
     <%= f.label :asset_price %><br>
     <%= f.text_field :asset_price %>
   </div>
@@ -51,9 +55,13 @@
     <%= f.label :parter %><br>
     <%= f.text_field :parter %>
   </div>
-  <div class="field">
-    <%= f.label :department_id %><br>
-    <%= f.select :department_id, @departments, :prompt => "选择该计划隶属的部门"%> 
+  
+  <div class="form-group">
+    <%= f.label :部门 ,:class => 'control-label col-lg-2' %>  
+    <div class="col-lg-10">
+      <%= f.select :department_id, Department.all.collect {|f| [ "#{f.name}", f.id ] }  %>
+    </div>
+    <%=f.error_span(:department_id) %>
   </div>
   <div class="field">
     <%= f.label :rate %><br>
