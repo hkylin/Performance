@@ -35,7 +35,7 @@ class ProjectModificationsController < ApplicationController
 
     respond_to do |format|
       if @project_modification.save
-        format.html { redirect_to @project_modification, notice: 'Project modification was successfully created.' }
+        format.html { redirect_to @project_modification, notice: '成功创建项目跳转' }
         format.json { render :show, status: :created, location: @project_modification }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class ProjectModificationsController < ApplicationController
     @select_projects=ProjectModification.find_projects()
     respond_to do |format|
       if @project_modification.update(project_modification_params)
-        format.html { redirect_to @project_modification, notice: 'Project modification was successfully updated.' }
+        format.html { redirect_to @project_modification, notice: '项目调整已更新.' }
         format.json { render :show, status: :ok, location: @project_modification }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class ProjectModificationsController < ApplicationController
     @project=@project_modification.project
     @project_modification.destroy
     respond_to do |format|
-      format.html { redirect_to project_project_modifications_url(@project), notice: 'Project modification was successfully destroyed.' }
+      format.html { redirect_to project_project_modifications_url(@project), notice: '项目更改将被删除.' }
       format.json { head :no_content }
     end
   end

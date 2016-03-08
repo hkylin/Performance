@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
     @project.plan=@plan
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to @project, notice: '成功创建新项目' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to project_path(@project), notice: 'Project was successfully updated.' }
+        format.html { redirect_to project_path(@project), notice: '项目已经被更新！' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
     @plan=@project.plan
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to plan_projects_url(@plan), notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to plan_projects_url(@plan), notice: '项目将被删除，其相关的项目修改也将会被删除！' }
       format.json { head :no_content }
     end
   end

@@ -28,7 +28,7 @@ class CooperationsController < ApplicationController
 
     respond_to do |format|
       if @cooperation.save
-        format.html { redirect_to @cooperation, notice: 'Cooperation was successfully created.' }
+        format.html { redirect_to @cooperation, notice: '协作者已成功创建.' }
         format.json { render :show, status: :created, location: @cooperation }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CooperationsController < ApplicationController
   def update
     respond_to do |format|
       if @cooperation.update(cooperation_params)
-        format.html { redirect_to @cooperation, notice: 'Cooperation was successfully updated.' }
+        format.html { redirect_to @cooperation, notice: '协作者已经被修改.' }
         format.json { render :show, status: :ok, location: @cooperation }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CooperationsController < ApplicationController
   def destroy
     @cooperation.destroy
     respond_to do |format|
-      format.html { redirect_to cooperations_url, notice: 'Cooperation was successfully destroyed.' }
+      format.html { redirect_to cooperations_url, notice: '协作者将被删除.' }
       format.json { head :no_content }
     end
   end

@@ -32,7 +32,7 @@ class TasksController < ApplicationController
     @task.taskable = current_user
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to @task, notice: '成功创建任务' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
