@@ -3,9 +3,13 @@ class Plan < ActiveRecord::Base
   belongs_to :department
   has_many :projects, :dependent => :destroy
 
-  PLAN_TYPE = %w(单一 集合)
-  
+  PLAN_TYPE = %w(单一 集合)  
   validates_inclusion_of :plan_type, in: PLAN_TYPE
+
+  RISK_TYPE = %w(正常 风险)  
+  validates_inclusion_of :risk, in: RISK_TYPE
+  
+
   # validates_presence_of :department
   validates_presence_of :start_date, :end_date, :name, :number, :plan_type, :rate   , :message => "不能为空" # 最少 2 #, :parter
   validates_length_of :name, :minimum => 2 ,:message => "名称最少4个字节" 

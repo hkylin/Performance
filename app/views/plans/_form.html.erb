@@ -1,4 +1,4 @@
-<%= form_for@plan, :html => { :class => "form-horizontal task" }  do |f| %>
+<%= form_for@plan, :html => { :class => "form-horizontal plan" }  do |f| %>
   <% if @plan.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -37,13 +37,15 @@
                         <%= f.label :plan_type, t, :value => t, :class => "inline" %>
     <% end %>
   </div>
+
   <div class="form-group">
-    <%= f.label :规模 ,:class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :scale , :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:scale) %>
+    <%= f.label :风险 ,:class => 'control-label col-lg-2' %>
+    <% Plan::RISK_TYPE.each do |t| %>
+                        <%= f.radio_button :risk, t %> 
+                        <%= f.label :risk, t, :value => t, :class => "inline" %>
+    <% end %>
   </div>
+  
   <div class="form-group">
     <%= f.label :开始日期 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -59,26 +61,11 @@
     <%=f.error_span(:end_date) %>
   </div>
   <div class="form-group">
-    <%= f.label :管理费 ,:class => 'control-label col-lg-2' %>
+    <%= f.label :规模 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :management_fee , :class => 'form-control' %>
+      <%= f.text_field :scale , :class => 'form-control' %>
     </div>
-    <%=f.error_span(:management_fee) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :投资经理 ,:class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :investment_manager , :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:investment_manager) %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :部门 ,:class => 'control-label col-lg-2' %>  
-    <div class="col-lg-10">
-      <%= f.select :department_id, Department.all.collect {|f| [ "#{f.name}", f.id ] } ,:class => 'radio' %>
-    </div>
-    <%=f.error_span(:department_id) %>
+    <%=f.error_span(:scale) %>
   </div>
   <div class="form-group">
     <%= f.label :管理费－费率 ,:class => 'control-label col-lg-2' %>
@@ -93,6 +80,38 @@
       <%= f.text_field :fee , :class => 'form-control' %>
     </div>
     <%=f.error_span(:fee) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :投资经理 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :investment_manager , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:investment_manager) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :部门 ,:class => 'control-label col-lg-2' %>  
+    <div class="col-lg-10">
+      <%= f.select :department_id, Department.all.collect {|f| [ "#{f.name}", f.id ] } ,:class => 'radio' %>
+    </div>
+    <%=f.error_span(:department_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :管理费 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :management_fee , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:management_fee) %>
+  </div>
+  <div class="form-group">
+    <%= f.label '年化——计算天数 365|360' ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <% if (@plan.annual==nil) %>
+        <%= f.text_field :annual, :value => '365', :class => 'form-control' %>
+      <%else%>
+        <%= f.text_field :annual, :class => 'form-control' %>
+      <%end%>
+    </div>
+    <%=f.error_span(:annual) %>
   </div>
   <div class="form-group">
     <%= f.label :注释 ,:class => 'control-label col-lg-2' %>

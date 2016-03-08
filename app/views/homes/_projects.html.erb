@@ -18,6 +18,7 @@
       <th>部门</th>
       <th>费率</th>
       <th>费用金额</th>
+      <th>风险</th>
       <th>注释</th>
       <th>操作</th>
     </tr>
@@ -40,6 +41,7 @@
         <td><%= project.department.name %></td>
         <td><%= project.rate %></td>
         <td><%= project.fee %></td>
+        <td><%= project.risk %></td>
         <td><%= project.notes %></td>
         <td><%= link_to '编辑', edit_project_path(project) , :class => 'btn btn-default btn-xs'%>
         <%= link_to '删除', project_path(project), method: :delete, data: { confirm: 'Are you sure?'}, :class => 'btn btn-xs btn-danger' %></td>

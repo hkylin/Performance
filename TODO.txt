@@ -12,7 +12,15 @@ department.department_users
 
 #rails 命令
 rails g migration add_username_to_users
+rails g migration AddColorToVariants color:string
 rails g migration AddUsertypeToUsers
+
+rails g migration AddAnnualToProjects annual:integer
+
+
+
+
+
 rails g model order user:references number payment_state shipment_state
 rails g scoffold Plan number: 
 rails g model department_user department:references user:references
@@ -190,6 +198,19 @@ bug  为什么 在编辑的时候 会报唯一性错误。
 Number has already been taken
 错误信息 要修改成中文的
 
+输入便捷性 是一个集中的问题：
+  在输入项目与计划的时候。
+    1、投资人默认的管理者应该就是自己，
+    2、再有对应的部门应该就是自己所在的部门
+    3、编辑修改的时候，annual 365｜360应该就是自己的。这个是不是应该写在model 保存前，而不是在视图中？查看其它项目
+    4、新建项目修改的时候必须要继承自项目的部分属性。想想如何表现这一部分。让用户最习惯。
+    5、增加字断搜索功能，下拉表单搜索功能，快速选择部门。合作伙伴。存在一个部分和全部的关系。正常应该是一个搜索框  一个姓名列表 单独的一个控件是非常难解决的。
+    6、risk进行归类，可以做过滤显示。
+    7、
+
+
+    doing：DOING:TODO:（risk,annual,parter）这三个字断都要补充的。
+    计算需要修改成一句annual来计算。
 
 console 创建计划  
 Plan.create(name: '民生加银资管永昌地产集团专项资产管理计划', plan_type: Plan::PLAN_TYPE[0], number: :WDC15015, user: User.find(3), department: Department.find(3),parter: :民生银行, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
@@ -236,37 +257,16 @@ git commit -m "first commit"
 git remote add origin https://github.com/yours2008/Performance.git
 git push -u origin master
 
+为题 rails是如何区分 new  edit
 
 
-<ul class="nav nav-tabs">
-  <li class=""><a href="#home" data-toggle="tab" aria-expanded="false">Home</a></li>
-  <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Profile</a></li>
-  <li class="disabled"><a>Disabled</a></li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      Dropdown <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
-      <li class="divider"></li>
-      <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
-    </ul>
-  </li>
-</ul>
-<div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade" id="home">
-    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-  </div>
-  <div class="tab-pane fade active in" id="profile">
-    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
-  </div>
-  <div class="tab-pane fade" id="dropdown1">
-    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
-  </div>
-  <div class="tab-pane fade" id="dropdown2">
-    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
-  </div>
-</div>
+1、组织结构
+     模型 “部门”与”用户”是一个多对多的关系。一个用户有可能主管事业部兼管其它部门。
 
-
-
+在新建“计划”的时候，
+    会有一个部门的选项，我用的是下拉列表，我想在新建的时候是用户的从属部门（可以是其它部门）。
+但是编辑的时候，还是要显示用户实际设置的部门。
+        
+    会有一个计划负责人的选项，也用的是下拉列表，由于公司有200多人，简单的下拉列表体验会非常的差。
+        想实现：   1、下拉列表，默认是自己，大部分情况应该满足了。新建与编辑的问题同上。
+                            2、用户单独选择的时候想配合一个搜索框，可以依据用户输入，调整下拉列表。例如用户输入“王”，应该王姓的员工都显示出来。

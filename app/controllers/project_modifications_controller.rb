@@ -82,6 +82,6 @@ class ProjectModificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_modification_params
-      params.require(:project_modification).permit(:project_id, :start_date, :end_date, :management_fee, :rate, :fee, :notes, cooperations_attributes: [:id, :project_id, :ratio])
+      params.require(:project_modification).permit(:project_id, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, cooperations_attributes: [:id, :project_id, :ratio])
     end
 end

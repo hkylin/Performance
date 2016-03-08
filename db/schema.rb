@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304001109) do
+ActiveRecord::Schema.define(version: 20160308005205) do
 
   create_table "cooperations", force: :cascade do |t|
     t.integer  "user_id"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20160304001109) do
     t.text     "notes"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "annual"
+    t.string   "risk"
   end
 
   add_index "plans", ["department_id"], name: "index_plans_on_department_id"
@@ -86,6 +88,8 @@ ActiveRecord::Schema.define(version: 20160304001109) do
     t.text     "notes"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "annual"
+    t.string   "risk"
   end
 
   add_index "project_modifications", ["project_id"], name: "index_project_modifications_on_project_id"
@@ -110,6 +114,8 @@ ActiveRecord::Schema.define(version: 20160304001109) do
     t.text     "notes"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "annual"
+    t.string   "risk"
   end
 
   add_index "projects", ["department_id"], name: "index_projects_on_department_id"

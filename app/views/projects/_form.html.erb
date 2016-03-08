@@ -1,59 +1,93 @@
-<%= form_for @project, url: plan_projects_path(@plan,@project) do |f| %>
+  <%= form_for @project, url: plan_projects_path(@plan,@project), :html => { :class => "form-horizontal plan" }  do |f| %>
   <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
-      <ul>
-      <% @project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= pluralize(@project.errors.count, "error") %> prohibited this plan from being saved:
+        </h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
+
+  <div class="form-group">
+    <h4>
+      <%="隶属于 #{@plan.name}" %>
+  </h4>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :AM合同代码 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :number , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:number) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :项目名称 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
+  </div>
   
-  <div class="field">
-    <%= f.label "计划名称: #{@plan.name}" %><br>
+  <div class="form-group">
+    <%= f.label :放款日 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.date_select :start_date , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:start_date) %>
   </div>
-  <div class="field">
-    <%= f.label :AM合同代码 %><br>
-    <%= f.text_field :number %>
+  <div class="form-group">
+    <%= f.label :到期日 ,:class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+      <%= f.date_select :end_date , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:end_date) %>
   </div>
-  <div class="field">
-    <%= f.label :项目名称 %><br>
-    <%= f.text_field :name %>
+
+  <div class="form-group">
+    <%= f.label :规模 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :scale , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:scale) %>
   </div>
-  <div class="field">
-    <%= f.label :规模 %><br>
-    <%= f.text_field :scale %>
+  
+   <div class="form-group">
+    <%= f.label :费率 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :rate , :class => 'form-control'%>
+    </div>
+    <%=f.error_span(:rate) %>
   </div>
-  <div class="field">
-    <%= f.label :资产价格 %><br>
-    <%= f.text_field :asset_price %>
+  <div class="form-group">
+    <%= f.label :投资经理 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :investment_manager , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:investment_manager) %>
   </div>
-  <div class="field">
-    <%= f.label :入池价格 %><br>
-    <%= f.text_field :pool_price %>
+  <div class="form-group">
+    <%= f.label :风险 ,:class => 'control-label col-lg-2' %>
+    <% Plan::RISK_TYPE.each do |t| %>
+                        <%= f.radio_button :risk, t %> 
+                        <%= f.label :risk, t, :value => t, :class => "inline" %>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :放款日 %><br>
-    <%= f.date_select :start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :到期日 %><br>
-    <%= f.date_select :end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :管理费率 %><br>
-    <%= f.text_field :management_fee %>
-  </div>
-  <div class="field">
-    <%= f.label :投资经理 %><br>
-    <%= f.text_field :investment_manager %>
-  </div>
-  <div class="field">
-    <%= f.label :合作伙伴 %><br>
-    <%= f.text_field :parter %>
+  <div class="form-group">
+    <%= f.label :合作伙伴 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :parter , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:parter) %>
   </div>
 
   <div class="form-group">
@@ -63,20 +97,59 @@
     </div>
     <%=f.error_span(:department_id) %>
   </div>
+<div class="form-group">
+    <%= f.label :资产价格 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
 
-  <div class="field">
-    <%= f.label :费率 %><br>
-    <%= f.text_field :rate %>
+      <%= f.text_field :asset_price , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:asset_price) %>
   </div>
-  <div class="field">
-    <%= f.label :费用金额 %><br>
-    <%= f.text_field :fee %>
+  <div class="form-group">
+    <%= f.label :入池价格 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+
+      <%= f.text_field :pool_price , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:pool_price) %>
   </div>
-  <div class="field">
-    <%= f.label :注释 %><br>
-    <%= f.text_area :notes %>
+ <div class="form-group">
+    <%= f.label :管理费 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :management_fee , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:management_fee) %>
   </div>
-  <div class="actions">
-    <%= f.submit '创建项目'%>
+  
+  <div class="form-group">
+    <%= f.label :费用金额 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :fee , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:fee) %>
+  </div>
+   <div class="form-group">
+    <%= f.label '年化——计算天数 365|360' ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <% if (@project.annual==nil) %>
+        <%= f.text_field :annual, :value => '365', :class => 'form-control' %>
+      <%else%>
+        <%= f.text_field :annual, :class => 'form-control' %>
+      <%end%>
+    </div>
+    <%=f.error_span(:annual) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :注释 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :notes , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:notes) %>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit '创建项目', :class => 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
