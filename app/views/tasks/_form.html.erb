@@ -16,7 +16,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <%= f.label :任务名称, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :name, :class => 'form-control' %>
     </div>
@@ -30,7 +30,7 @@
     <% end %>
   </div>
   <div class="form-group">
-    <%= f.label :amount, :class => 'control-label col-lg-2' %>
+    <%= f.label :规模, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :amount, :class => 'form-control' %>
     </div>
@@ -51,7 +51,7 @@
     <%=f.error_span(:end_date) %>
   </div>
   <div class="form-group">
-    <%= f.label :description, :class => 'control-label col-lg-2' %>
+    <%= f.label :描述信息, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :description, :class => 'form-control' %>
     </div>
@@ -74,8 +74,8 @@
  -->
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      <%= f.submit :提交, :class => 'btn btn-primary' %>
+      <%= link_to :取消,
                 tasks_path, :class => 'btn btn-default' %>
     </div>
   </div>

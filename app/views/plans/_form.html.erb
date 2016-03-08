@@ -76,7 +76,7 @@
   <div class="form-group">
     <%= f.label :部门 ,:class => 'control-label col-lg-2' %>  
     <div class="col-lg-10">
-      <%= f.select :department_id, Department.all.collect {|f| [ "#{f.name}", f.id ] }  %>
+      <%= f.select :department_id, Department.all.collect {|f| [ "#{f.name}", f.id ] } ,:class => 'radio' %>
     </div>
     <%=f.error_span(:department_id) %>
   </div>
