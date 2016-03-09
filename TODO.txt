@@ -2,6 +2,14 @@ TODO
 1、学习git 确保 项目代码可以版本支持，避免写坏了的出现，还可以比较自动化脚本做了哪些修改。
 2、建立项目考核指标。。。。。。部门考核指标。个人考核指标。这里面就有那种层级关系
 
+
+直接gem install china_city不就行了嘛
+城市联动
+
+使用了两个插件：
+  better_errors
+  railsPanel
+
 设置新的格式
 rails g bootstrap:themed Products
 
@@ -270,3 +278,14 @@ git push -u origin master
     会有一个计划负责人的选项，也用的是下拉列表，由于公司有200多人，简单的下拉列表体验会非常的差。
         想实现：   1、下拉列表，默认是自己，大部分情况应该满足了。新建与编辑的问题同上。
                             2、用户单独选择的时候想配合一个搜索框，可以依据用户输入，调整下拉列表。例如用户输入“王”，应该王姓的员工都显示出来。
+
+
+
+插件使用：
+  rails console
+  rails> require "awesome_print"
+  rails> ap Account.limit(2).all
+
+  logger.ap object
+  logger.ap object, :warn
+  <%= ap @accounts.first %>   # ERB
