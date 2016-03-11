@@ -56,3 +56,18 @@ project_modification
 再创建表单可以新建、修改
 
 
+project has_many     modification
+plan    has_many     modification
+
+modification
+	t.string :modificationable_type
+	t.integer :modificationable_id
+
+	belongs_to :modificationable,polymorphic: true
+
+
+project has_many     modification
+plan    has_many     modification
+
+
+

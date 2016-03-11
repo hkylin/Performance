@@ -5,7 +5,7 @@ class ProjectModification < ActiveRecord::Base
   # has_many :cooperations
   has_many :cooperations, as: :cooperationable
 
-  # accepts_nested_attributes_for :cooperationable , update_only: true
+  accepts_nested_attributes_for :cooperations , update_only: true
   
   # t.date :start_date
   # t.date :end_date
