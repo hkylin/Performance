@@ -1,9 +1,8 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-  
   belongs_to :plan
-
   belongs_to :department
+  
   has_many :project_modifications, :dependent => :destroy
 
   RISK_TYPE = %w(正常 风险)  
@@ -57,6 +56,30 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def count_scale(at_date) #计算单一计划管理费
+    if project_modifications.size > 0
+      count_scale_modifys at_date
+    else
+      count_scale_self at_date      
+    end
+  end
+
+  def count_scale_self(at_date)
+    if( start_date <= at_date && at_date < end_date )  #注意开始时间  结束时间边界值
+      return scale
+    else
+      return 0
+    end 
+  end
+
+  def count_scale_modifys(at_date)  #modify日期必须是连续的
+    project_modifications.each do |modify|
+      if( modify.start_date <= at_date && at_date < modify.end_date )  #注意开始时间  结束时间边界值
+        return modify.scale
+      end
+    end
+  end
+
   def count_fee
     (end_date-start_date)*scale*rate/365
   end
@@ -64,5 +87,7 @@ class Project < ActiveRecord::Base
   def count_date
     end_date-start_date
   end
+
+
 
 end
