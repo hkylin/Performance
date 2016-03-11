@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   def admin_departments
     @admin_departments=Array.new 
     department_users.each do |x|
-      if ( x.role == 'admin' )
+      if ( x.role == 'admin'  )
         @admin_departments << x.department
         x.department.sub_departments.each do |y|
           @admin_departments << y
@@ -38,9 +38,24 @@ class User < ActiveRecord::Base
     @admin_departments
   end
 
+def current_department
+    @admin_departments=Array.new 
+    department_users.each do |x|
+      if ( x.role == 'admin'  )
+        @admin_departments << x.department
+      end
+    end
+    @admin_departments
+end
+
+
 def count_first_task#TODO 任务指标  目前只做了 管理费  ，这是一个必须修改的地方
   count_management_fee_tasks/4
-end  
+end
+
+def count_management_fee_tasks_between(start_date, end_date)  
+  count_management_fee_tasks*(Date.new(end_date)-Date.new(start_date))/365
+end
 # scale management_fee profit
 
 def count_all_type_task
@@ -64,6 +79,17 @@ def count_tasks(task_type)#TODO 任务指标  目前只做了 管理费  ，这�
   end
   scale
 end 
+
+def count_scale(at_date)
+  sum=0.0
+  plans.each do |plan|
+    sum = sum + plan.count_scale(at_date)
+  end
+  projects.each do |project|
+      sum = sum + project.count_scale(at_date)
+    end
+  sum
+end
 
 #TODO require 'date' #为什么date没有复写
 
