@@ -69,6 +69,6 @@ class CooperationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cooperation_params
-      params.require(:cooperation).permit(:user_id, :project_modification_id, :ratio)
+      params.require(:cooperation).permit(:user_id, :modification_id, :ratio)
     end
 end

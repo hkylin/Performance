@@ -57,9 +57,9 @@ rails g scaffold Plan number:integer name this_amount:decimal year_amount:decima
  
 rails g scaffold Project plan:references number:integer name this_amount:decimal year_amount:decimal start_date:date end_date:date management_fee:decimal investment_manager a_class b_class department:references rate:decimal fee:decimal notes:text
 
-rails g scaffold ProjectModification project:references start_date:date end_date:date management_fee:decimal rate:decimal fee:decimal notes:text
+rails g scaffold Modification project:references start_date:date end_date:date management_fee:decimal rate:decimal fee:decimal notes:text
 
-rails g scaffold cooperation user:references project_modification:references ratio:decimal
+rails g scaffold cooperation user:references modification:references ratio:decimal
 
 #migration
 rake db:drop ; rake db:create ; rake db:migrate; rake db:seed
@@ -175,7 +175,7 @@ Alt+→           光标单词向右移动
 
 
 pm_hash={name: 'magq test data', project_id: 1, user_id: 3 cooperations: {[{user_id: 1,ratio:0.3}]}}
-pm=ProjectModification.create(pm_hash)
+pm=Modification.create(pm_hash)
 pm.cooperations
 
 

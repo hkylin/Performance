@@ -4,7 +4,7 @@ RSpec.describe "cooperations/new", type: :view do
   before(:each) do
     assign(:cooperation, Cooperation.new(
       :user => nil,
-      :project_modification => nil,
+      :modification => nil,
       :ratio => "9.99"
     ))
   end
@@ -16,7 +16,7 @@ RSpec.describe "cooperations/new", type: :view do
 
       assert_select "input#cooperation_user_id[name=?]", "cooperation[user_id]"
 
-      assert_select "input#cooperation_project_modification_id[name=?]", "cooperation[project_modification_id]"
+      assert_select "input#cooperation_modification_id[name=?]", "cooperation[modification_id]"
 
       assert_select "input#cooperation_ratio[name=?]", "cooperation[ratio]"
     end

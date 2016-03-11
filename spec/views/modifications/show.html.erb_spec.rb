@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "project_modifications/show", type: :view do
+RSpec.describe "modifications/show", type: :view do
   before(:each) do
-    @project_modification = assign(:project_modification, ProjectModification.create!(
+    @modification = assign(:modification, Modification.create!(
       :project => nil,
       :management_fee => "9.99",
       :rate => "9.99",

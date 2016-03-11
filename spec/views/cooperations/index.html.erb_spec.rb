@@ -5,12 +5,12 @@ RSpec.describe "cooperations/index", type: :view do
     assign(:cooperations, [
       Cooperation.create!(
         :user => nil,
-        :project_modification => nil,
+        :modification => nil,
         :ratio => "9.99"
       ),
       Cooperation.create!(
         :user => nil,
-        :project_modification => nil,
+        :modification => nil,
         :ratio => "9.99"
       )
     ])

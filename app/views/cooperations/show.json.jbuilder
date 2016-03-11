@@ -1,1 +1,1 @@
-json.extract! @cooperation, :id, :user_id, :project_modification_id, :ratio, :created_at, :updated_at
+json.extract! @cooperation, :id, :user_id, :modification_id, :ratio, :created_at, :updated_at

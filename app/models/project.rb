@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :plan
   belongs_to :department
   has_many :cooperations, as: :cooperationable
-  has_many :project_modifications, :dependent => :destroy
+  has_many :modifications, :dependent => :destroy
 
   RISK_TYPE = %w(正常 风险)  
   validates_inclusion_of :risk, in: RISK_TYPE
@@ -42,14 +42,14 @@ class Project < ActiveRecord::Base
 
   def count_fee_modifys(startd,endd)
     sum=0.0
-    project_modifications.each do |modify|
+    modifications.each do |modify|
       sum = sum + modify.count_fee_between(startd,endd)
     end
     sum
   end
 
   def count_fee_between(startd,endd)
-    if project_modifications.size > 0 
+    if modifications.size > 0 
       count_fee_modifys(startd,endd)
     else
       count_fee_self(startd,endd)
@@ -57,7 +57,7 @@ class Project < ActiveRecord::Base
   end
 
   def count_scale(at_date) #计算单一计划管理费
-    if project_modifications.size > 0
+    if modifications.size > 0
       count_scale_modifys at_date
     else
       count_scale_self at_date      
@@ -73,7 +73,7 @@ class Project < ActiveRecord::Base
   end
 
   def count_scale_modifys(at_date)  #modify日期必须是连续的
-    project_modifications.each do |modify|
+    modifications.each do |modify|
       if( modify.start_date <= at_date && at_date < modify.end_date )  #注意开始时间  结束时间边界值
         return modify.scale
       end

@@ -4,7 +4,7 @@ RSpec.describe "cooperations/show", type: :view do
   before(:each) do
     @cooperation = assign(:cooperation, Cooperation.create!(
       :user => nil,
-      :project_modification => nil,
+      :modification => nil,
       :ratio => "9.99"
     ))
   end

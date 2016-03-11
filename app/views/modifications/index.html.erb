@@ -1,4 +1,4 @@
-<%- model_class = ProjectModification -%>
+<%- model_class = Modification -%>
 <div class="page-header">
   <h1>项目调整列表</h1>
 </div>
@@ -19,23 +19,23 @@
     </tr>
   </thead>
   <tbody>
-    <% @project_modifications.each do |project_modification| %>
+    <% @modifications.each do |modification| %>
       <tr>
-        <td><%= link_to project_modification.id, project_modification_path(project_modification) %></td>
-        <td><%= link_to project_modification.project.name, project_modification_path(project_modification) %></td>
-        <td><%= project_modification.scale %></td>
-        <td><%= project_modification.start_date %></td>
-        <td><%= project_modification.end_date %></td>
-        <td><%= project_modification.management_fee %></td>
-        <td><%= project_modification.rate %></td>
-        <td><%= project_modification.fee %></td>
-        <td><%= project_modification.notes %></td>
-        <td><%=l project_modification.created_at %></td>
+        <td><%= link_to modification.id, modification_path(modification) %></td>
+        <td><%= link_to modification.project.name, modification_path(modification) %></td>
+        <td><%= modification.scale %></td>
+        <td><%= modification.start_date %></td>
+        <td><%= modification.end_date %></td>
+        <td><%= modification.management_fee %></td>
+        <td><%= modification.rate %></td>
+        <td><%= modification.fee %></td>
+        <td><%= modification.notes %></td>
+        <td><%=l modification.created_at %></td>
         <td>
           <%= link_to :编辑,
-                      edit_project_modification_path(project_modification), :class => 'btn btn-default btn-xs' %>
+                      edit_modification_path(modification), :class => 'btn btn-default btn-xs' %>
           <%= link_to  :删除,
-                      project_modification_path(project_modification),
+                      modification_path(modification),
                       :method => :delete,
                       :data => { :confirm => '危险操作，请确认是否删除?' },
                       :class => 'btn btn-xs btn-danger' %>
@@ -46,7 +46,7 @@
 </table>
 
 <%= link_to :新建—项目调整,
-            new_project_project_modification_path(@project),
+            new_project_modification_path(@project),
             :class => 'btn btn-primary' %> |
 <%= link_to '当前资管计划的项目列表', plan_projects_path(@project.plan) %> |
 <%= link_to '我的资管计划表', plans_path %>

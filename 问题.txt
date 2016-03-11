@@ -39,7 +39,7 @@ department:
 
 plan  has_many copperation
 project has_many copperation
-project_modification has_many copperation
+modification has_many copperation
 
 copperation
 	t.string :copperation_type
@@ -49,7 +49,7 @@ copperation
 
 plan
 project
-project_modification
+modification
 	has_many :copperations, as: :copperationable
 
 先将她们做成多态

@@ -45,6 +45,26 @@ ActiveRecord::Schema.define(version: 20160308005205) do
 
   add_index "departments", ["sup_department_id"], name: "index_departments_on_sup_department_id"
 
+  create_table "modifications", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.decimal  "scale"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "investment_manager"
+    t.decimal  "management_fee"
+    t.decimal  "rate"
+    t.decimal  "fee"
+    t.text     "notes"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "annual"
+    t.string   "risk"
+  end
+
+  add_index "modifications", ["project_id"], name: "index_modifications_on_project_id"
+  add_index "modifications", ["user_id"], name: "index_modifications_on_user_id"
+
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -74,26 +94,6 @@ ActiveRecord::Schema.define(version: 20160308005205) do
 
   add_index "plans", ["department_id"], name: "index_plans_on_department_id"
   add_index "plans", ["user_id"], name: "index_plans_on_user_id"
-
-  create_table "project_modifications", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.decimal  "scale"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "investment_manager"
-    t.decimal  "management_fee"
-    t.decimal  "rate"
-    t.decimal  "fee"
-    t.text     "notes"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "annual"
-    t.string   "risk"
-  end
-
-  add_index "project_modifications", ["project_id"], name: "index_project_modifications_on_project_id"
-  add_index "project_modifications", ["user_id"], name: "index_project_modifications_on_user_id"
 
   create_table "projects", force: :cascade do |t|
     t.integer  "plan_id"

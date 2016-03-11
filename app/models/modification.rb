@@ -1,4 +1,4 @@
-class ProjectModification < ActiveRecord::Base
+class Modification < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
   validates_associated :project
@@ -15,7 +15,7 @@ class ProjectModification < ActiveRecord::Base
   # t.text :notes
 
   validates_presence_of :start_date, :end_date, :rate , :message => "不能为空" # 最少 2 
-  validates_numericality_of :scale, :greater_than => 30000000  , :message => "最小规模3000万" # 最少 2 
+  # validates_numericality_of :scale, :greater_than => 30000000  , :message => "最小规模3000万" # 最少 2 
   # validates_uniqueness_of :number,  :on => :create, :message => "计划编号不唯一" 
   
 

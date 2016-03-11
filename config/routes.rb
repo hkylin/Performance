@@ -13,13 +13,13 @@ Rails.application.routes.draw do
   get 'projects/all'
   root 'homes#index'
   resources :cooperations
-  # resources :project_modifications
+  # resources :modifications
   resources :plans do
     resources :projects, shallow: true
   end
   
   resources :projects do
-    resources :project_modifications, shallow: true
+    resources :modifications, shallow: true
   end
   
   get 'people/index'

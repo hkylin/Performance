@@ -212,7 +212,7 @@ zh-CN:
       task: 任务
       project: 项目
       plan: 计划
-      project_modification: 项目调整 模型名字不知道怎么取值
+      modification: 项目调整 模型名字不知道怎么取值
     attributes:
       task:
         name: 任务名称
@@ -261,7 +261,7 @@ zh-CN:
         risk: 风险
         created_at: 添加日期
         updated_at: 更新日期
-      project_modification:  #注意不是复数
+      modification:  #注意不是复数
         user: 当前用户
         user: 当前用户
         project: 项目

@@ -5,7 +5,7 @@ class CreateCooperations < ActiveRecord::Migration
       t.integer :cooperationable_id
       t.string :cooperationable_type
 
-      # t.references :project_modification, index: true, foreign_key: true
+      # t.references :modification, index: true, foreign_key: true
       t.decimal :ratio
 
       t.timestamps null: false

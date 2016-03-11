@@ -1,12 +1,12 @@
-<%= form_for @project_modification, :html => { :class => "form-horizontal task" } do |f| %>
-  <% if @project_modification.errors.any? %>
+<%= form_for @modification, :html => { :class => "form-horizontal task" } do |f| %>
+  <% if @modification.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@project_modification.errors.count, "error") %> prohibited this project_modification from being saved:</h3>
+        <h3 class="panel-title"><%= pluralize(@modification.errors.count, "error") %> prohibited this modification from being saved:</h3>
       </div>
       <div class="panel-body">
         <ul>
-        <% @project_modification.errors.full_messages.each do |msg| %>
+        <% @modification.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>
@@ -23,7 +23,7 @@
   </div>
 
 <div class="form-group">
-    <%= f.label :编号, :class => 'control-label col-lg-2' %>
+    <%= f.label :规模, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :scale, :class => 'form-control' %>
     </div>
@@ -101,7 +101,7 @@
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit :更新, :class => 'btn btn-primary' %>
       <%= link_to :取消,
-                project_project_modifications_path(@project), :class => 'btn btn-default' %>
+                project_modifications_path(@project), :class => 'btn btn-default' %>
     </div>
   </div>
 

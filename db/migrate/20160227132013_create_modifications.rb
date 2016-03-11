@@ -1,6 +1,6 @@
-class CreateProjectModifications < ActiveRecord::Migration
+class CreateModifications < ActiveRecord::Migration
   def change
-    create_table :project_modifications do |t|
+    create_table :modifications do |t|
       t.references :project, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
       t.decimal :scale #number

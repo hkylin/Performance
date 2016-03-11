@@ -1,33 +1,33 @@
-<%- model_class = ProjectModification -%>
+<%- model_class = Modification -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:project_id) %>:</strong></dt>
-  <dd><%= @project_modification.project_id %></dd>
+  <dd><%= @modification.project_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:scale) %>:</strong></dt>
-  <dd><%= @project_modification.scale %></dd>
+  <dd><%= @modification.scale %></dd>
   <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
-  <dd><%= @project_modification.start_date %></dd>
+  <dd><%= @modification.start_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:end_date) %>:</strong></dt>
-  <dd><%= @project_modification.end_date %></dd>
+  <dd><%= @modification.end_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:management_fee) %>:</strong></dt>
-  <dd><%= @project_modification.management_fee %></dd>
+  <dd><%= @modification.management_fee %></dd>
   <dt><strong><%= model_class.human_attribute_name(:rate) %>:</strong></dt>
-  <dd><%= @project_modification.rate %></dd>
+  <dd><%= @modification.rate %></dd>
   <dt><strong><%= model_class.human_attribute_name(:fee) %>:</strong></dt>
-  <dd><%= @project_modification.fee %></dd>
+  <dd><%= @modification.fee %></dd>
   <dt><strong><%= model_class.human_attribute_name(:notes) %>:</strong></dt>
-  <dd><%= @project_modification.notes %></dd>
+  <dd><%= @modification.notes %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              project_project_modifications_path(@project_modification.project, @project_modification), :class => 'btn btn-default'  %>
+              project_modifications_path(@modification.project, @modification), :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_project_modification_path(@project_modification), :class => 'btn btn-default' %>
+              edit_modification_path(@modification), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              project_modification_path(@project_modification),
+              modification_path(@modification),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

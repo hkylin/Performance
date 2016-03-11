@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :plans
   has_many :projects
-  has_many :project_modifications
+  has_many :modifications
   has_many :cooperations
 
   ROLES = %i[super_admin admin staff]

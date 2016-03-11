@@ -14,7 +14,7 @@
     <% @cooperations.each do |cooperation| %>
       <tr>
         <td><%= cooperation.user %></td>
-        <td><%= cooperation.project_modification %></td>
+        <td><%= cooperation.modification %></td>
         <td><%= cooperation.ratio %></td>
         <td><%= link_to 'Show', cooperation %></td>
         <td><%= link_to 'Edit', edit_cooperation_path(cooperation) %></td>

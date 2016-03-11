@@ -46,9 +46,9 @@ RSpec.describe User, type: :model do
 	project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: jh, parter: :建设银行, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081)
 
 
-	pm1=ProjectModification.create( project: project1,user: mgq, fee: 0.002, start_date: '2015-2-4', end_date: '2016-1-1',scale: 100000000, rate: 0.004)
-	ProjectModification.create( project: project1,user: mgq, fee: 0.002, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004)
-	ProjectModification.create( project: project1,user: mgq, fee: 0.002, start_date: '2017-1-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
+	pm1=Modification.create( project: project1,user: mgq, fee: 0.002, start_date: '2015-2-4', end_date: '2016-1-1',scale: 100000000, rate: 0.004)
+	Modification.create( project: project1,user: mgq, fee: 0.002, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004)
+	Modification.create( project: project1,user: mgq, fee: 0.002, start_date: '2017-1-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
 
 	puts mgq.count_fee_between(Date.new(Date.current.year,1,1), Date.new(Date.current.year+1,1,1))
 	date=[Date.new(Date.current.year,1,1), Date.new(Date.current.year+1,1,1)]

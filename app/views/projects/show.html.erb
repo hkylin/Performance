@@ -87,7 +87,7 @@
   </thead>
 
   <tbody>
-    <% @project.project_modifications.each do |pm| %>
+    <% @project.modifications.each do |pm| %>
       <tr>
         <td><%= pm.project.name %></td>
         <td><%= pm.scale %></td>
@@ -105,16 +105,16 @@
         </td>
         
 
-        <td><%= link_to '详情', project_modification_path(pm) %></td>
-        <td><%= link_to '编辑', edit_project_modification_path(pm) %></td>
-        <td><%= link_to '删除', project_modification_path(pm), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '详情', modification_path(pm) %></td>
+        <td><%= link_to '编辑', edit_modification_path(pm) %></td>
+        <td><%= link_to '删除', modification_path(pm), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 
-<%= link_to '新建 项目调整', new_project_project_modification_path(@project) %>
+<%= link_to '新建 项目调整', new_project_modification_path(@project) %>
 
 
                                 
