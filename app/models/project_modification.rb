@@ -3,9 +3,10 @@ class ProjectModification < ActiveRecord::Base
   belongs_to :user
   validates_associated :project
   # has_many :cooperations
-  has_many :copperations, as: :copperationable
+  has_many :cooperations, as: :cooperationable
+
+  # accepts_nested_attributes_for :cooperationable , update_only: true
   
-  accepts_nested_attributes_for :cooperations , update_only: true
   # t.date :start_date
   # t.date :end_date
   # t.decimal :management_fee管理费率

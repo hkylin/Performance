@@ -93,9 +93,9 @@ plan3=Plan.create(name: '民生加银资管永昌地产集团专项资产管理�
 plan4=Plan.create(name: '全权委托1', plan_type: Plan::PLAN_TYPE[0],number: 10000001, user: mhj, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 600000000, rate: 0.004)
 plan5=Plan.create(name: '全权委托2', plan_type: Plan::PLAN_TYPE[0], number: 10000002, user: jgr, department: cf, parter: :民生银行, risk: :正常,  start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
 plan6=Plan.create(name: '全权委托3', plan_type: Plan::PLAN_TYPE[0], number: 10000002, user: jgr, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
-Cooperation.create(user: mgq, ratio: 0.3, project_modification: plan1)
-Cooperation.create(user: zyj, ratio: 0.4, project_modification: plan1)
-Cooperation.create(user: spj, ratio: 0.3, project_modification: plan1)
+Cooperation.create(user: mgq, ratio: 0.3, cooperationable: plan1)
+Cooperation.create(user: zyj, ratio: 0.4, cooperationable: plan1)
+Cooperation.create(user: spj, ratio: 0.3, cooperationable: plan1)
 
 
 project1=Project.create(name: '苏州高铁新城经济发展有限公司', number: :QS713003, plan: plan1, user: mgq, department: jh,parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.0774, pool_price: 0.077)
@@ -107,9 +107,9 @@ project22=Project.create(name: '民生加银资管创赢1号专项资产管理�
 project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081)
 
 
-Cooperation.create(user: mgq, ratio: 0.3, project_modification: project1)
-Cooperation.create(user: zyj, ratio: 0.4, project_modification: project1)
-Cooperation.create(user: spj, ratio: 0.3, project_modification: project1)
+Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project1)
+Cooperation.create(user: zyj, ratio: 0.4, cooperationable: project1)
+Cooperation.create(user: spj, ratio: 0.3, cooperationable: project1)
 
 pm1=ProjectModification.create( project: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2015-2-4', end_date: '2016-1-1',scale: 100000000, rate: 0.004)
 ProjectModification.create( project: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004)
@@ -122,9 +122,9 @@ ProjectModification.create( project: project31,user: zyj, risk: :正常,  start_
 ProjectModification.create( project: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 ProjectModification.create( project: project31,user: zyj, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 
-Cooperation.create(user: mgq, ratio: 0.3, project_modification: pm1)
-Cooperation.create(user: zyj, ratio: 0.4, project_modification: pm1)
-Cooperation.create(user: spj, ratio: 0.3, project_modification: pm1)
+Cooperation.create(user: mgq, ratio: 0.3, cooperationable: pm1)
+Cooperation.create(user: zyj, ratio: 0.4, cooperationable: pm1)
+Cooperation.create(user: spj, ratio: 0.3, cooperationable: pm1)
 
 # ----Person结构化数据构造----
 # father=Person.create(name: 'mayuhai')

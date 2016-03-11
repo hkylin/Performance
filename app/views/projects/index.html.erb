@@ -38,7 +38,13 @@
         <td><%= project.department.name %></td>
         <td><%= project.rate %></td>
         <td><%= project.fee %></td>
-        <td><%= project.notes %></td>
+        <td><%= project.notes %>
+|
+          <% @plan.cooperations.each do |co|%>
+            <%= "#{co.user.username} #{co.ratio}" %>|
+          <% end %>
+
+        </td>
         
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?' } %></td>

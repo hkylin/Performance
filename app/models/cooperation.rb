@@ -1,4 +1,4 @@
 class Cooperation < ActiveRecord::Base
   belongs_to :user
-  belongs_to :project_modification
+  belongs_to :cooperationable, polymorphic: true
 end

@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 20160308005205) do
 
   create_table "cooperations", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "project_modification_id"
+    t.integer  "cooperationable_id"
+    t.string   "cooperationable_type"
     t.decimal  "ratio"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "cooperations", ["project_modification_id"], name: "index_cooperations_on_project_modification_id"
   add_index "cooperations", ["user_id"], name: "index_cooperations_on_user_id"
 
   create_table "department_users", force: :cascade do |t|

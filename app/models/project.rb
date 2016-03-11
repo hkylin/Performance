@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan
   belongs_to :department
-  has_many :copperations, as: :copperationable
+  has_many :cooperations, as: :cooperationable
   has_many :project_modifications, :dependent => :destroy
 
   RISK_TYPE = %w(正常 风险)  

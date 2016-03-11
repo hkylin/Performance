@@ -37,7 +37,12 @@
         <td><%=@plan.department.name %></td>
         <td><%=@plan.rate %></td>
         <td><%=@plan.fee %></td>
-        <td><%=@plan.notes %></td>
+        <td><%=@plan.notes %>
+            |
+          <% @plan.cooperations.each do |co|%>
+            <%= "#{co.user.username} #{co.ratio}" %>|
+          <% end %>
+        </td>
          <td>
           <%= link_to :编辑,
                       edit_plan_path(@plan), :class => 'btn btn-default btn-xs' %>
