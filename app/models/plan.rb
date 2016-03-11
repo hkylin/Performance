@@ -2,6 +2,7 @@ class Plan < ActiveRecord::Base
   belongs_to :user
   belongs_to :department
   has_many :projects, :dependent => :destroy
+  has_many :copperations, as: :copperationable
 
   PLAN_TYPE = %w(单一 集合)  
   validates_inclusion_of :plan_type, in: PLAN_TYPE
