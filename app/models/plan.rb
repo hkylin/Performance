@@ -29,8 +29,18 @@ class Plan < ActiveRecord::Base
   def count_fee
     (end_date-start_date)*scale*rate/365
   end
+
+#对集合类项目  没有做特殊的处理  
+  def count_scale(at_date) #计算单一计划管理费
+    #组织参数
+    if( start_date <= at_date && at_date < end_date )  #注意开始时间  结束时间边界值
+      return scale
+    else
+      return 0
+    end
+  end
  
- protected
+protected
   def count_fee_self(startd,endd) #计算单一计划管理费
     #组织参数
     if(startd>=end_date)  #项目不在范围内,项目在查找周期之前
