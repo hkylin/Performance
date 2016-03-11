@@ -19,6 +19,12 @@ class ProjectModificationsController < ApplicationController
     @project_modification = ProjectModification.new
     @project_modification.project=@Project
     @select_projects=ProjectModification.find_projects()
+    @project_modification.start_date = @project.start_date
+    @project_modification.end_date = @project.end_date
+    @project_modification.rate = @project.rate
+    @project_modification.risk = @project.risk
+    @project_modification.annual = @project.annual
+    # @project_modification.
   end
 
   # GET /project_modifications/1/edit

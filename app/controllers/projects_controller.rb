@@ -26,7 +26,13 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    @project.plan=@Plan
+    @project.plan = @Plan
+    @project.rate = @plan.rate
+    @project.risk = @plan.risk
+    @project.department = @plan.department
+    @project.parter = @plan.parter
+    @project.annual = @plan.annual
+    
     @departments=Plan.find_departments
     # @plans=Plan.find_plans
 

@@ -49,6 +49,14 @@ class Department < ActiveRecord::Base
     count_fee_between(startd,endd)
   end
 
+  def count_scale(at_date)
+    sum=0.0
+    staff.each do |user|
+      sum += user.count_scale(at_date)
+    end
+    sum
+  end
+
   def count_fee_between(startd,endd)  #计算个人的计划与项目的管理费
     sum=0.0
     staff.each do |user|

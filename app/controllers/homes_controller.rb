@@ -27,6 +27,39 @@ class HomesController < ApplicationController
     @user = User.find(params[:user_id])
   	# @user=User.find_by_email('zhangyajun@msjyamc.com.cn')
   end
+
+  def between
+    
+  end
+
+  def at_date
+
+  end
+
+  def scale
+    logger.info  params[:at_date]  
+  end
+
+
+
+  def statistics
+    logger.info  params[:start_date]
+    logger.info  params[:end_date]
+  end
+
+
+  def between2
+    @plan = Plan.new
+    logger.info  params[:start_date]
+    logger.info  params[:end_date]
+  end
+
+  def between3
+    @plan = Plan.new
+    logger.info  params[:start_date]
+    logger.info  params[:end_date]
+  end
+
 protected
   # # Use callbacks to share common setup or constraints between actions.
   #   def set_plan
@@ -37,4 +70,10 @@ protected
   #   def plan_params
   #     params.require(:plan).permit(:department_id, :user_id)
   #   end
+
+#TODO   应该是不针对类型的。
+  def plan_params
+      params.require(:plan).permit(:number, :name, :this_amount, :year_amount, :start_date, :end_date, :management_fee, :investment_manager, :scale, :department_id, :rate, :fee, :notes, :plan_type, :annual, :risk, :parter)
+      params.permit(:start_date, :end_date)
+    end
 end

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :admins
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'homes/index'
+  get 'homes/between'
+  get 'homes/at_date'
+  get 'homes/scale'
+  get 'homes/between2'
+  post 'homes/between3'
+  get 'homes/statistics'
   get 'homes/department/:department_id' => 'homes#department'
   get 'homes/user/:user_id' => 'homes#user'
   get 'projects/all'
