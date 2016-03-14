@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
 
   ROLES = %i[super_admin admin staff]
 
+  def to_s
+    username
+  end
   
   #has_many :department_users
   def name

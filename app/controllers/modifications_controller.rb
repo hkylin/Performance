@@ -24,6 +24,10 @@ class ModificationsController < ApplicationController
     @modification.rate = @project.rate
     @modification.risk = @project.risk
     @modification.annual = @project.annual
+    @modification.cooperations.build
+    @modification.cooperations.build
+    @modification.cooperations.build
+
     # @modification.
   end
 
@@ -37,7 +41,7 @@ class ModificationsController < ApplicationController
   # POST /modifications.json
   def create
     @modification = Modification.new(modification_params)
-    @modification.project=@project
+    @modification.project = @project
 
     respond_to do |format|
       if @modification.save
@@ -86,8 +90,9 @@ class ModificationsController < ApplicationController
       @modification = Modification.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def modification_params
-      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, cooperations_attributes: [:id, :project_id, :ratio])
+      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, cooperations_attributes: [:id, :cooperationable_type, :cooperationable_id,:user_id, :ratio, :_destroy])
     end
 end

@@ -74,7 +74,7 @@
  -->
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit :提交, :class => 'btn btn-primary' %>
+      <%= f.submit :提交, :class => 'btn btn-primary' , :data => { :"disable-with" => "请稍等..." } %>
       <%= link_to :取消,
                 tasks_path, :class => 'btn btn-default' %>
     </div>

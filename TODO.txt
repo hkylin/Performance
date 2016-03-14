@@ -294,3 +294,31 @@ git push -u origin master
   logger.ap object
   logger.ap object, :warn
   <%= ap @accounts.first %>   # ERB
+
+
+  
+  
+  
+  
+
+
+  <!-- <%= op.text_field :user %> -->
+    <!--<%= f.select :department_id, Department.all.collect {|f| [ "#{f.name}", f.id ] } ,:class => 'radio' %>-->
+
+
+#TODO拒绝空白选项，还要检查必须是小数，这个会在浏览器端就提示么？还是也是服务器端提示
+  accepts_nested_attributes_for :room_categories,
+                                reject_if: proc { |attributes| attributes['name'].blank? }
+
+如何检查是否是
+
+
+rails  错误处理程序是什么样的
+
+
+
+
+
+
+
+

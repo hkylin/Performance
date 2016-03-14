@@ -212,7 +212,7 @@ zh-CN:
       task: 任务
       project: 项目
       plan: 计划
-      modification: 项目调整 模型名字不知道怎么取值
+      modification: 调整
     attributes:
       task:
         name: 任务名称
