@@ -1,0 +1,7 @@
+<div class="nested-fields">
+	<%= f.label :成员 %>
+	<%= f.select :user_id, User.all.collect {|u| [ "#{u.name}", u.id ] } ,:class => 'radio' %>
+	<%= f.label :比例  %>
+	<%= f.text_field :ratio %>
+	<%=link_to link_to_remove_association "删除合作者", f %>
+</div>

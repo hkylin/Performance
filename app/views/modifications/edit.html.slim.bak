@@ -1,0 +1,25 @@
+= form_for @modification do |f|
+  .field
+    = f.label :fee
+    
+    = f.text_field :fee
+  .field
+    = f.label :notes
+    
+    = f.text_field :notes
+  .field
+    = f.label :rate
+    = f.text_field :rate
+  .field
+    = f.label :start_date
+    = f.date_select :start_date
+  .field
+    = f.label :end_date
+    = f.date_select :end_date
+  
+  #Modifications
+    = f.fields_for :cooperations do |m|
+      = render 'cooperation_fields', f: m
+    .links
+      = link_to_add_association 'add modification', f, :cooperations
+  = f.submit

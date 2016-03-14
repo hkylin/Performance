@@ -35,6 +35,12 @@ class ModificationsController < ApplicationController
   def edit
     @select_projects=Modification.find_projects()
     @project=@modification.project
+
+    # puts Rails.application.assets.engines.to_yaml
+    puts "|||||||||||||||||||||||||||||"
+    puts @_lookup_context.inspect
+    puts ActionView::Template::Handlers.extensions
+
   end
 
   # POST /modifications

@@ -5,9 +5,9 @@ class Modification < ActiveRecord::Base
   # has_many :cooperations
   has_many :cooperations, as: :cooperationable
 
-  accepts_nested_attributes_for :cooperations , update_only: true, allow_destroy: true, 
+  accepts_nested_attributes_for :cooperations , update_only: true, allow_destroy: true
   # :reject_if => :all_blank
-  reject_if: proc { |attributes| attributes['ratio'].blank? || attributes['ratio'].to_f > 1.0}
+  # reject_if: proc { |attributes| attributes['ratio'].blank? || attributes['ratio'].to_f > 1.0}
 #TODO 如果超过1.0 不保存记录  但是也没有错误提示
   
   # t.date :start_date

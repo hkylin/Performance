@@ -1,0 +1,14 @@
+.nested-fields
+  .field
+    = f.label :username
+    = f.select :user_id, User.all.collect {|u| [ "#{u.name}", u.id ] } 
+  .field
+    = f.label :ratio
+    = f.text_field :ratio
+  .field
+    = f.check_box :done
+    = f.label :done
+
+  = link_to_remove_association "remove cooperation", f
+
+
