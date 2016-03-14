@@ -2,7 +2,10 @@ class Plan < ActiveRecord::Base
   belongs_to :user
   belongs_to :department
   has_many :projects, :dependent => :destroy
-  has_many :cooperations, as: :cooperationable
+
+  has_many :cooperations, as: :cooperationable, dependent: :destroy, inverse_of: :cooperationable
+
+  accepts_nested_attributes_for :cooperations, reject_if: :all_blank, allow_destroy: true
 
   PLAN_TYPE = %w(单一 集合)  
   validates_inclusion_of :plan_type, in: PLAN_TYPE

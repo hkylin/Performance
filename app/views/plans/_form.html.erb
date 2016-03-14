@@ -121,6 +121,22 @@
     </div>
     <%=f.error_span(:notes) %>
   </div>
+
+  <div class="form-group">
+    <%= f.label "费用占比", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.label "多人项目请认真确认好团队比例,包括本人,占比合记为 1", :class => 'control-label' %>
+    </div>
+  </div>
+  
+  <div>
+    <ul class="list-group">
+    <%= f.fields_for :cooperations do |op| %>
+      <%= render '/modifications/cooperation_fields', f: op %>
+    <%end%>    
+    <%=link_to_add_association '增加合作者', f, :cooperations, :class => "btn btn-link"%>
+  </div>
+
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit '提交', :class => 'btn btn-primary', :data => { :"disable-with" => "请稍等..." } %>

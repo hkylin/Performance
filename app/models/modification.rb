@@ -3,7 +3,7 @@ class Modification < ActiveRecord::Base
   belongs_to :user
   validates_associated :project
   # has_many :cooperations
-  has_many :cooperations, as: :cooperationable, dependent: :destroy
+  has_many :cooperations, as: :cooperationable, dependent: :destroy, inverse_of: :cooperationable
 
   accepts_nested_attributes_for :cooperations, reject_if: :all_blank, allow_destroy: true
   # :reject_if => :all_blank
