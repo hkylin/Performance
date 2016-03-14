@@ -64,6 +64,7 @@ class ModificationsController < ApplicationController
   # PATCH/PUT /modifications/1.json
   def update
     @select_projects=Modification.find_projects()
+    logger.info modification_params
     respond_to do |format|
       if @modification.update(modification_params)
         format.html { redirect_to @modification, notice: '项目调整已更新.' }
@@ -99,6 +100,6 @@ class ModificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def modification_params
-      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, cooperations_attributes: [:id, :cooperationable_type, :cooperationable_id,:user_id, :ratio, :_destroy])
+      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, cooperations_attributes: [:id, :user_id, :ratio, :_destroy])
     end
 end

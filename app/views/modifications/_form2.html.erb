@@ -82,7 +82,7 @@
     <%=f.error_span(:notes) %>
   </div>
 
-    <div class="form-group">
+  <div class="form-group">
     <%= f.label "费用占比", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.label "多人项目请认真确认好团队比例,包括本人,占比合记为 1", :class => 'control-label' %>
@@ -91,22 +91,12 @@
 
 
   <div>
-    
     <%= f.fields_for :cooperations do |op| %>
       <%= render 'cooperation_fields', f: op %>
     <%end%>    
-        
-
-    <%=link_to link_to_add_association '增加合作者', f,:cooperations%>
+    <%=link_to link_to_add_association '增加合作者', f, :cooperations%>
   </div>
 
-  <!-- <div>
-    <%= f.fields_for :cooperations do |m| %>
-        <%= render 'cooperation_fields', f: m %>
-
-    <%end%>
-    <%=link_to link_to_add_association 'add modification', f, :cooperations%>
-  </div> -->
   <div class="form-group">
     
   </div>

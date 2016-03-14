@@ -3,9 +3,9 @@ class Modification < ActiveRecord::Base
   belongs_to :user
   validates_associated :project
   # has_many :cooperations
-  has_many :cooperations, as: :cooperationable
+  has_many :cooperations, as: :cooperationable, dependent: :destroy
 
-  accepts_nested_attributes_for :cooperations , update_only: true, allow_destroy: true
+  accepts_nested_attributes_for :cooperations, reject_if: :all_blank, allow_destroy: true
   # :reject_if => :all_blank
   # reject_if: proc { |attributes| attributes['ratio'].blank? || attributes['ratio'].to_f > 1.0}
 #TODO 如果超过1.0 不保存记录  但是也没有错误提示
