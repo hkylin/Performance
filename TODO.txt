@@ -322,3 +322,24 @@ rails  错误处理程序是什么样的
 
 
 
+
+
+
+
+
+<a data-confirm="Are you sure?" class="btn btn-danger" rel="nofollow" data-method="delete" href="/modifications/10">删除</a>
+
+
+<a data-confirm="Are you sure?" class="btn btn-xs btn-danger" rel="nofollow" data-method="delete" href="/plans/7">删除</a>
+
+
+列表中显示 合作人 以及分成比例。
+
+Rails c 测试route
+>> app.approve_comment_path(Comment.last.id)
+=> "/comments/138138/approve"
+>> app.user_path(User.find_by_login("Michael Hoffman"))
+=> "/users/784-michael-hoffman"
+
+
+app.project_modifications_path(Project.last.id)

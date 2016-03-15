@@ -22,7 +22,7 @@
     <% @modifications.each do |modification| %>
       <tr>
         <td><%= link_to modification.id, modification_path(modification) %></td>
-        <td><%= link_to modification.project.name, modification_path(modification) %></td>
+        <td><%= link_to modification.modificationable.name, modification_path(modification) %></td>
         <td><%= modification.scale %></td>
         <td><%= modification.start_date %></td>
         <td><%= modification.end_date %></td>
@@ -44,9 +44,15 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to :新建—项目调整,
-            new_project_modification_path(@project),
-            :class => 'btn btn-primary' %> |
-<%= link_to '当前资管计划的项目列表', plan_projects_path(@project.plan) %> |
-<%= link_to '我的资管计划表', plans_path %>
+<% if @modificationable.class.to_s == 'Project'%>
+ <%= link_to :新建—项目调整,
+             new_project_modification_path(@modificationable),
+             :class => 'btn btn-primary' %> |
+ <%= link_to '当前资管计划的项目列表', plan_projects_path(@modificationable.plan) %> |
+ <%= link_to '我的资管计划表', plans_path %>
+ <%else%>
+ <%= link_to :新建—计划调整,
+             new_plan_modification_path(@modificationable),
+             :class => 'btn btn-primary' %> |
+ <%= link_to '我的资管计划表', plans_path %>
+ <%end%>

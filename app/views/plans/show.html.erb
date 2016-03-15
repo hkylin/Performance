@@ -62,8 +62,9 @@
 <%= link_to '返回', plans_path %>
 
 <% if @plan.plan_type == Plan::PLAN_TYPE[1] %>
-<% @projects=@plan.projects %>
-<%= render :partial => "/homes/projects"%>
-<!-- :locals => { :tasks => @tasks }  -->
-<%= link_to '新建项目', new_plan_project_path(@plan) ,:class => 'btn btn-primary'%>
+  <% @projects=@plan.projects %>
+  <%= render :partial => "/homes/projects"%>
+  <%= link_to '新建项目', new_plan_project_path(@plan) ,:class => 'btn btn-primary'%>
 <%end%>
+
+<%= render :partial => "/modifications/index", :locals => { :object => @plan} %>

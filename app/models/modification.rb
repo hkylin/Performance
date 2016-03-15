@@ -1,7 +1,8 @@
 class Modification < ActiveRecord::Base
-  belongs_to :project
+  # belongs_to :project
+  belongs_to :modificationable, polymorphic: true
   belongs_to :user
-  validates_associated :project
+  validates_associated :modificationable
   # has_many :cooperations
   has_many :cooperations, as: :cooperationable, dependent: :destroy, inverse_of: :cooperationable
 

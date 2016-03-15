@@ -1,8 +1,4 @@
-
-    
-  
-
-<%= form_for @modification, url: project_modifications_path(@project, @modification), :html => { :class => "form-horizontal task" }  do |f| %>
+<%= form_for [@modificationable, @modification], :html => { :class => "form-horizontal task" }  do |f| %>
 
   <% if @modification.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -19,7 +15,7 @@
     </div>
   <% end %>
 
-
+<%logger.info '====begin=====-------------'%>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">项目信息</a></li>
   <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">合作者信息</a></li>
@@ -32,7 +28,7 @@
   <div class="form-group">
     <%= f.label "项目名称", :class => 'control-label col-lg-2' %>
    <div class="col-lg-10">
-     <%= f.label "#{@project.name}", :class => 'control-label' %>
+     <%= f.label "#{@modificationable.name}", :class => 'control-label' %>
     </div>
   </div>
 
@@ -115,13 +111,16 @@
       </div>
     </p>
   </div>
-
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit :新建—项目调整, :class => 'btn btn-primary' %>
-      <%= link_to :取消,
-                project_modifications_path(@project), :class => 'btn btn-default' %>
+      <% if params[:project_id] %>
+        <%= link_to :取消,
+                project_modifications_path(@modificationable), :class => 'btn btn-default' %>
+      <%else%>
+        <%= link_to :取消,
+                plan_modifications_path(@modificationable), :class => 'btn btn-default' %>
+      <%end%>
     </div>
   </div>
-
 <% end %>

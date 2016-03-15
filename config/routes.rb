@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # resources :modifications
   resources :plans do
     resources :projects, shallow: true
+    resources :modifications, shallow: true
   end
   
   resources :projects do

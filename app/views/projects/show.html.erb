@@ -67,6 +67,8 @@
 <%= link_to 'Back', plan_projects_path(@project.plan,@project) %> | 
 <%= link_to 'plans', plans_path %>
 
+<%= render :partial => "/modifications/index", :locals => { :object => @project} %>
+
 <div class="page-header">
   <h1>项目调整列表</h1>
 </div>
@@ -89,7 +91,7 @@
   <tbody>
     <% @project.modifications.each do |pm| %>
       <tr>
-        <td><%= pm.project.name %></td>
+        <td><%= @project.name %></td>
         <td><%= pm.scale %></td>
         <td><%= pm.start_date %></td>
         <td><%= pm.end_date %></td>

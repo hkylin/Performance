@@ -4,8 +4,8 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:project_id) %>:</strong></dt>
-  <dd><%= @modification.project_id %></dd>
+  <!-- <dt><strong><%= model_class.human_attribute_name(:modificationable_id) %>:</strong></dt>
+  <dd><%= @modification.modificationable_id %></dd> -->
   <dt><strong><%= model_class.human_attribute_name(:scale) %>:</strong></dt>
   <dd><%= @modification.scale %></dd>
   <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
@@ -22,12 +22,25 @@
   <dd><%= @modification.notes %></dd>
 </dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              project_modifications_path(@modification.project, @modification), :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_modification_path(@modification), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              modification_path(@modification),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+
+<% if (@modification.modificationable_type == "Project") %>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                project_modifications_path(@modification.modificationable, @modification), :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_modification_path(@modification), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                modification_path(@modification),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
+<%else%>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                plan_modifications_path(@modification.modificationable, @modification), :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_modification_path(@modification), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                modification_path(@modification),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
+<%end%>

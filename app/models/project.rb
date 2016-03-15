@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan
   belongs_to :department
-  has_many :modifications, :dependent => :destroy
+  has_many :modifications, as: :modificationable, :dependent => :destroy
   
   has_many :cooperations, as: :cooperationable, dependent: :destroy, inverse_of: :cooperationable
   accepts_nested_attributes_for :cooperations, reject_if: :all_blank, allow_destroy: true

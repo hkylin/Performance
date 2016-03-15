@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20160308005205) do
   add_index "departments", ["sup_department_id"], name: "index_departments_on_sup_department_id"
 
   create_table "modifications", force: :cascade do |t|
-    t.integer  "project_id"
     t.integer  "user_id"
     t.decimal  "scale"
     t.date     "start_date"
@@ -56,13 +55,14 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.decimal  "rate"
     t.decimal  "fee"
     t.text     "notes"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "modificationable_type"
+    t.integer  "modificationable_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "annual"
     t.string   "risk"
   end
 
-  add_index "modifications", ["project_id"], name: "index_modifications_on_project_id"
   add_index "modifications", ["user_id"], name: "index_modifications_on_user_id"
 
   create_table "people", force: :cascade do |t|
