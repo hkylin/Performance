@@ -17,6 +17,7 @@
       <th>部门</th>
       <th>费率</th>
       <th>费用金额</th>
+      <th>合作者</th>
       <th>注释</th>
       <th>操作</th>
 
@@ -39,6 +40,12 @@
         <td><%= plan.department.name %></td>
         <td><%= plan.rate %></td>
         <td><%= plan.fee %></td>
+        <td>
+          <% plan.cooperations.each do |co|%>
+            <%= "#{co.user.username} #{co.ratio}" %>｜
+          <% end %>
+        </td>
+
         <td><%= plan.notes %></td>
          <td>
           <%= link_to :编辑,
