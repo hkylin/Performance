@@ -2,22 +2,26 @@
   <h1>我的项目列表</h1>
 </div>
 
-<table class="table table-striped">
+<table class = "table table-striped", data-toggle="table" data-search="true"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-show-columns="true">
+
   <thead>
     <tr>
       <th>计划名称</th>
       <th>项目编号</th>
       <th>项目名称</th>
-      <th>项目规模</th>
-      <th>资产价格</th>
-      <th>入池价格</th>
-      <th>开始日期</th>
-      <th>结束日期</th>
-      <th>管理费</th>
+      <th data-sortable="true">项目规模</th>
+      <th data-sortable="true">资产价格</th>
+      <th data-sortable="true">入池价格</th>
+      <th data-sortable="true">开始日期</th>
+      <th data-sortable="true">结束日期</th>
+      <th data-sortable="true">管理费</th>
       <th>投资经理</th>
       <th>部门</th>
-      <th>费率</th>
-      <th>费用金额</th>
+      <th data-sortable="true">费率</th>
+      <th data-sortable="true">费用金额</th>
       <th>风险</th>
       <th>合作者</th>
       <th>注释</th>
@@ -32,6 +36,7 @@
         <td><%= link_to project.number, project_path(project), :class=>"btn btn-link" %></td>
         <td><%= project.name %></td>
         <!-- <td><%= link_to project.name, project_path(project), :class=>"btn btn-link" %></td> -->
+        
         <td><%= project.scale %></td>
         <td><%= project.asset_price %></td>
         <td><%= project.pool_price %></td>

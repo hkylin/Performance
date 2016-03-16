@@ -19,4 +19,8 @@ module HomesHelper
 	  [Date.new(Date.current.year,10,1), Date.new(Date.current.year+1,1,1)]
 	end
 
+	def wan(scale)
+		(scale/10000).to_s+"万"	
+	end
+
 end

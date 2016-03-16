@@ -17,6 +17,7 @@
       <th>部门</th>
       <th>费率</th>
       <th>费用金额</th>
+      <th>合作者</th>
       <th>注释</th>
       <th>操作</th>
 
@@ -37,12 +38,11 @@
         <td><%=@plan.department.name %></td>
         <td><%=@plan.rate %></td>
         <td><%=@plan.fee %></td>
-        <td><%=@plan.notes %>
-            |
+        <td>|
           <% @plan.cooperations.each do |co|%>
             <%= "#{co.user.username} #{co.ratio}" %>|
-          <% end %>
-        </td>
+          <% end %></td>
+        <td><%=@plan.notes %></td>
          <td>
           <%= link_to :编辑,
                       edit_plan_path(@plan), :class => 'btn btn-default btn-xs' %>
@@ -56,7 +56,6 @@
     
   </tbody>
 </table>
-
 <!-- <%= link_to 'Projects', plan_projects_path(@plan) %> |  -->
 <%= link_to '编辑', edit_plan_path(@plan) %> |
 <%= link_to '返回', plans_path %>

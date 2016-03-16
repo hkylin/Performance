@@ -267,7 +267,6 @@ zh-CN:
         updated_at: 更新日期
       modification:  #注意不是复数
         user: 当前用户
-        user: 当前用户
         project: 项目
         scale: 规模#当前规模
         start_date: 成立日期
