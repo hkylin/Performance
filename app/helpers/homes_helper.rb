@@ -16,7 +16,7 @@ module HomesHelper
 	  [Date.new(Date.current.year,10,1), Date.new(Date.current.year+1,1,1)]
 	end
 	def one_year
-	  [Date.new(Date.current.year,10,1), Date.new(Date.current.year+1,1,1)]
+	  [Date.new(Date.current.year,1,1), Date.new(Date.current.year+1,1,1)]
 	end
 
 	def wan(scale)

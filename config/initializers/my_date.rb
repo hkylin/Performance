@@ -12,6 +12,6 @@ class Date
 	  [Date.new(Date.current.year,10,1), Date.new(Date.current.year+1,1,1)]
 	end
 	def self.one_year
-	  [Date.new(Date.current.year,10,1), Date.new(Date.current.year+1,1,1)]
+	  [Date.new(Date.current.year,1,1), Date.new(Date.current.year+1,1,1)]
 	end
 end
