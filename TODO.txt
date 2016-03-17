@@ -1,4 +1,12 @@
 TODO
+
+未解决的技术问题：
+  devise-i18n  国际化输出
+  bootstrap-table-examples
+
+
+
+
 增加管理界面的访问控制
 将计划修改成可调整的。
 如何计算规模，
