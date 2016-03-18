@@ -13,18 +13,11 @@ class HomesController < ApplicationController
     q2=current_user.count_fee Date.second_quarter   
     q3=current_user.count_fee Date.third_quarter 
     q4=current_user.count_fee Date.fourth_quarter 
-
     count_fees=[y1.to_i,q1.to_i,q2.to_i,q3.to_i,q4.to_i]
+    count_fees = current_user.quarters
     t1=current_user.count_management_fee_tasks.to_i
     t14=(current_user.count_management_fee_tasks.to_i/4).to_i
     tasks=[t1,t14,t14,t14,t14]
-    logger.info '==============-------------------=================='
-    logger.info y1
-    logger.info current_user.count_fee Date.one_year
-    logger.info current_user.count_management_fee_tasks 
-    logger.info count_fees[0].class
-    logger.info count_fees[0]
-    logger.info  tasks
 
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "指标与完成情况")
@@ -37,7 +30,7 @@ class HomesController < ApplicationController
         {title: {text: "完成情况"}, opposite: true},
       ]
 
-      f.legend(align: 'right', verticalAlign: 'top', y: 75000, x: 500000, layout: 'vertical')
+      f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
       f.chart({defaultSeriesType: "column"})
     end
 

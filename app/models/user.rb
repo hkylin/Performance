@@ -51,6 +51,30 @@ def current_department
     @admin_departments
 end
 
+def quarters
+    y1=count_fee Date.one_year
+    q1=count_fee Date.first_quarter    
+    q2=count_fee Date.second_quarter   
+    q3=count_fee Date.third_quarter 
+    q4=count_fee Date.fourth_quarter 
+    [y1.to_i,q1.to_i,q2.to_i,q3.to_i,q4.to_i]
+end
+
+def months
+  m1 = count_fee Date.January
+  m2 = count_fee Date.February
+  m3 = count_fee Date.March
+  m4 = count_fee Date.April
+  m5 = count_fee Date.May
+  m6 = count_fee Date.June
+  m7 = count_fee Date.July
+  m8 = count_fee Date.August
+  m9 = count_fee Date.September
+  m10 = count_fee Date.October
+  m11 = count_fee Date.November
+  m12 = count_fee Date.December
+  [m1.to_i, m2.to_i, m3.to_i, m4.to_i, m5.to_i, m6.to_i, m7.to_i, m8.to_i, m9.to_i, m10.to_i, m11.to_i, m12.to_i] 
+end
 
 def count_first_task#TODO 任务指标  目前只做了 管理费  ，这是一个必须修改的地方
   count_management_fee_tasks/4
