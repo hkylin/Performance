@@ -17,7 +17,11 @@ class PlansController < ApplicationController
   # GET /plans/new
   def new
     @plan = Plan.new
-    @departments=Plan.find_departments
+    @plan.plan_type = Plan::PLAN_TYPE[0]
+    @plan.entrust_type = Plan::ENTRUST_TYPE[0]
+    @plan.risk = Plan::RISK_TYPE[0]
+    @plan.scale = 30000000.0
+    @departments = Plan.find_departments
   end
 
   # GET /plans/1/edit
@@ -73,6 +77,6 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:number, :name, :this_amount, :year_amount, :start_date, :end_date, :management_fee, :investment_manager, :scale, :department_id, :rate, :fee, :notes, :plan_type, :annual, :risk, :parter, cooperations_attributes: [:id, :user_id, :ratio, :_destroy])
+      params.require(:plan).permit(:number, :name, :this_amount, :year_amount, :start_date, :end_date, :management_fee, :investment_manager, :scale, :department_id, :rate, :fee, :notes, :plan_type, :entrust_type, :annual, :risk, :parter, cooperations_attributes: [:id, :user_id, :ratio, :_destroy])
     end
 end

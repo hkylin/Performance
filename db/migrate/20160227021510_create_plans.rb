@@ -4,6 +4,7 @@ class CreatePlans < ActiveRecord::Migration
       t.string :number #AM合同代码
       t.string :name   #计划名称
       t.string :plan_type  #集合|单一
+      t.string :entrust_type  #一对一|一对多
       t.decimal :scale #当前规模
       t.date :start_date #成立日期
       t.date :end_date   #到期日

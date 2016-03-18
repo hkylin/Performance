@@ -38,7 +38,13 @@
                         <%= f.label :plan_type, t, :value => t, :class => "inline" %>
     <% end %>
   </div>
-
+  <div class="form-group">
+    <%= f.label :委托类型 ,:class => 'control-label col-lg-2' %>
+    <% Plan::ENTRUST_TYPE.each do |t| %>
+                        <%= f.radio_button :entrust_type, t %> 
+                        <%= f.label :entrust_type, t, :value => t, :class => "inline" %>
+    <% end %>
+  </div>
   <div class="form-group">
     <%= f.label :风险 ,:class => 'control-label col-lg-2' %>
     <% Plan::RISK_TYPE.each do |t| %>
@@ -61,6 +67,15 @@
     </div>
     <%=f.error_span(:end_date) %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :大写金额 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <span id="requestbala_hz"></span>
+    </div>
+    <%=f.error_span(:scale) %>
+  </div>
+  
   <div class="form-group">
     <%= f.label :规模 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -68,6 +83,8 @@
     </div>
     <%=f.error_span(:scale) %>
   </div>
+
+
   <div class="form-group">
     <%= f.label :管理费－费率 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

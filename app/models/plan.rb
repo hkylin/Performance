@@ -9,6 +9,9 @@ class Plan < ActiveRecord::Base
 
   PLAN_TYPE = %w(单一 集合)  
   validates_inclusion_of :plan_type, in: PLAN_TYPE
+  
+  ENTRUST_TYPE = %w(一对一 一对多)  
+  validates_inclusion_of :entrust_type, in: ENTRUST_TYPE
 
   RISK_TYPE = %w(正常 风险)  
   validates_inclusion_of :risk, in: RISK_TYPE
