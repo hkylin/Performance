@@ -28,10 +28,18 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @project.plan = @Plan
     @project.rate = @plan.rate
-    @project.risk = @plan.risk
-    @project.department = @plan.department
     @project.parter = @plan.parter
     @project.annual = @plan.annual
+    @project.scale ||= 30000000.0
+    @project.rate ||= 0.004
+    @project.risk ||= Plan::RISK_TYPE[0]
+
+    @project.department = current_user.current_department[0]
+    if (@project.cooperations.size == 0)
+        @project.cooperations.build
+        @project.cooperations[0].user = current_user
+        @project.cooperations[0].ratio = 1.0      
+    end
     
     @departments=Plan.find_departments
     # @plans=Plan.find_plans

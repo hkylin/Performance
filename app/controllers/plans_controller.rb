@@ -17,10 +17,14 @@ class PlansController < ApplicationController
   # GET /plans/new
   def new
     @plan = Plan.new
-    @plan.plan_type = Plan::PLAN_TYPE[0]
-    @plan.entrust_type = Plan::ENTRUST_TYPE[0]
-    @plan.risk = Plan::RISK_TYPE[0]
-    @plan.scale = 30000000.0
+
+    @plan.department = current_user.current_department[0]
+    if (@plan.cooperations.size == 0)
+        @plan.cooperations.build
+        @plan.cooperations[0].user = current_user
+        @plan.cooperations[0].ratio = 1.0      
+    end
+
     @departments = Plan.find_departments
   end
 

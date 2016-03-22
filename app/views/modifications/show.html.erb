@@ -12,12 +12,21 @@
   <dd><%= @modification.start_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:end_date) %>:</strong></dt>
   <dd><%= @modification.end_date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:management_fee) %>:</strong></dt>
-  <dd><%= @modification.management_fee %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:scale) %>:</strong></dt>
+  <dd><%= @modification.scale %></dd>
   <dt><strong><%= model_class.human_attribute_name(:rate) %>:</strong></dt>
   <dd><%= @modification.rate %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:management_fee) %>:</strong></dt>
+  <dd><%= @modification.management_fee %></dd>
   <dt><strong><%= model_class.human_attribute_name(:fee) %>:</strong></dt>
   <dd><%= @modification.fee %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cooperations) %>:</strong></dt>
+  <dd>
+    <% coos='';@modification.cooperations.each do |co|%>
+      <% coos+="#{co.user.username} #{co.ratio}|" %>
+    <% end %>
+    <%=coos[0..coos.length-2]%>
+  </dd>
   <dt><strong><%= model_class.human_attribute_name(:notes) %>:</strong></dt>
   <dd><%= @modification.notes %></dd>
 </dl>

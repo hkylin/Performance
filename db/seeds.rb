@@ -86,25 +86,25 @@ task12=Task.create(name: '蒲京 月月增利',   start_date: '2016-1-1', end_da
 task13=Task.create(name: '张亚军 月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 200000, taskable: zyj)
 
 #计划  项目   项目调整
-plan1=Plan.create(name: '汇赢1号', plan_type: Plan::PLAN_TYPE[1], entrust_type: Plan::ENTRUST_TYPE[1], number: 10000001, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-1-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
-plan2=Plan.create(name: '保腾1号', plan_type: Plan::PLAN_TYPE[1], entrust_type: Plan::ENTRUST_TYPE[1], number: 10000002, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-6-4',scale: 100000000, rate: 0.004)
-plan3=Plan.create(name: '民生加银资管永昌地产集团专项资产管理计划',plan_type: Plan::PLAN_TYPE[1], entrust_type: Plan::ENTRUST_TYPE[1], number: :WDC15015, user: mgq, department: jh,parter: :民生银行, risk: :正常, start_date: '2014-1-4', end_date: '2018-2-4',scale: 100000000, rate: 0.004)
+plan1=Plan.create(name: '汇赢1号', plan_type: Plan::PLAN_TYPE[1], entrust_type: Plan::ENTRUST_TYPE[1], number: 10000001, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-1-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+plan2=Plan.create(name: '保腾1号', plan_type: Plan::PLAN_TYPE[1], entrust_type: Plan::ENTRUST_TYPE[1], number: 10000002, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-6-4',scale: 100000000, rate: 0.004, annual: 365)
+plan3=Plan.create(name: '民生加银资管永昌地产集团专项资产管理计划',plan_type: Plan::PLAN_TYPE[1], entrust_type: Plan::ENTRUST_TYPE[1], number: :WDC15015, user: mgq, department: jh,parter: :民生银行, risk: :正常, start_date: '2014-1-4', end_date: '2018-2-4',scale: 100000000, rate: 0.004, annual: 365)
 
-plan4=Plan.create(name: '全权委托1', plan_type: Plan::PLAN_TYPE[0], entrust_type: Plan::ENTRUST_TYPE[1],number: 10000001, user: mhj, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 600000000, rate: 0.004)
-plan5=Plan.create(name: '全权委托2', plan_type: Plan::PLAN_TYPE[0], entrust_type: Plan::ENTRUST_TYPE[0], number: 10000002, user: jgr, department: cf, parter: :民生银行, risk: :正常,  start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
-plan6=Plan.create(name: '全权委托3', plan_type: Plan::PLAN_TYPE[0], entrust_type: Plan::ENTRUST_TYPE[0], number: 10000002, user: jgr, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
+plan4=Plan.create(name: '全权委托1', plan_type: Plan::PLAN_TYPE[0], entrust_type: Plan::ENTRUST_TYPE[1],number: 10000001, user: mhj, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 600000000, rate: 0.004, annual: 365)
+plan5=Plan.create(name: '全权委托2', plan_type: Plan::PLAN_TYPE[0], entrust_type: Plan::ENTRUST_TYPE[0], number: 10000002, user: jgr, department: cf, parter: :民生银行, risk: :正常,  start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+plan6=Plan.create(name: '全权委托3', plan_type: Plan::PLAN_TYPE[0], entrust_type: Plan::ENTRUST_TYPE[0], number: 10000002, user: jgr, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
 Cooperation.create(user: mgq, ratio: 0.3, cooperationable: plan1)
 Cooperation.create(user: zyj, ratio: 0.4, cooperationable: plan1)
 Cooperation.create(user: spj, ratio: 0.3, cooperationable: plan1)
 
 
-project1=Project.create(name: '苏州高铁新城经济发展有限公司', number: :QS713003, plan: plan1, user: mgq, department: jh,parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.0774, pool_price: 0.077)
-project2=Project.create(name: '贵阳金阳建设投资（集团）有限公司', number: :WDC140AI, plan: plan1, user: mgq, department: jh, parter: :民生银行, risk: :正常,  start_date: '2014-2-4', end_date: '2017-9-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.085)
-project3=Project.create(name: '龙岩汇通置业有限公司', number: :WDC1504Z, plan: plan1, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081)
+project1=Project.create(name: '苏州高铁新城经济发展有限公司', number: :QS713003, plan: plan1, user: mgq, department: jh,parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.0774, pool_price: 0.077, annual: 365)
+project2=Project.create(name: '贵阳金阳建设投资（集团）有限公司', number: :WDC140AI, plan: plan1, user: mgq, department: jh, parter: :民生银行, risk: :正常,  start_date: '2014-2-4', end_date: '2017-9-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.085, annual: 365)
+project3=Project.create(name: '龙岩汇通置业有限公司', number: :WDC1504Z, plan: plan1, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081, annual: 365)
 
-project21=Project.create(name: '民生加银资管重庆溉澜溪专项资产管理计划', number: :QT9150KL,  plan: plan2, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-1-6', end_date: '2017-6-6',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081)
-project22=Project.create(name: '民生加银资管创赢1号专项资产管理计划', number: :QT91514V,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-3-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081)
-project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2016-1-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081)
+project21=Project.create(name: '民生加银资管重庆溉澜溪专项资产管理计划', number: :QT9150KL,  plan: plan2, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-1-6', end_date: '2017-6-6',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081, annual: 365)
+project22=Project.create(name: '民生加银资管创赢1号专项资产管理计划', number: :QT91514V,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-3-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081, annual: 365)
+project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2016-1-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.1, pool_price: 0.081, annual: 365)
 
 
 Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project1)

@@ -73,7 +73,6 @@
     <div class="col-lg-10">
       <span id="requestbala_hz"></span>
     </div>
-    <%=f.error_span(:scale) %>
   </div>
   
   <div class="form-group">
@@ -92,20 +91,27 @@
     </div>
     <%=f.error_span(:rate) %>
   </div>
-  <div class="form-group">
+
+  <!-- <div class="form-group">
+    <%= f.label :管理费 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <span id="requestbala_hz"></span>
+    </div>
+  </div> -->
+  <!-- <div class="form-group">
     <%= f.label :费用金额 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :fee , :class => 'form-control' %>
     </div>
     <%=f.error_span(:fee) %>
-  </div>
-  <div class="form-group">
+  </div> -->
+  <!-- <div class="form-group">
     <%= f.label :投资经理 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :investment_manager , :class => 'form-control' %>
     </div>
     <%=f.error_span(:investment_manager) %>
-  </div>
+  </div> -->
   <div class="form-group">
     <%= f.label :部门 ,:class => 'control-label col-lg-2' %>  
     <div class="col-lg-10">
@@ -146,13 +152,15 @@
     </div>
   </div>
   
+
   <div>
     <ul class="list-group">
     <%= f.fields_for :cooperations do |op| %>
-      <%= render '/modifications/cooperation_fields', f: op %>
+      <%= render '/projects/cooperation_fields', f: op %>
     <%end%>    
     <%=link_to_add_association '增加合作者', f, :cooperations, :class => "btn btn-link"%>
   </div>
+
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">

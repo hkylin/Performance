@@ -10,6 +10,7 @@
       <th>二季度</th>
       <th>三季度</th>
       <th>四季度</th>
+      <th>全年</th>
     </tr>
   </thead>
   <tbody>
@@ -22,10 +23,12 @@
       <td><%=f2 object.count_fee Date.second_quarter %></td>
       <td><%=f2 object.count_fee Date.third_quarter %></td>
       <td><%=f2 object.count_fee Date.fourth_quarter %></td>
+      <td><%=f2 object.count_co_fee one_year %></td>
     </tr>
     <tr>
       <td><%=object.name%>考核指标</td>
       <td><%=f2 object.count_management_fee_tasks %></td>
+      <td><%=f2 object.count_management_fee_tasks/4 %></td>
       <td><%=f2 object.count_management_fee_tasks/4 %></td>
       <td><%=f2 object.count_management_fee_tasks/4 %></td>
       <td><%=f2 object.count_management_fee_tasks/4 %></td>

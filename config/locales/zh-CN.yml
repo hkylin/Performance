@@ -237,30 +237,32 @@ zh-CN:
         scale: 规模
         start_date: 成立日期
         end_date: 到期日
-        management_fee: 管理费率
+        management_fee: 管理费
         investment_manager: 投资经理
         department: 部门
         rate: 管理费率
         fee: 费用金额
         user: 计划创建者
         parter: 合作伙伴
+        cooperations: 协作者
         notes: 备注
         risk: 风险
         created_at: 添加日期
         updated_at: 更新日期
       project: 
         user: 当前用户
-        plan: 资管计划   #注意不实用_id
-        number: 项目编号 #AM合同代码
-        name: 项目名称#计划名称
-        scale: 规模#当前规模
+        plan: 资管计划
+        number: 项目编号
+        name: 名称
+        scale: 规模
         start_date: 成立日期
         end_date: 到期日
-        management_fee: 管理费率
+        management_fee: 管理费
         investment_manager: 投资经理
         department: 部门
         rate: 管理费率
         fee: 费用金额
+        cooperations: 协作者
         parter: 合作伙伴
         notes: 备注
         risk: 风险
@@ -269,14 +271,15 @@ zh-CN:
       modification:  #注意不是复数
         user: 当前用户
         project: 项目
-        scale: 规模#当前规模
+        scale: 规模
         start_date: 成立日期
         end_date: 到期日
-        management_fee: 管理费率
+        management_fee: 管理费
         investment_manager: 投资经理
         department: 部门
         rate: 管理费率
         fee: 费用金额
+        cooperations: 协作者
         notes: 备注
         risk: 风险
         created_at: 添加日期

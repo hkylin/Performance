@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.text     "notes"
     t.string   "modificationable_type"
     t.integer  "modificationable_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.integer  "annual"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "annual",                default: 365
     t.string   "risk"
   end
 
@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.integer  "user_id"
     t.string   "parter"
     t.text     "notes"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "annual"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "annual",             default: 365
     t.string   "risk"
   end
 
@@ -113,9 +113,9 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.decimal  "rate"
     t.decimal  "fee"
     t.text     "notes"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "annual"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "annual",             default: 365
     t.string   "risk"
   end
 

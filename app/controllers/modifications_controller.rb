@@ -30,13 +30,17 @@ class ModificationsController < ApplicationController
     # @select_projects=Modification.find_projects()
     @modification.start_date = @modificationable.start_date
     @modification.end_date = @modificationable.end_date
+    @modification.scale = @modificationable.scale
     @modification.rate = @modificationable.rate
     @modification.risk = @modificationable.risk
     @modification.annual = @modificationable.annual
-    @modification.cooperations.build
+    @modificationable.cooperations.each do |co|
+      co1 = co.dup
+      co1.cooperationable = @modification
+      @modification.cooperations << co1
+    end
     logger.info "==========#{@modification}======"
     logger.info '==========3======'
-    # @modification.
   end
 
   # GET /modifications/1/edit
@@ -130,7 +134,6 @@ class ModificationsController < ApplicationController
     def set_modification
       @modification = Modification.find(params[:id])
     end
-
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def modification_params

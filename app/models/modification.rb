@@ -1,4 +1,6 @@
 class Modification < ActiveRecord::Base
+  include BT
+
   # belongs_to :project
   belongs_to :modificationable, polymorphic: true
   belongs_to :user
@@ -22,6 +24,15 @@ class Modification < ActiveRecord::Base
   # validates_numericality_of :scale, :greater_than => 30000000  , :message => "最小规模3000万" # 最少 2 
   # validates_uniqueness_of :number,  :on => :create, :message => "计划编号不唯一" 
   
+  def count_co_fee_self(startd,endd,userr)
+    ratio = getCoRatio(userr) #修改中还存在我
+    if ratio
+      bt = bt_start_end(startd,endd)
+      return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+    else
+      0.0
+    end
+  end
 
   def count_fee_between(startd,endd)
     #组织参数

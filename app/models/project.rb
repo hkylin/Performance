@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  include BT
+
   belongs_to :user
   belongs_to :plan
   belongs_to :department
@@ -25,21 +27,28 @@ class Project < ActiveRecord::Base
   	Plan.all.collect { |plan| [plan.name, plan.id] } 
   end   
 
+  #通过cooperation计算，只计算单一计划，集合类计划不计算
+  def count_co_fee_between(startd,endd,userr)
+    count_fee_self(startd,endd,userr)
+  end
+
+  def count_co_fee_self(startd,endd,userr)
+    if modifications.size == 0
+      bt = bt_start_end(startd,endd)
+      ratio = getCoRatio(userr)
+      return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+    else
+      fee = 0.0
+      modifications.each do |mo|
+        fee += mo.count_co_fee_self(startd,endd,userr)
+      end   
+      return fee   
+    end
+  end
+
   def count_fee_self(startd,endd)
-    #组织参数
-    if(startd>=end_date)  #项目不在范围内,项目在查找周期之前
-      return 0
-    end
-    if(start_date >= endd)  #项目不在范围内,项目在查找周期之后
-      return 0
-    end
-    if((start_date-startd).to_i >0 )
-      startd=start_date
-    end
-    if((endd-end_date).to_i >0 )
-      endd=end_date
-    end    
-    (endd-startd)*scale*rate/365
+    bt=bt_start_end(startd,endd)
+    (bt[1]-bt[0])*scale*rate/365   #计算管理费
   end
 
   def count_fee_modifys(startd,endd)
