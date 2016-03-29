@@ -60,6 +60,23 @@
     </div>
     <%=f.error_span(:end_date) %>
   </div>
+
+  <% if params[:plan_id] %>
+    <div class="form-group">
+      <%= f.label :收费模式 ,:class => 'control-label col-lg-2' %>
+      <% Plan::CHARGE_TYPE.each do |t| %>
+                          <%= f.radio_button :charge_type, t %> 
+                          <%= f.label :charge_type, t, :value => t, :class => "inline" %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :前后端收费金额 ,:class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :charge_amount , :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:charge_amount) %>
+    </div>
+  <%end%>
   
   <div class="form-group">
     <%= f.label :费率, :class => 'control-label col-lg-2' %>
@@ -68,7 +85,7 @@
     </div>
     <%=f.error_span(:rate) %>
   </div>
-
+  
   <!-- <div class="form-group">
     <%= f.label :管理费, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

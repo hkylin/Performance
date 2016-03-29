@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.decimal  "scale"
     t.date     "start_date"
     t.date     "end_date"
+    t.string   "charge_type"
+    t.decimal  "charge_amount"
     t.string   "investment_manager"
     t.decimal  "management_fee"
     t.decimal  "rate"

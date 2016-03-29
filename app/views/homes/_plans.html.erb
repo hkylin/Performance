@@ -14,9 +14,10 @@
       <th>风险</th>
       <th>开始日期</th>
       <th>结束日期</th>
-      <th>管理费</th>
+      <th>收费模式</th>
+      <th>前后端收费金额</th>
       <th>投资经理</th>
-      
+      <th>管理费</th>
       <th>部门</th>
       <th>费率</th>
       <th>费用金额</th>
@@ -38,6 +39,8 @@
         <td><%= plan.risk %></td>
         <td><%= plan.start_date %></td>
         <td><%= plan.end_date %></td>
+        <td><%= plan.charge_type %></td>
+        <td><%= plan.charge_amount %></td>
         <td><%= f2 plan.count_fee %></td>
         <td><%= plan.investment_manager %></td>
         <td><%= plan.department.name %></td>

@@ -34,6 +34,8 @@ class ModificationsController < ApplicationController
     @modification.rate = @modificationable.rate
     @modification.risk = @modificationable.risk
     @modification.annual = @modificationable.annual
+    @modification.charge_type = Modification::CHARGE_TYPE[0]
+    @modification.charge_amount = 0.0
     @modificationable.cooperations.each do |co|
       co1 = co.dup
       co1.cooperationable = @modification
@@ -46,8 +48,8 @@ class ModificationsController < ApplicationController
   # GET /modifications/1/edit
   def edit
     # @select_projects=Modification.find_projects()
-    @modificationable=@modification.modificationable
-
+    @modificationable = @modification.modificationable
+    @is_project = (@modificationable.class == Project)
     # puts Rails.application.assets.engines.to_yaml
     puts "|||||||||||||||||||||||||||||"
     puts @_lookup_context.inspect
@@ -137,6 +139,6 @@ class ModificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def modification_params
-      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, cooperations_attributes: [:id, :user_id, :ratio, :_destroy])    
+      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, :charge_type, :charge_amount, cooperations_attributes: [:id, :user_id, :ratio, :_destroy])    
     end
 end

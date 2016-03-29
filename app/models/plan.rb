@@ -11,7 +11,7 @@ class Plan < ActiveRecord::Base
   PLAN_TYPE = %w(一对一 一对多)  
   validates_inclusion_of :plan_type, in: PLAN_TYPE
 
-  CHARGE_TYPE = %w(普通 前段收费 后端收费)  
+  CHARGE_TYPE = %w(普通 前端收费 后端收费)  
   validates_inclusion_of :charge_type, in: CHARGE_TYPE  
 
   RISK_TYPE = %w(正常 风险)  
@@ -25,24 +25,24 @@ class Plan < ActiveRecord::Base
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
 
   after_initialize :default_values
-    def default_values
-      return unless new_record?
-      self.plan_type ||= Plan::PLAN_TYPE[0]
-      self.charge_type ||= Plan::CHARGE_TYPE[0]
-      self.risk ||= Plan::RISK_TYPE[0]
-      self.scale ||= 30000000.0
-      self.rate ||= 0.004
-      # if (self.cooperations.size == 0)
-      #   self.cooperations.build
-      #   self.cooperations[0].user = user
-      #   self.cooperations[0].ratio = 1.0      
-      #   logger.info "===========---------#{user}-----------============="
-      #   logger.info "===========---------#{cooperations[0]}-----------============="
-      #   logger.info "===========---------#{cooperations[0].user}-----------============="
-      #   logger.info "===========---------#{cooperations[0].ratio}-----------============="
-      # end
-    end
 
+  def default_values
+    return unless new_record?
+    self.plan_type ||= Plan::PLAN_TYPE[0]
+    self.charge_type ||= Plan::CHARGE_TYPE[0]
+    self.risk ||= Plan::RISK_TYPE[0]
+    self.scale ||= 30000000.0
+    self.rate ||= 0.004
+    # if (self.cooperations.size == 0)
+    #   self.cooperations.build
+    #   self.cooperations[0].user = user
+    #   self.cooperations[0].ratio = 1.0      
+    #   logger.info "===========---------#{user}-----------============="
+    #   logger.info "===========---------#{cooperations[0]}-----------============="
+    #   logger.info "===========---------#{cooperations[0].user}-----------============="
+    #   logger.info "===========---------#{cooperations[0].ratio}-----------============="
+    # end
+  end
 
   def count_fee_between(startd,endd)
     # if projects.size > 0   #是判断是否有多个项目还是判断是否是单个资管计划？
@@ -71,7 +71,7 @@ class Plan < ActiveRecord::Base
       sum = 0.0
       modifications.each do |mo|
         fee = mo.count_co_fee_self(startd,endd,userr)
-        logger.info "======---------#{mo.name}--------#{fee}---------=========="
+        logger.info "======---------#{mo}--------#{fee}---------=========="
         sum+=fee
       end   
       return sum   

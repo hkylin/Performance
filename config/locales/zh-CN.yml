@@ -275,6 +275,8 @@ zh-CN:
         scale: 规模
         start_date: 成立日期
         end_date: 到期日
+        charge_type:  收费模式
+        charge_amount:  前后端收费金额
         management_fee: 管理费
         investment_manager: 投资经理
         department: 部门

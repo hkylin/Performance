@@ -9,6 +9,9 @@ class Modification < ActiveRecord::Base
   has_many :cooperations, as: :cooperationable, dependent: :destroy, inverse_of: :cooperationable
 
   accepts_nested_attributes_for :cooperations, reject_if: :all_blank, allow_destroy: true
+
+  CHARGE_TYPE = %w(普通 前段收费 后端收费)  
+  validates_inclusion_of :charge_type, in: CHARGE_TYPE
   # :reject_if => :all_blank
   # reject_if: proc { |attributes| attributes['ratio'].blank? || attributes['ratio'].to_f > 1.0}
 #TODO 如果超过1.0 不保存记录  但是也没有错误提示
@@ -23,6 +26,13 @@ class Modification < ActiveRecord::Base
   validates_presence_of :start_date, :end_date, :rate , :message => "不能为空" # 最少 2 
   # validates_numericality_of :scale, :greater_than => 30000000  , :message => "最小规模3000万" # 最少 2 
   # validates_uniqueness_of :number,  :on => :create, :message => "计划编号不唯一" 
+
+  after_initialize :default_values
+  
+  def default_values
+    return unless new_record?
+    self.charge_type ||= Plan::CHARGE_TYPE[0]
+  end
   
   def count_co_fee_self(startd,endd,userr)
     logger.info "=========------开始计算修改:  -----=========="

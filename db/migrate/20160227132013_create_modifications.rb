@@ -6,6 +6,8 @@ class CreateModifications < ActiveRecord::Migration
       t.decimal :scale #number
       t.date :start_date
       t.date :end_date
+      t.string :charge_type #收费模式   普通|前端收费|后端收费
+      t.decimal :charge_amount #规模金额
       t.string :investment_manager
       t.decimal :management_fee
       t.decimal :rate
