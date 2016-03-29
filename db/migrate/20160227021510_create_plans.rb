@@ -3,8 +3,10 @@ class CreatePlans < ActiveRecord::Migration
     create_table :plans do |t|
       t.string :number #AM合同代码
       t.string :name   #计划名称
-      t.string :plan_type  #集合|单一
-      t.string :entrust_type  #一对一|一对多
+      t.string :plan_type  ##一对一|一对多
+      t.string :charge_type #收费模式   普通|前端收费|后端收费
+      t.decimal :charge_amount #规模金额
+      t.decimal :scale #当前规模
       t.decimal :scale #当前规模
       t.date :start_date #成立日期
       t.date :end_date   #到期日

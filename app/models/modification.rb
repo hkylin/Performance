@@ -25,9 +25,11 @@ class Modification < ActiveRecord::Base
   # validates_uniqueness_of :number,  :on => :create, :message => "计划编号不唯一" 
   
   def count_co_fee_self(startd,endd,userr)
+    logger.info "=========------开始计算修改:  -----=========="
     ratio = getCoRatio(userr) #修改中还存在我
-    if ratio
+    if (ratio!=nil) && (ratio!= [])
       bt = bt_start_end(startd,endd)
+      logger.info(bt)
       return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
     else
       0.0

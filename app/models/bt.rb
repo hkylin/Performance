@@ -15,4 +15,14 @@ module BT
     end 
     [startd,endd] 
   end
+
+
+  def getCoRatio(userr)
+    cooperations.each do |co|
+      if(co.user == userr)
+        return co.ratio
+      end 
+    end
+  end
+
 end

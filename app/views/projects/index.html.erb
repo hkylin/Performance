@@ -5,10 +5,9 @@
   <thead>
     <tr>
       <th>资管计划名称</th>
-      <th>项目号</th>
       <th>项目名称</th>
       <th>项目金额</th>
-      <th>资产价格</th>
+      <th>投资段收益率</th>
       <th>入池价格</th>
       <th>开始日期</th>
       <th>结束日期</th>
@@ -26,7 +25,6 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.plan.name %></td>
-        <td><%= link_to project.number, project_path(project) %></td>
         <td><%= link_to project.name, project_path(project) %></td>
         <td><%= project.scale %></td>
         <td><%= project.asset_price %></td>

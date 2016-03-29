@@ -32,14 +32,22 @@ class User < ActiveRecord::Base
   end
 
   def count_co_fee_between(startd,endd)  #计算个人的计划与项目的管理费
-      sum=0.0
+      sum = 0.0
       cooperations.each do |co|
-        logger.info co.cooperationable
-        logger.info co.cooperationable.class
+        logger.info "对象： #{co.cooperationable}＝＝＝＝＝＝＝＝－－－－－－－－－－＝＝＝＝＝＝"
+        logger.info "类： #{co.cooperationable.class}   "
         # 非集合类资管计划, 项目类，修改类modifiy不在这里，由计划和项目进去
-        if(((co.cooperationable.class == Plan) && (co.cooperationable.plan_type == Plan::PLAN_TYPE[0]))||(co.cooperationable.class == Project))
-          sum = sum + co.count_fee_between(startd,endd,this)
+        if((co.cooperationable.class == Plan) && (co.cooperationable.plan_type == Plan::PLAN_TYPE[0]))
+          fee = co.cooperationable.count_co_fee_between(startd,endd,self)
+          logger.info "资管计划类型= #{co.cooperationable.plan_type}"  
+          logger.info "计算的费用= #{fee}"  
+        elsif (co.cooperationable.class == Project)
+          fee = co.cooperationable.count_co_fee_between(startd,endd,self)
+        else
+          fee =0.0
         end
+        logger.info "计算的费用= #{fee}"
+        sum += fee
       end
       sum
   end

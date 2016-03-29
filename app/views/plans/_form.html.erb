@@ -19,7 +19,7 @@
   <div class="form-group">
     <%= f.label :资管计划编号 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.number_field :number , :class => 'form-control' %>
+      <%= f.text_field :number , :class => 'form-control' %>
     </div>
     <%=f.error_span(:number) %>
   </div>
@@ -36,13 +36,6 @@
     <% Plan::PLAN_TYPE.each do |t| %>
                         <%= f.radio_button :plan_type, t %> 
                         <%= f.label :plan_type, t, :value => t, :class => "inline" %>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :委托类型 ,:class => 'control-label col-lg-2' %>
-    <% Plan::ENTRUST_TYPE.each do |t| %>
-                        <%= f.radio_button :entrust_type, t %> 
-                        <%= f.label :entrust_type, t, :value => t, :class => "inline" %>
     <% end %>
   </div>
   <div class="form-group">
@@ -92,6 +85,20 @@
     <%=f.error_span(:rate) %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :收费模式 ,:class => 'control-label col-lg-2' %>
+    <% Plan::CHARGE_TYPE.each do |t| %>
+                        <%= f.radio_button :charge_type, t %> 
+                        <%= f.label :charge_type, t, :value => t, :class => "inline" %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :前后端收费金额 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :charge_amount , :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:charge_amount) %>
+  </div>
   <!-- <div class="form-group">
     <%= f.label :管理费 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -119,13 +126,7 @@
     </div>
     <%=f.error_span(:department_id) %>
   </div>
-  <div class="form-group">
-    <%= f.label :管理费 ,:class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :management_fee , :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:management_fee) %>
-  </div>
+  
   <div class="form-group">
     <%= f.label '年化——计算天数 365|360' ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -146,7 +147,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label "费用占比", :class => 'control-label col-lg-2' %>
+    <%= f.label "承揽承做比例", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.label "多人项目请认真确认好团队比例,包括本人,占比合记为 1", :class => 'control-label' %>
     </div>

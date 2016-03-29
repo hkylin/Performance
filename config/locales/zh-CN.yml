@@ -233,7 +233,8 @@ zh-CN:
         number: 资管计划编号
         name:   资管计划名称
         plan_type:  资管计划类型
-        entrust_type:  委托类型
+        charge_type:  收费模式
+        charge_amount:  前后端收费金额
         scale: 规模
         start_date: 成立日期
         end_date: 到期日

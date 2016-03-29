@@ -8,11 +8,11 @@ class Plan < ActiveRecord::Base
 
   accepts_nested_attributes_for :cooperations, reject_if: :all_blank, allow_destroy: true
 
-  PLAN_TYPE = %w(单一 集合)  
+  PLAN_TYPE = %w(一对一 一对多)  
   validates_inclusion_of :plan_type, in: PLAN_TYPE
-  
-  ENTRUST_TYPE = %w(一对一 一对多)  
-  validates_inclusion_of :entrust_type, in: ENTRUST_TYPE
+
+  CHARGE_TYPE = %w(普通 前段收费 后端收费)  
+  validates_inclusion_of :charge_type, in: CHARGE_TYPE  
 
   RISK_TYPE = %w(正常 风险)  
   validates_inclusion_of :risk, in: RISK_TYPE
@@ -28,7 +28,7 @@ class Plan < ActiveRecord::Base
     def default_values
       return unless new_record?
       self.plan_type ||= Plan::PLAN_TYPE[0]
-      self.entrust_type ||= Plan::ENTRUST_TYPE[0]
+      self.charge_type ||= Plan::CHARGE_TYPE[0]
       self.risk ||= Plan::RISK_TYPE[0]
       self.scale ||= 30000000.0
       self.rate ||= 0.004
@@ -53,35 +53,33 @@ class Plan < ActiveRecord::Base
     end
   end
 
-  def getCoRatio(userr)
-    cooperations.each do |co|
-      if(co.user==userr)
-        return co.ratio
-      end 
-    end
-  end
+  
 
   #通过cooperation计算，只计算单一计划，集合类计划不计算
   def count_co_fee_between(startd,endd,userr)
-    count_fee_self(startd,endd,userr)
+    count_co_fee_self(startd,endd,userr)
   end
 
   def count_co_fee_self(startd,endd,userr)
+    logger.info "=========------开始计算计划:  #{name}----#{modifications.size}---=========="
     if modifications.size == 0
       bt = bt_start_end(startd,endd)
+      logger.info(bt)
       ratio = getCoRatio(userr)
       return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
     else
-      fee = 0.0
+      sum = 0.0
       modifications.each do |mo|
-        fee += mo.count_co_fee_self(startd,endd,userr)
+        fee = mo.count_co_fee_self(startd,endd,userr)
+        logger.info "======---------#{mo.name}--------#{fee}---------=========="
+        sum+=fee
       end   
-      return fee   
+      return sum   
     end
   end
 
   def count_fee
-    (end_date-start_date)*scale*rate/365
+    count_fee_between(start_date,end_date)
   end
 
 #对集合类项目  没有做特殊的处理  
@@ -115,8 +113,23 @@ protected
   # end
 
   def count_fee_self(startd,endd) #计算单一计划管理费
-    bt=bt_start_end(startd,endd)
-    (bt[1]-bt[0])*scale*rate/annual   #计算管理费
+    # bt=bt_start_end(startd,endd)
+    # (bt[1]-bt[0])*scale*rate/annual   #计算管理费
+
+    logger.info "=========------开始计算计划:  #{name}----#{modifications.size}---=========="
+    if modifications.size == 0
+      bt = bt_start_end(startd,endd)
+      logger.info(bt)
+      return (bt[1]-bt[0])*scale*rate/annual   #计算管理费
+    else
+      sum = 0.0
+      modifications.each do |mo|
+        fee = mo.count_fee_between(startd,endd)
+        logger.info "======---------#{mo}--------#{fee}---------=========="
+        sum+=fee
+      end   
+      return sum   
+    end
   end
 
   def count_fee_projects(startd,endd) #计算组合计划，多个项目的汇总

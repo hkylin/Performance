@@ -1,1 +1,1 @@
-json.extract! @project, :id, :plan_id, :number, :name, :this_amount, :year_amount, :start_date, :end_date, :management_fee, :investment_manager, :a_class, :b_class, :department_id, :rate, :fee, :notes, :created_at, :updated_at
+json.extract! @project, :id, :plan_id, :name, :this_amount, :year_amount, :start_date, :end_date, :management_fee, :investment_manager, :a_class, :b_class, :department_id, :rate, :fee, :notes, :created_at, :updated_at

@@ -1,4 +1,6 @@
 <%= render :partial => "tasks" , :locals => { :tasks => @tasks } %>
 <%= render :partial => "management_fee", :locals => { :object => current_user} %>
+<%= high_chart_globals(@chart_globals) %>
+<%= high_chart("some_id", @chart) %>
 <%= render :partial => "plans"%>
 <%= render :partial => "projects"%>

@@ -39,14 +39,6 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :委托类型 ,:class => 'control-label col-lg-2' %>
-    <% Plan::ENTRUST_TYPE.each do |t| %>
-                        <%= f.radio_button :entrust_type, t %> 
-                        <%= f.label :entrust_type, t, :value => t, :class => "inline" %>
-    <% end %>
-  </div>
-
-  <div class="form-group">
     <%= f.label :风险 ,:class => 'control-label col-lg-2' %>
     <% Plan::RISK_TYPE.each do |t| %>
                         <%= f.radio_button :risk, t %> 

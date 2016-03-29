@@ -7,8 +7,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name  #项目名称（资产名称）
       t.decimal :scale #当前规模
       
-      t.decimal :asset_price  #资产价格
-      t.decimal :pool_price   #入池价格
+      t.decimal :asset_price  #投资段收益率
       
       t.date :start_date #放款日
       t.date :end_date   #到期日

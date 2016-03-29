@@ -42,6 +42,15 @@ class Department < ActiveRecord::Base
     end
     @staff
   end
+  def count_co_fee(between_date)  #[]参数
+    startd=between_date[0]
+    endd=between_date[1]
+    sum=0.0
+    staff.each do |user|
+      sum += user.count_fee_between(startd,endd)
+    end
+    sum
+  end
 
   def count_fee(between_date)  #[]参数
     startd=between_date[0]
@@ -64,6 +73,8 @@ class Department < ActiveRecord::Base
     end
     sum
   end
+
+  
 
   def count_all_type_task
     [count_scale_tasks,count_management_fee_tasks,count_fee_tasks]
