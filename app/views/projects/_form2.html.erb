@@ -128,6 +128,14 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :通道费率 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :channel_cost , :class => 'form-control'%>
+      <%=f.error_span(:channel_cost) %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :注释 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_area :notes , :class => 'form-control' %>

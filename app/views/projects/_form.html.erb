@@ -27,47 +27,47 @@
     <%= f.label :项目名称 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :name , :class => 'form-control' %>
+      <%=f.error_span(:name) %>
     </div>
-    <%=f.error_span(:name) %>
   </div>
   
   <div class="form-group">
     <%= f.label :放款日 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.date_select :start_date , :class => 'form-control' %>
+      <%=f.error_span(:start_date) %>
     </div>
-    <%=f.error_span(:start_date) %>
   </div>
   <div class="form-group">
     <%= f.label :到期日 ,:class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
       <%= f.date_select :end_date , :class => 'form-control' %>
+      <%=f.error_span(:end_date) %>
     </div>
-    <%=f.error_span(:end_date) %>
   </div>
 
   <div class="form-group">
     <%= f.label :规模 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :scale , :class => 'form-control' %>
+      <%=f.error_span(:scale) %>
     </div>
-    <%=f.error_span(:scale) %>
   </div>
   
    <div class="form-group">
     <%= f.label :费率 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :rate , :class => 'form-control'%>
+      <%=f.error_span(:rate) %>
     </div>
-    <%=f.error_span(:rate) %>
   </div>
 
   <!-- <div class="form-group">
     <%= f.label :投资经理 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :investment_manager , :class => 'form-control' %>
-    </div>
     <%=f.error_span(:investment_manager) %>
+    </div>
   </div> -->
   
   <div class="form-group">
@@ -81,40 +81,40 @@
     <%= f.label :合作伙伴 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :parter , :class => 'form-control' %>
-    </div>
     <%=f.error_span(:parter) %>
+    </div>
   </div>
 
   <div class="form-group">
     <%= f.label :部门 ,:class => 'control-label col-lg-2' %>  
     <div class="col-lg-10">
       <%= f.select :department_id, Department.all.collect {|f| [ "#{f.name}", f.id ] }  %>
-    </div>
     <%=f.error_span(:department_id) %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :投资段收益率 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
 
       <%= f.text_field :asset_price , :class => 'form-control' %>
-    </div>
     <%=f.error_span(:asset_price) %>
+    </div>
   </div>
 
  <!-- <div class="form-group">
     <%= f.label :管理费 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :management_fee , :class => 'form-control' %>
-    </div>
     <%=f.error_span(:management_fee) %>
+    </div>
   </div>
   
   <div class="form-group">
     <%= f.label :费用金额 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :fee , :class => 'form-control' %>
-    </div>
     <%=f.error_span(:fee) %>
+    </div>
   </div> -->
    <div class="form-group">
     <%= f.label '年化——计算天数 365|360' ,:class => 'control-label col-lg-2' %>
@@ -124,16 +124,24 @@
       <%else%>
         <%= f.text_field :annual, :class => 'form-control' %>
       <%end%>
+      <%=f.error_span(:annual) %>
     </div>
-    <%=f.error_span(:annual) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :通道费率 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :channel_cost , :class => 'form-control'%>
+      <%=f.error_span(:channel_cost) %>
+    </div>
   </div>
 
   <div class="form-group">
     <%= f.label :注释 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_area :notes , :class => 'form-control' %>
+      <%=f.error_span(:notes) %>
     </div>
-    <%=f.error_span(:notes) %>
   </div>
 
   <div class="form-group">

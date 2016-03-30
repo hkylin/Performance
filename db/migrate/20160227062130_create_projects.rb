@@ -21,7 +21,7 @@ class CreateProjects < ActiveRecord::Migration
       t.decimal :rate   #费率
       t.decimal :fee    #费用金额 
       t.text :notes     #注释
-
+      t.decimal :channel_cost #使用别的部分的资管计划的费用
       t.timestamps null: false
     end
   end

@@ -47,11 +47,13 @@ ActiveRecord::Schema.define(version: 20160308005205) do
 
   create_table "modifications", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "name"
     t.decimal  "scale"
     t.date     "start_date"
     t.date     "end_date"
     t.string   "charge_type"
     t.decimal  "charge_amount"
+    t.date     "charge_date"
     t.string   "investment_manager"
     t.decimal  "management_fee"
     t.decimal  "rate"
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.string   "plan_type"
     t.string   "charge_type"
     t.decimal  "charge_amount"
+    t.date     "charge_date"
     t.decimal  "scale"
     t.date     "start_date"
     t.date     "end_date"
@@ -115,6 +118,7 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.decimal  "rate"
     t.decimal  "fee"
     t.text     "notes"
+    t.decimal  "channel_cost"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "annual",             default: 365
