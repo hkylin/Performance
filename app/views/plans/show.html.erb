@@ -37,8 +37,8 @@
         <td><%=@plan.end_date %></td>
         <td><%=@plan.charge_type %></td>
         <td><%=@plan.charge_amount %></td>
-        <td><%= f2 @plan.count_fee %></td>
-        <td><%= f2 @plan.count_plan_manage_fee(Date.new(Date.current.year,1,1), Date.current) %></td>
+        <td><%= f2 @plan.whole_plan_fee %></td>
+        <td><%= f2 @plan.this_year_fee %></td>
         <td><%=@plan.investment_manager %></td>
         <td><%=@plan.department.name %></td>
         <td><%=@plan.rate %></td>

@@ -6,6 +6,7 @@ class CreatePlans < ActiveRecord::Migration
       t.string :plan_type  ##一对一|一对多
       t.string :charge_type #收费模式   普通|前端收费|后端收费
       t.decimal :charge_amount #规模金额
+      t.date :charge_date #规模金额
       t.decimal :scale #当前规模
       t.decimal :scale #当前规模
       t.date :start_date #成立日期

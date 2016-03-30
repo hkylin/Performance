@@ -26,23 +26,21 @@ class User < ActiveRecord::Base
   # end
 
   def count_co_fee(between_date)  #计算个人的计划与项目的管理费
-    startd=between_date[0]
-    endd=between_date[1]
-    count_co_fee_between(startd,endd)    
+    count_co_fee_between(between_date)    
   end
 
-  def count_co_fee_between(startd,endd)  #计算个人的计划与项目的管理费
+  def count_co_fee_between(between_date)  #计算个人的计划与项目的管理费
       sum = 0.0
       cooperations.each do |co|
         logger.info "对象： #{co.cooperationable}＝＝＝＝＝＝＝＝－－－－－－－－－－＝＝＝＝＝＝"
         logger.info "类： #{co.cooperationable.class}   "
         # 非集合类资管计划, 项目类，修改类modifiy不在这里，由计划和项目进去
         if((co.cooperationable.class == Plan) && (co.cooperationable.plan_type == Plan::PLAN_TYPE[0]))
-          fee = co.cooperationable.count_co_fee_between(startd,endd,self)
+          fee = co.cooperationable.count_co_fee_between(between_date,self)
           logger.info "资管计划类型= #{co.cooperationable.plan_type}"  
           logger.info "计算的费用= #{fee}"  
         elsif (co.cooperationable.class == Project)
-          fee = co.cooperationable.count_co_fee_between(startd,endd,self)
+          fee = co.cooperationable.count_co_fee_between(between_date,self)
         else
           fee =0.0
         end
@@ -137,13 +135,13 @@ class User < ActiveRecord::Base
 
 
 
-  def count_fee_between(startd,endd)  #计算个人的计划与项目的管理费
+  def count_fee_between(between_date)  #计算个人的计划与项目的管理费
       sum=0.0
       plans.each do |plan|
-        sum = sum + plan.count_fee_between(startd,endd)   
+        sum = sum + plan.count_fee_between(between_date)   
       end
       projects.each do |project|
-        sum = sum + project.count_fee_between(startd,endd)
+        sum = sum + project.count_fee_between(between_date)
       end
       sum
   end
@@ -151,7 +149,7 @@ class User < ActiveRecord::Base
   def count_fee(between_date)  #计算个人的计划与项目的管理费
       startd=between_date[0]
       endd=between_date[1]
-      count_fee_between(startd,endd)
+      count_fee_between(between_date)
   end
 
   def quarters

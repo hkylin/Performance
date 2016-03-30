@@ -54,7 +54,6 @@ class ModificationsController < ApplicationController
     puts "|||||||||||||||||||||||||||||"
     puts @_lookup_context.inspect
     puts ActionView::Template::Handlers.extensions
-
   end
 
   # POST /modifications
@@ -79,6 +78,7 @@ class ModificationsController < ApplicationController
   def update
     # @select_projects=Modification.find_projects()
     logger.info modification_params
+    @modificationable = @modification.modificationable
     respond_to do |format|
       if @modification.update(modification_params)
         format.html { redirect_to @modification, notice: '项目调整已更新.' }

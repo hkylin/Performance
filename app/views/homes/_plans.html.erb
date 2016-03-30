@@ -17,8 +17,8 @@
       <th>收费模式</th>
       <th>前后端收费金额</th>
       <th>投资经理</th>
-      <th>管理费</th>
-      <th>计划管理费</th>
+      <th>全部管理费</th>
+      <th>本年累计管理费</th>
       <th>部门</th>
       <th>费率</th>
       <th>费用金额</th>
@@ -43,9 +43,8 @@
         <td><%= plan.charge_type %></td>
         <td><%= plan.charge_amount %></td>
         <td><%= plan.investment_manager %></td>
-        <td><%= f2 plan.count_fee %></td>
-        <td><%= f2 plan.count_plan_manage_fee(Date.new(Date.current.year,1,1), Date.current) %></td>
-        
+        <td><%= f2 plan.whole_plan_fee %></td>
+        <td><%= f2 plan.this_year_fee %></td>
         <td><%= plan.department.name %></td>
         <td><%= plan.rate %></td>
         <td><%= plan.fee %></td>

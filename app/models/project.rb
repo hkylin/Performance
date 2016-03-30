@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   validates_inclusion_of :risk, in: RISK_TYPE
 
   validates_presence_of :start_date, :end_date, :name, :rate   , :message => "不能为空" # 最少 2 
-  validates_length_of :name, :minimum => 2 , :message => "名称最少4个字节" 
+  validates_length_of :name, :minimum => 2 , :message => "名称最少4个字节", :allow_blank => true  
   validates_numericality_of :scale, :greater_than_or_equal_to => 30000000 , :message => "最小规模3000万" # 最少 2 
   
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
@@ -27,20 +27,20 @@ class Project < ActiveRecord::Base
   end   
 
   #通过cooperation计算，只计算单一计划，集合类计划不计算
-  def count_co_fee_between(startd,endd,userr)
-    count_co_fee_self(startd,endd,userr)
+  def count_co_fee_between(between_date,userr)
+    count_co_fee_self(between_date,userr)
   end
 
-  def count_co_fee_self( startd, endd, userr )
+  def count_co_fee_self(between_date, userr )
     logger.info "=========------开始计算项目:  #{name}-----=========="
     if modifications.size == 0
-      bt = bt_start_end(startd,endd)
+      bt = bt_start_end(between_date)
       ratio = getCoRatio(userr)
       return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
     else
       sum = 0.0
       modifications.each do |mo|
-        fee=mo.count_co_fee_self(startd,endd,userr)
+        fee=mo.count_co_fee_self(between_date,userr)
         sum += fee
         logger.info fee
       end   
@@ -48,24 +48,24 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def count_fee_self(startd,endd)
-    bt=bt_start_end(startd,endd)
+  def count_fee_self(between_date)
+    bt=bt_start_end(between_date)
     (bt[1]-bt[0])*scale*rate/365   #计算管理费
   end
 
-  def count_fee_modifys(startd,endd)
+  def count_fee_modifys(between_date)
     sum=0.0
     modifications.each do |modify|
-      sum = sum + modify.count_fee_between(startd,endd)
+      sum = sum + modify.count_fee_between(between_date)
     end
     sum
   end
 
-  def count_fee_between(startd,endd)
+  def count_fee_between(between_date)
     if modifications.size > 0 
-      count_fee_modifys(startd,endd)
+      count_fee_modifys(between_date)
     else
-      count_fee_self(startd,endd)
+      count_fee_self(between_date)
     end
   end
 

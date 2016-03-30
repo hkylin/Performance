@@ -1,4 +1,11 @@
 class Date
+	def self.since_this_year
+	  [Date.new(Date.current.year,1,1), Date.current]	
+	end
+
+	def self.contain
+		[Date.new(2000,1,1), Date.new(2200,1,1)]	
+	end
 
 	def self.first_quarter
 	  [Date.new(Date.current.year,1,1), Date.new(Date.current.year,4,1)]
