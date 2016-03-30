@@ -14,8 +14,8 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :start_date, :end_date, :name, :rate   , :message => "不能为空" # 最少 2 
   validates_length_of :name, :minimum => 2 , :message => "名称最少4个字节", :allow_blank => true  
-  validates_numericality_of :scale, :greater_than_or_equal_to => 30000000 , :message => "最小规模3000万" # 最少 2 
-  
+  validates_numericality_of :scale, :greater_than_or_equal_to => 30000000 , :message => "最小规模3000万" 
+  validates_numericality_of :channel_cost, :greater_than_or_equal_to => 0.0 , :less_than_or_equal_to => 1.0 , :message => "请合理设置通道费用" 
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
   
   def self.find_departments
@@ -25,6 +25,24 @@ class Project < ActiveRecord::Base
   def self.find_plans
   	Plan.all.collect { |plan| [plan.name, plan.id] } 
   end   
+
+  ###################项目管理费收入计算###########################
+  def count_income(between_date,userr)
+    bt = bt_start_end(between_date)
+    ratio = getCoRatio(userr)*(1-channel_cost)
+    return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+  end
+  #####################规模收入计算#############################
+  def count_scale(dated,userr)
+    if is_contain?(dated)
+      ratio = getCoRatio(userr)*(1-channel_cost)
+      return scale*ratio   #计算管理费
+    else
+      return 0.0
+    end
+  end
+  ##############################################################
+
 
   #通过cooperation计算，只计算单一计划，集合类计划不计算
   def count_co_fee_between(between_date,userr)
@@ -69,7 +87,7 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def count_scale(at_date) #计算单一计划管理费
+  def count_scale_old(at_date) #计算单一计划管理费
     if modifications.size > 0
       count_scale_modifys at_date
     else

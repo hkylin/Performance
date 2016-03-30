@@ -25,6 +25,46 @@ class User < ActiveRecord::Base
   #   t.datetime "updated_at",           null: false
   # end
 
+
+  ###################项目管理费收入计算###########################
+  def count_income(between_date)
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
+    sum = 0.0
+    cooperations.each do |co|
+      logger.info "对象： #{co.cooperationable}＝＝＝＝＝＝＝＝－－－－－－－－－－＝＝＝＝＝＝"
+      logger.info "类： #{co.cooperationable.class}   "
+      # 非集合类资管计划, 项目类，修改类modifiy不在这里，由计划和项目进去
+      if (co.cooperationable.class == Project)
+        fee = co.cooperationable.count_income(between_date,self)
+         logger.info "{co.cooperationable.name} 计算的费用= #{fee}"
+        sum += fee
+      end
+     
+    end
+    sum
+  end
+  #####################规模收入计算#############################
+  def count_scale(dated=Date.current)
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模－－－－－＝＝＝＝＝＝"
+    sum = 0.0
+    cooperations.each do |co|
+      logger.info "对象： #{co.cooperationable}＝＝＝＝＝＝＝＝－－－－－－－－－－＝＝＝＝＝＝"
+      logger.info "类： #{co.cooperationable.class}   "
+      # 非集合类资管计划, 项目类，修改类modifiy不在这里，由计划和项目进去
+      if (co.cooperationable.class == Project)
+        scale = co.cooperationable.count_scale(dated,self)
+        logger.info "{co.cooperationable.name} 计算的费用= #{scale}"
+        sum += scale
+      end
+    end
+    sum
+  end
+  #####################规模收入计算#############################
+
+
+
+
+
   def count_co_fee(between_date)  #计算个人的计划与项目的管理费
     count_co_fee_between(between_date)    
   end
@@ -107,7 +147,7 @@ class User < ActiveRecord::Base
     scale
   end 
 
-  def count_scale(at_date)
+  def count_scale_old(at_date)
     sum=0.0
     plans.each do |plan|
       sum = sum + plan.count_scale(at_date)
