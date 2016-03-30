@@ -90,9 +90,30 @@ plan1=Plan.create(name: '汇赢1号', plan_type: Plan::PLAN_TYPE[1], charge_type
 plan2=Plan.create(name: '保腾1号', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0],  number: 10000002, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-6-4',scale: 100000000, rate: 0.004, annual: 365)
 plan3=Plan.create(name: '民生加银资管永昌地产集团专项资产管理计划',plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0],  number: :WDC15015, user: mgq, department: jh,parter: :民生银行, risk: :正常, start_date: '2014-1-4', end_date: '2018-2-4',scale: 100000000, rate: 0.004, annual: 365)
 
-plan4=Plan.create(name: '全权委托1', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0],number: 10000001, user: mhj, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 600000000, rate: 0.004, annual: 365)
-plan5=Plan.create(name: '全权委托2', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0],number: 10000002, user: jgr, department: cf, parter: :民生银行, risk: :正常,  start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
-plan6=Plan.create(name: '全权委托3', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0],number: 10000002, user: jgr, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+plan4=Plan.create(name: '全权委托1', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0],number: 10000011, user: mhj, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 600000000, rate: 0.004, annual: 365)
+plan5=Plan.create(name: '全权委托2', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0],number: 10000012, user: jgr, department: cf, parter: :民生银行, risk: :正常,  start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+plan6=Plan.create(name: '全权委托3', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0],number: 10000013, user: jgr, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+
+
+Plan.create(name: '全权委托-普通收费1', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0],number: 10000021, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2016-2-28',scale: 100000000, rate: 0.004, annual: 365)
+Plan.create(name: '全权委托-前收费1', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[1], charge_amount:10000, number: 10000022, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2016-2-28',scale: 100000000, rate: 0.004, annual: 365)
+Plan.create(name: '全权委托-后收费1', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[2], charge_amount:10000, number: 10000023, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2016-2-28',scale: 100000000, rate: 0.004, annual: 365)
+
+Plan.create(name: '全权委托-普通收费2', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0], number: 10000031, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-1-1', end_date: '2016-6-1',scale: 100000000, rate: 0.004, annual: 365)
+Plan.create(name: '全权委托-前收费2', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[1], charge_amount:10000, number: 10000032, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-1-1', end_date: '2016-6-1',scale: 100000000, rate: 0.004, annual: 365)
+Plan.create(name: '全权委托-后收费2', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[2], charge_amount:10000, number: 10000033, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-1-1', end_date: '2016-6-1',scale: 100000000, rate: 0.004, annual: 365)
+
+Plan.create(name: '全权委托-普通收费3', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0],number: 10000041, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+Plan.create(name: '全权委托-前收费3', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[1], charge_amount:10000, number: 10000042, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+Plan.create(name: '全权委托-后收费3', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[2], charge_amount:10000, number: 10000043, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+
+
+plan7=Plan.create(name: '全权委托-普通收费4-有修改', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0],number: 10000051, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+plan8=Plan.create(name: '全权委托-前收费4', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[1], charge_amount:10000, number: 10000052, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+plan9=Plan.create(name: '全权委托-后收费4', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[2], charge_amount:10000, number: 10000053, user: mgq, department: cf, parter: :民生银行, risk: :正常, start_date: '2016-2-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+Modification.create( modificationable: plan7, user: mgq, charge_type: Plan::CHARGE_TYPE[1], charge_amount: 10000, risk: :正常, start_date: '2016-2-1', end_date: '2016-10-4',scale: 100000000, rate: 0.004, annual: 365)
+Modification.create( modificationable: plan7, user: mgq, charge_type: Plan::CHARGE_TYPE[0], risk: :正常, start_date: '2016-10-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
+
 Cooperation.create(user: mgq, ratio: 0.3, cooperationable: plan1)
 Cooperation.create(user: zyj, ratio: 0.4, cooperationable: plan1)
 Cooperation.create(user: spj, ratio: 0.3, cooperationable: plan1)

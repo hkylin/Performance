@@ -10,7 +10,7 @@ class Modification < ActiveRecord::Base
 
   accepts_nested_attributes_for :cooperations, reject_if: :all_blank, allow_destroy: true
 
-  CHARGE_TYPE = %w(普通 前段收费 后端收费)  
+  CHARGE_TYPE = %w(普通 前端收费 后端收费)  
   validates_inclusion_of :charge_type, in: CHARGE_TYPE
   # :reject_if => :all_blank
   # reject_if: proc { |attributes| attributes['ratio'].blank? || attributes['ratio'].to_f > 1.0}

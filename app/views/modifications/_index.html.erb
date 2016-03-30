@@ -5,9 +5,11 @@
   <thead>
     <tr>
       <th>名称</th>
-      <th>编号</th>
+      <th>规模</th>
       <th>开始时间</th>
       <th>结束时间</th>
+      <th>收费模式</th>
+      <th>前后端收费金额</th>
       <th>管理费</th>
       <th>投资经理</th>
       <th>费率</th> 
@@ -24,6 +26,8 @@
         <td><%= pm.scale %></td>
         <td><%= pm.start_date %></td>
         <td><%= pm.end_date %></td>
+        <td><%= pm.charge_type %></td>
+        <td><%= pm.charge_amount %></td>
         <td><%= pm.management_fee %></td>
         <td><%= pm.investment_manager %></td>
         <td><%= pm.rate %></td>

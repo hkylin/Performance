@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :start_date, :end_date, :name, :rate   , :message => "不能为空" # 最少 2 
   validates_length_of :name, :minimum => 2 , :message => "名称最少4个字节" 
-  validates_numericality_of :scale, :greater_than => 30000000 , :message => "最小规模3000万" # 最少 2 
+  validates_numericality_of :scale, :greater_than_or_equal_to => 30000000 , :message => "最小规模3000万" # 最少 2 
   
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
   

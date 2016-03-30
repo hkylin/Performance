@@ -20,7 +20,7 @@ class Plan < ActiveRecord::Base
   # validates_presence_of :department
   validates_presence_of :start_date, :end_date, :name, :number, :plan_type, :rate   , :message => "不能为空" # 最少 2 #, :parter
   validates_length_of :name, :minimum => 4 ,:message => "名称最少4个字节" 
-  validates_numericality_of :scale, :greater_than => 30000000, :message => "最小规模3000万" # 最少 2 
+  validates_numericality_of :scale, :greater_than_or_equal_to => 30000000, :message => "最小规模3000万" # 最少 2 
   validates_uniqueness_of :number,  :on => :create, :message => "计划编号不唯一" 
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
 
@@ -42,6 +42,22 @@ class Plan < ActiveRecord::Base
     #   logger.info "===========---------#{cooperations[0].user}-----------============="
     #   logger.info "===========---------#{cooperations[0].ratio}-----------============="
     # end
+  end
+
+  #计算管理费收入
+  def count_plan_manage_fee(startd,endd)
+    logger.info "=========------开始计算资管计划－－#{name}管理费：----包含修改次数：#{modifications.size}---=========="
+    if modifications.size == 0
+      return count_manage_fee(startd,endd)
+    else
+      sum = 0.0
+      modifications.each do |mo|
+        fee = mo.count_manage_fee(startd,endd)
+        logger.info "======---------#{mo}--------#{fee}---------=========="
+        sum += fee
+      end   
+      return sum   
+    end
   end
 
   def count_fee_between(startd,endd)
@@ -111,6 +127,8 @@ protected
   #   end 
   #   [startd,endd] 
   # end
+
+
 
   def count_fee_self(startd,endd) #计算单一计划管理费
     # bt=bt_start_end(startd,endd)

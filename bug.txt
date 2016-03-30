@@ -68,6 +68,7 @@ bug修改：
 	
 TODO：
 	modification默认应该赋值为普通？
+	前端收费  后段收费  不用专门指定日期，会与计划的开始日期 或结束日期一致？
 	是否存在只有前段收费？或只有后段？前端收费＋正常收费，后段收费＋正常收费模式｜解决：只有前段费率设置为0就好。
 	项目一定不存在前后端收费？
 
@@ -79,9 +80,6 @@ TODO：
 	收入考核指标计算：
 		资管计划部门的计算      资管计划scale－（项目s费用） ＋ 项目中部门的那部分。
 
-		
-
-
 		1、3、是什么关系？
 question？
 	有前后端收费，是不是管理费费率有可能为零，不能增加必须存在的判断，必须存在可以设置为零
@@ -92,3 +90,7 @@ question？
 
 
 
+最佳答案: <button onclick="javascript:this.style.display='none'">登录</button> 个人认为以下方式更好,将按钮灰显不可用: <button onclick="javascript:this...
+
+
+<%= f.radio_button :charge_type, t, onClick: "alert ('hi');" %> 

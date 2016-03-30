@@ -42,6 +42,18 @@ class Department < ActiveRecord::Base
     end
     @staff
   end
+
+  #统计资管计划管理费
+  def count_plan_manage_fee(between_date)
+    startd=between_date[0]
+    endd=between_date[1]
+    sum=0.0
+    staff.each do |user|
+      sum += user.count_plan_manage_fee(startd,endd)
+    end
+    sum
+  end
+
   def count_co_fee(between_date)  #[]参数
     startd=between_date[0]
     endd=between_date[1]

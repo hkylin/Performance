@@ -14,6 +14,7 @@
       <th><%= model_class.human_attribute_name(:charge_type) %></th>
       <th><%= model_class.human_attribute_name(:charge_amount) %></th>
       <th>管理费</th>
+      <th>管理费(包含前后端收费)</th>
       <th>投资经理</th>
       <th>部门</th>
       <th>费率</th>
@@ -37,6 +38,7 @@
         <td><%=@plan.charge_type %></td>
         <td><%=@plan.charge_amount %></td>
         <td><%= f2 @plan.count_fee %></td>
+        <td><%= f2 @plan.count_plan_manage_fee(Date.new(Date.current.year,1,1), Date.current) %></td>
         <td><%=@plan.investment_manager %></td>
         <td><%=@plan.department.name %></td>
         <td><%=@plan.rate %></td>
@@ -44,7 +46,8 @@
         <td>|
           <% @plan.cooperations.each do |co|%>
             <%= "#{co.user.username} #{co.ratio}" %>|
-          <% end %></td>
+          <% end %>
+        </td>
         <td><%=@plan.notes %></td>
          <td>
           <%= link_to :编辑,
