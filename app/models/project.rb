@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   RISK_TYPE = %w(正常 风险)  
   validates_inclusion_of :risk, in: RISK_TYPE
 
-  validates_presence_of :start_date, :end_date, :name, :rate   , :message => "不能为空" # 最少 2 
+  validates_presence_of :plan_id, :start_date, :end_date, :name, :rate   , :message => "不能为空" # 最少 2 
   validates_length_of :name, :minimum => 2 , :message => "名称最少4个字节", :allow_blank => true  
   validates_numericality_of :scale, :greater_than_or_equal_to => 30000000 , :message => "最小规模3000万" 
   validates_numericality_of :channel_cost, :greater_than_or_equal_to => 0.0 , :less_than_or_equal_to => 1.0 , :message => "请合理设置通道费用" 

@@ -119,13 +119,13 @@ Cooperation.create(user: zyj, ratio: 0.4, cooperationable: plan1)
 Cooperation.create(user: spj, ratio: 0.3, cooperationable: plan1)
 
 
-project1=Project.create(name: '苏州高铁新城经济发展有限公司', number: :QS713003, plan: plan1, user: mgq, department: jh,parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.0774, annual: 365)
-project2=Project.create(name: '贵阳金阳建设投资（集团）有限公司', number: :WDC140AI, plan: plan1, user: mgq, department: jh, parter: :民生银行, risk: :正常,  start_date: '2014-2-4', end_date: '2017-9-4',scale: 100000000, rate: 0.004, asset_price: 0.1, annual: 365)
-project3=Project.create(name: '龙岩汇通置业有限公司', number: :WDC1504Z, plan: plan1, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.1, annual: 365)
+project1=Project.create(name: '苏州高铁新城经济发展有限公司', number: :QS713003, plan: plan1, user: mgq, department: jh,parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.0774, annual: 365)
+project2=Project.create(name: '贵阳金阳建设投资（集团）有限公司', number: :WDC140AI, plan: plan1, user: mgq, department: jh, parter: :民生银行, risk: :正常,  start_date: '2014-2-4', end_date: '2017-9-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1, annual: 365)
+project3=Project.create(name: '龙岩汇通置业有限公司', number: :WDC1504Z, plan: plan1, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1, annual: 365)
 
-project21=Project.create(name: '民生加银资管重庆溉澜溪专项资产管理计划', number: :QT9150KL,  plan: plan2, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-1-6', end_date: '2017-6-6',scale: 100000000, rate: 0.004, asset_price: 0.1, annual: 365)
-project22=Project.create(name: '民生加银资管创赢1号专项资产管理计划', number: :QT91514V,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-3-4',scale: 100000000, rate: 0.004, asset_price: 0.1, annual: 365)
-project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2016-1-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, asset_price: 0.1, annual: 365)
+project21=Project.create(name: '民生加银资管重庆溉澜溪专项资产管理计划', number: :QT9150KL,  plan: plan2, user: mgq, department: jh, parter: :民生银行, risk: :正常, start_date: '2015-1-6', end_date: '2017-6-6',scale: 100000000, channel_cost: 0.0,  rate: 0.004, asset_price: 0.1, annual: 365)
+project22=Project.create(name: '民生加银资管创赢1号专项资产管理计划', number: :QT91514V,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-3-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1, annual: 365)
+project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: jh, parter: :建设银行, risk: :正常, start_date: '2016-1-4', end_date: '2017-2-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1, annual: 365)
 
 
 Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project1)
@@ -136,9 +136,9 @@ pm1=Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk:
 Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004)
 Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2017-1-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
 
-plan14=Plan.create(name: '4', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0],number: 100000014, user: zyj, department: hlw,risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1', scale: 100000000, rate: 0.004)
-project31=Project.create(name: 'project31', plan: plan14, user: zyj, department: hlw, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, asset_price: 0.1)
-project32=Project.create(name: 'project32', plan: plan14, user: zyj, department: hlw, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, asset_price: 0.1)
+plan14=Plan.create(name: '44444444444', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0],number: 100000114, user: zyj, department: hlw,risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1', scale: 100000000, rate: 0.004)
+project31=Project.create(name: 'project31', plan: plan14, user: zyj, department: hlw, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000,channel_cost: 0.0,  rate: 0.004, asset_price: 0.1)
+project32=Project.create(name: 'project32', plan: plan14, user: zyj, department: hlw, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1)
 Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 Modification.create( modificationable: project31,user: zyj, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
