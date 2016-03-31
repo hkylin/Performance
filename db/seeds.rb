@@ -136,9 +136,9 @@ pm1=Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk:
 Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004)
 Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2017-1-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
 
-plan4=Plan.create(name: '4', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0],number: 100000004, user: zyj, department: hlw,risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1', scale: 100000000, rate: 0.004)
-project31=Project.create(name: 'project31', plan: plan4, user: zyj, department: hlw, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, asset_price: 0.1)
-project32=Project.create(name: 'project32', plan: plan4, user: zyj, department: hlw, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, asset_price: 0.1)
+plan14=Plan.create(name: '4', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0],number: 100000014, user: zyj, department: hlw,risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1', scale: 100000000, rate: 0.004)
+project31=Project.create(name: 'project31', plan: plan14, user: zyj, department: hlw, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, asset_price: 0.1)
+project32=Project.create(name: 'project32', plan: plan14, user: zyj, department: hlw, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, asset_price: 0.1)
 Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 Modification.create( modificationable: project31,user: zyj, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
