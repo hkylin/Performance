@@ -245,6 +245,8 @@ zh-CN:
         fee: 费用金额
         user: 计划创建者
         parter: 合作伙伴
+        ownership_type: 归属类型
+        model_type: 产品模式
         cooperations: 协作者
         notes: 备注
         risk: 风险

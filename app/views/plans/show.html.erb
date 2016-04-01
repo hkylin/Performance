@@ -20,9 +20,11 @@
       <th>费率</th>
       <th>费用金额</th>
       <th>合作者</th>
+      <th>归属类型</th>
+      <th>合作伙伴</th>
+      <th>产品模式</th>
       <th>注释</th>
       <th>操作</th>
-
     </tr>
   </thead>
 
@@ -48,6 +50,10 @@
             <%= "#{co.user.username} #{co.ratio}" %>|
           <% end %>
         </td>
+        <td><%=@plan.ownership_type %></td>
+        <td><%=@plan.parter %></td>
+        
+        <td><%=@plan.model_type %></td>
         <td><%=@plan.notes %></td>
          <td>
           <%= link_to :编辑,

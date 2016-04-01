@@ -39,37 +39,15 @@ module BT
     end
   end
 
-  #判断是否包含前收费的日期
-  def is_pre?(between_date)
-    startd=between_date[0]
-    endd=between_date[1]
-    if((startd <= start_date)  && (start_date<=endd))
-      return true
-    else
-      return false
-    end
-  end
-
-  #判断是否包含后收费的日期
-  def is_back?(between_date)
-    startd=between_date[0]
-    endd=between_date[1]
-    if((startd <= end_date ) && (end_date<=endd))
-      return true
-    else
-      return false
-    end
-  end
-
   def count_manage_fee(between_date)
     startd=between_date[0]
     endd=between_date[1]
     if(charge_type == Plan::CHARGE_TYPE[0])
       return count_rate_manage_fee(between_date)
     elsif (charge_type == Plan::CHARGE_TYPE[1])
-      return count_pre_manage_fee(between_date)
+      return count_fixed_manage_fee(between_date)
     elsif (charge_type == Plan::CHARGE_TYPE[2])
-      return count_back_manage_fee(between_date)
+      return count_fixed_manage_fee(between_date)
     else
       0.0
     end
@@ -82,18 +60,10 @@ module BT
     return fee
   end
 
-  #计算前收费
-  def count_pre_manage_fee(between_date)
+  #计算带有一次性提取的费用（前收费，后收费）  
+  def count_fixed_manage_fee(between_date)
     fee = count_rate_manage_fee(between_date)
-    if (is_pre?(between_date))
-      fee += charge_amount
-    end
-    return fee
-  end
-
-  def count_back_manage_fee(between_date)
-    fee = count_rate_manage_fee(between_date)
-    if (is_back?(between_date))
+    if (is_contain_charge_date?(between_date))
       fee += charge_amount
     end
     return fee

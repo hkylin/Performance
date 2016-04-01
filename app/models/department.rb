@@ -4,7 +4,7 @@ class Department < ActiveRecord::Base
   has_many :tasks, as: :taskable
   has_many :department_users
   has_many :users, through: :department_users #all include admin and members
-
+  has_many :plans
   # scope :have, -> { where(usertype: 'have') }   #下级部门，马总 have 财富个人中心
   # scope :admin, -> { where(usertype: 'admin') } #所属部门，管理者
   # scope :staff, -> { where(usertype: 'staff') } #所属部门，普通员工
@@ -42,6 +42,37 @@ class Department < ActiveRecord::Base
     end
     @staff
   end
+
+
+  def passageway_income
+
+  end
+
+  ################个人绩效考核###项目管理费收入计算###########################
+  def count_income(between_date)
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
+    sum = 0.0
+    staff.each do |user|
+      sum +=  user.count_income(between_date)
+    end
+    plans.each do |p|
+      sum += p.count_income(between_date)
+    end
+    sum
+  end
+  ##################个人绩效考核###规模收入计算#############################
+  def count_scale(dated=Date.current)
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
+    sum = 0.0
+    staff.each do |user|
+      sum +=  user.count_scale(dated)
+    end
+    plans.each do |p|
+      sum += p.count_scale(dated)
+    end
+    sum
+  end
+  ##########################################################################
 
   #统计资管计划管理费
   def count_plan_manage_fee(between_date)

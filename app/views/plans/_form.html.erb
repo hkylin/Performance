@@ -20,14 +20,14 @@
     <%= f.label :资管计划编号 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :number , :class => 'form-control' %>
-    <%=f.error_span(:number) %>
+      <%=f.error_span(:number) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :资管计划名称 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :name , :class => 'form-control' %>
-    <%=f.error_span(:name) %>
+      <%=f.error_span(:name) %>
     </div>
   </div>
   
@@ -38,6 +38,11 @@
                         <%= f.label :plan_type, t, :value => t, :class => "inline" %>
     <% end %>
   </div>
+
+
+  
+
+
   <div class="form-group">
     <%= f.label :风险 ,:class => 'control-label col-lg-2' %>
     <% Plan::RISK_TYPE.each do |t| %>
@@ -50,14 +55,14 @@
     <%= f.label :开始日期 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.date_select :start_date , :class => 'form-control' %>
-    <%=f.error_span(:start_date) %>
+      <%=f.error_span(:start_date) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :结束日期 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.date_select :end_date, :class => 'form-control' %>
-    <%=f.error_span(:end_date) %>
+      <%=f.error_span(:end_date) %>
     </div>
   </div>
 
@@ -72,7 +77,7 @@
     <%= f.label :规模 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :scale , :class => 'form-control' %>
-    <%=f.error_span(:scale) %>
+      <%=f.error_span(:scale) %>
     </div>
   </div>
 
@@ -81,7 +86,7 @@
     <%= f.label :管理费－费率 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :rate , :class => 'form-control' %>
-    <%=f.error_span(:rate) %>
+      <%=f.error_span(:rate) %>
     </div>
   </div>
 
@@ -98,8 +103,16 @@
       <%= f.label :前后端收费金额 ,:class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
         <%= f.text_field :charge_amount , :class => 'form-control' %>
-      <%=f.error_span(:charge_amount) %>
+        <%=f.error_span(:charge_amount) %>
       </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :固定费用提取日期 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.date_select :charge_date, :class => 'form-control' %>
+      <%=f.error_span(:charge_date) %>
     </div>
   </div>
   <!-- <div class="form-group">
@@ -141,6 +154,31 @@
     <%=f.error_span(:annual) %>
     </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label :归属选项 ,:class => 'control-label col-lg-2' %>
+    <% Plan::OWNERSHIP_TYPE.each do |t| %>
+                        <%= f.radio_button :ownership_type, t %> 
+                        <%= f.label :ownership_type, t, :value => t, :class => "inline" %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :合作伙伴 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :parter , :class => 'form-control' %>
+      <%=f.error_span(:parter) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :产品模式 ,:class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :model_type , :class => 'form-control' %>
+      <%=f.error_span(:model_type) %>
+    </div>
+  </div>
+
   <div class="form-group">
     <%= f.label :注释 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

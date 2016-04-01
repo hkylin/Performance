@@ -1,6 +1,9 @@
 <div class="page-header">
   <h1>我的资管计划列表</h1>
 </div>
+<%= link_to :新建资管计划,
+            new_plan_path,
+            :class => 'btn btn-primary' %>
 <table class="table table-striped" , data-toggle="table" data-search="true"
        data-show-refresh="true"
        data-show-toggle="true" 
@@ -23,6 +26,9 @@
       <th>费率</th>
       <th>费用金额</th>
       <th>合  作  者</th>
+      <th>归属类型</th>
+      <th>合作伙伴</th>
+      <th>产品模式</th>
       <th>注释</th>
       <th>操作</th>
     </tr>
@@ -52,7 +58,9 @@
             <%= "#{co.user.username} #{co.ratio}" %>｜
           <% end %>
         </td>
-
+        <td><%= plan.ownership_type %></td>
+        <td><%= plan.parter %></td>
+        <td><%= plan.model_type %></td>
         <td><%= plan.notes %></td>
          <td>
           <%= link_to :编辑,
@@ -68,6 +76,3 @@
   </tbody>
 </table>
 <br>
-<%= link_to :新建资管计划,
-            new_plan_path,
-            :class => 'btn btn-primary' %>

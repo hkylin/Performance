@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.integer  "user_id"
     t.string   "parter"
     t.text     "notes"
+    t.string   "ownership_type"
+    t.string   "model_type"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "annual",             default: 365

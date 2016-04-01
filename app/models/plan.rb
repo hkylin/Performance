@@ -13,6 +13,13 @@ class Plan < ActiveRecord::Base
 
   CHARGE_TYPE = %w(普通 前端收费 后端收费)  
   validates_inclusion_of :charge_type, in: CHARGE_TYPE  
+  
+  # t.string :ownership_type  #归属类型  行内|行外
+  # t.string :model_type #业务归属
+
+
+  OWNERSHIP_TYPE = %w(行内 行外)  
+  validates_inclusion_of :ownership_type, in: OWNERSHIP_TYPE  
 
   RISK_TYPE = %w(正常 风险)  
   validates_inclusion_of :risk, in: RISK_TYPE
@@ -31,6 +38,7 @@ class Plan < ActiveRecord::Base
     self.plan_type ||= Plan::PLAN_TYPE[0]
     self.charge_type ||= Plan::CHARGE_TYPE[0]
     self.risk ||= Plan::RISK_TYPE[0]
+    self.ownership_type ||= Plan::OWNERSHIP_TYPE[0]
     self.scale ||= 30000000.0
     self.rate ||= 0.004
     # if (self.cooperations.size == 0)
@@ -45,10 +53,12 @@ class Plan < ActiveRecord::Base
   end
 
 ###########################计算计划的费用，支持分段，修改##############################
+  #今年以来的资管计划已经计提的费用  
   def this_year_fee
     return count_plan_manage_fee(Date.since_this_year)
   end
 
+  #资管计划的全部费用，开始时间到结束时间
   def whole_plan_fee
     return count_plan_manage_fee([start_date,end_date])
   end
@@ -68,7 +78,23 @@ class Plan < ActiveRecord::Base
       return sum   
     end
   end
-  #####################################################################
+  #################################################################################
+  def passageway_income  #计算资管计划的通道费用
+    sum = 0.0
+    projects.each do |p|
+      sum += p.passageway_income
+    end
+    sum
+  end
+
+  def passageway_scale
+    sum = 0.0
+    projects.each do |p|
+      sum += p.passageway_scale
+    end
+    sum
+  end
+  #################################################################################
 
   def count_fee_between(between_date)
     # if projects.size > 0   #是判断是否有多个项目还是判断是否是单个资管计划？

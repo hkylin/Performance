@@ -1,3 +1,11 @@
+	t.string :parter #合作伙伴
+    t.string :ownership_type  #归属类型  行内|行外
+    t.string :model_type #产品模式
+
+
+    如何将新建按钮与search  刷新 放在一起？
+
+
 bug修改：
 	已完成：
 		任务结束时间更正
