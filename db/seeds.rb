@@ -30,6 +30,7 @@ hlw=Department.create(name: '互联网金融部', sup_department: cf)
 jg=Department.create(name: '机构客户中心', sup_department: cf)
 gr=Department.create(name: '个人客户中心', sup_department: cf)
 cpyf=Department.create(name: '产品研发中心', sup_department: cf)
+
 hzzc=Department.create(name: '合作支持部', sup_department: jh)
 jh1=Department.create(name: '金融合作一部', sup_department: jh)
 jh2=Department.create(name: '金融合作二部', sup_department: jh)
@@ -41,6 +42,7 @@ jhcx2=Department.create(name: '创新业务二部', sup_department: jh)
 
 mhj=User.create(email: 'mahuijun@msjyamc.com.cn', password: '12345678',username: '马慧军', usertype: 'admin')
 jgr=User.create(email: 'jinguorui@msjyamc.com.cn', password: '12345678', username: '金国瑞', usertype: 'admin')
+czh=User.create(email: 'chenzhihua@msjyamc.com.cn', password: '12345678', username: '陈志华', usertype: 'admin')
 
 mgq=User.create(username: :马国庆, email: 'maguoqing@msjyamc.com.cn', password: '12345678', usertype: 'admin')
 
@@ -68,6 +70,7 @@ ulw=User.create(username: :李炜, email: 'liwei@msjyamc.com.cn', password: '123
 
 DepartmentUser.create(department: cf, user: mhj, role: 'admin')
 DepartmentUser.create(department: cf, user: jgr, role: 'admin')
+DepartmentUser.create(department: jh, user: czh, role: 'admin')
 # DepartmentUser.create(department: jg, user: jgr, role: 'have')
 # DepartmentUser.create(department: jg, user: mhj, role: 'have')
 # DepartmentUser.create(department: gr, user: jgr, role: 'have')
