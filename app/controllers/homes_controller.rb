@@ -6,22 +6,19 @@ class HomesController < ApplicationController
     @plans = current_user.plans
     @projects = current_user.projects
     @tasks = current_user.tasks
-
-
-    y1=current_user.count_fee Date.one_year
-    q1=current_user.count_fee Date.first_quarter    
-    q2=current_user.count_fee Date.second_quarter   
-    q3=current_user.count_fee Date.third_quarter 
-    q4=current_user.count_fee Date.fourth_quarter 
-    count_fees=[y1.to_i,q1.to_i,q2.to_i,q3.to_i,q4.to_i]
+    
     count_fees = current_user.quarters
     t1=current_user.count_management_fee_tasks.to_i
     t14=(current_user.count_management_fee_tasks.to_i/4).to_i
+    st = current_user.count_scale_tasks.to_i
+    # tasks=[t1,t14,t14,t14,t14,st,st]
     tasks=[t1,t14,t14,t14,t14]
-
+    logger.info "--------------------------------------------"
+    logger.info count_fees
+    logger.info tasks
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "指标与完成情况")
-      f.xAxis(categories: ["全年","一季度", "二季度", "三季度", "四季度"])
+      f.xAxis(categories: ["全年管理费","一季度管理费", "二季度管理费", "三季度管理费", "四季度管理费","当前规模","年化规模"])
       f.series(name: "完成情况", yAxis: 0, data: count_fees)
       f.series(name: "指标", yAxis: 1, data: tasks)
 
@@ -47,10 +44,11 @@ class HomesController < ApplicationController
         borderWidth: 2,
         plotBackgroundColor: "rgba(255, 255, 255, .9)",
         plotShadow: true,
-        plotBorderWidth: 1
+        plotBorderWidth: 1,
       )
       f.lang(thousandsSep: ",")
       f.colors(["#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354"])
+
     end
 
   end

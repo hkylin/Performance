@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   #   t.datetime "updated_at",           null: false
   # end
 
-  #所有我参加的项目，有可能不是我创建的，是我参与的
+  #是我参与,但不是我创建的
   def my_projects 
     projects=[];
     cooperations.each do |co|
@@ -58,9 +58,6 @@ class User < ActiveRecord::Base
     logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模－－－－－＝＝＝＝＝＝"
     sum = 0.0
     cooperations.each do |co|
-      logger.info "对象： #{co.cooperationable}＝＝＝＝＝＝＝＝－－－－－－－－－－＝＝＝＝＝＝"
-      logger.info "类： #{co.cooperationable.class}   "
-      # 非集合类资管计划, 项目类，修改类modifiy不在这里，由计划和项目进去
       if (co.cooperationable.class == Project)
         scale = co.cooperationable.count_scale(self,dated)
         logger.info "{co.cooperationable.name} 计算的费用= #{scale}"
@@ -69,11 +66,20 @@ class User < ActiveRecord::Base
     end
     sum
   end
+
+  def count_annual_scale(between_date=Date.one_year)
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模－－－－－＝＝＝＝＝＝"
+    sum = 0.0
+    cooperations.each do |co|
+      if (co.cooperationable.class == Project)
+        scale = co.cooperationable.count_annual_scale(self,between_date)
+        logger.info "{co.cooperationable.name} 计算的费用= #{scale}"
+        sum += scale
+      end
+    end
+    sum
+  end
   ##########################################################################
-
-
-
-
 
   def count_co_fee(between_date)  #计算个人的计划与项目的管理费
     count_co_fee_between(between_date)    
@@ -136,18 +142,17 @@ class User < ActiveRecord::Base
   # scale management_fee profit
 
   def count_all_type_task
-    [count_scale_tasks,count_management_fee_tasks,count_fee_tasks]
+    [count_scale_tasks,count_management_fee_tasks]
   end
 
   def count_scale_tasks
     count_tasks(Task::TASK_TYPE[0])
   end
+
   def count_management_fee_tasks
     count_tasks(Task::TASK_TYPE[1])
   end
-  def count_fee_tasks
-    count_tasks(Task::TASK_TYPE[2])
-  end
+  
 
   def count_tasks(task_type)#TODO 任务指标  目前只做了 管理费  ，这是一个必须修改的地方  
     scale = 0.0;
@@ -203,27 +208,30 @@ class User < ActiveRecord::Base
   end
 
   def quarters
-    y1=count_fee Date.one_year
-    q1=count_fee Date.first_quarter    
-    q2=count_fee Date.second_quarter   
-    q3=count_fee Date.third_quarter 
-    q4=count_fee Date.fourth_quarter 
-    [y1.to_i,q1.to_i,q2.to_i,q3.to_i,q4.to_i]
+    y1 = count_income Date.one_year
+    q1 = count_income Date.first_quarter
+    q2 = count_income Date.second_quarter
+    q3 = count_income Date.third_quarter
+    q4 = count_income Date.fourth_quarter
+    s1 = count_scale
+    s2 = count_annual_scale
+    # [y1.to_i,q1.to_i,q2.to_i,q3.to_i,q4.to_i,s1.to_i,s2.to_i]
+      [y1.to_i,q1.to_i,q2.to_i,q3.to_i,q4.to_i]
   end
 
   def months
-    m1 = count_fee Date.January
-    m2 = count_fee Date.February
-    m3 = count_fee Date.March
-    m4 = count_fee Date.April
-    m5 = count_fee Date.May
-    m6 = count_fee Date.June
-    m7 = count_fee Date.July
-    m8 = count_fee Date.August
-    m9 = count_fee Date.September
-    m10 = count_fee Date.October
-    m11 = count_fee Date.November
-    m12 = count_fee Date.December
+    m1 = count_income Date.January
+    m2 = count_income Date.February
+    m3 = count_income Date.March
+    m4 = count_income Date.April
+    m5 = count_income Date.May
+    m6 = count_income Date.June
+    m7 = count_income Date.July
+    m8 = count_income Date.August
+    m9 = count_income Date.September
+    m10 = count_income Date.October
+    m11 = count_income Date.November
+    m12 = count_income Date.December
     [m1.to_i, m2.to_i, m3.to_i, m4.to_i, m5.to_i, m6.to_i, m7.to_i, m8.to_i, m9.to_i, m10.to_i, m11.to_i, m12.to_i] 
   end
 

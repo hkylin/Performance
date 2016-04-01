@@ -49,14 +49,27 @@ class Project < ActiveRecord::Base
     return scale*ratio*(bt[1]-bt[0])/Date.year_days   #计算管理费
   end
   #项目使用外部计划通道，通道管理费收入计算
-  def passageway_income(between_date)
+  def passageway_income(department,between_date)
     bt = bt_start_end(between_date)
-    return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
+    if (plan.department == department)
+      return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
+    else
+      return 0.0
+    end
   end
   #项目使用外部计划通道，通道规模收入计算
-  def passageway_scale(dated)
-    if is_contain?(dated)
+  def passageway_scale(department,dated)
+    if (plan.department == department && is_contain?(dated))
       return scale*channel_cost   #计算管理费
+    else
+      return 0.0
+    end
+  end
+
+  def passageway_annual_scale(department,between_date)
+    if (plan.department == department)
+      bt = bt_start_end(between_date)
+      return scale*channel_cost*(bt[1]-bt[0])/Date.year_days   #计算管理费
     else
       return 0.0
     end

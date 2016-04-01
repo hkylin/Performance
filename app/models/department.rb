@@ -43,7 +43,6 @@ class Department < ActiveRecord::Base
     @staff
   end
 
-
   def passageway_income
 
   end
@@ -55,10 +54,16 @@ class Department < ActiveRecord::Base
     staff.each do |user|
       sum +=  user.count_income(between_date)
     end
-    plans.each do |p|
-      sum += p.count_income(between_date)
+    sum += channel_income(between_date)
+    return sum
+  end
+
+  def channel_income(between_date)
+    sum = 0.0
+    Project.all.each do |p|
+      sum += p.passageway_income(self,between_date)
     end
-    sum
+    return sum
   end
   ##################个人绩效考核###规模收入计算#############################
   def count_scale(dated=Date.current)
@@ -67,8 +72,32 @@ class Department < ActiveRecord::Base
     staff.each do |user|
       sum +=  user.count_scale(dated)
     end
-    plans.each do |p|
-      sum += p.count_scale(dated)
+    sum += channel_scale(dated)
+    return sum
+  end
+
+  def channel_scale(dated=Date.current)
+    sum=0.0
+    Project.all.each do |p|
+      sum += p.passageway_scale(self,dated)
+    end
+    sum
+  end
+
+  def count_annual_scale(between_date=Date.one_year)
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
+    sum = 0.0
+    staff.each do |user|
+      sum +=  user.count_annual_scale(between_date)
+    end
+    sum += channel_annual_scale(between_date)
+    return sum
+  end
+
+  def channel_annual_scale(between_date=Date.one_year)
+    sum = 0.0
+        Project.all.each do |p|
+      sum += p.passageway_annual_scale(self,between_date)
     end
     sum
   end
@@ -101,7 +130,7 @@ class Department < ActiveRecord::Base
     count_fee_between(startd,endd)
   end
 
-  def count_scale(at_date)
+  def count_scale_old(at_date)
     sum=0.0
     staff.each do |user|
       sum += user.count_scale(at_date)

@@ -157,7 +157,7 @@ project3=Project.create(name: '龙岩汇通置业有限公司', number: :WDC1504
 
 project21=Project.create(name: '民生加银资管重庆溉澜溪专项资产管理计划', number: :QT9150KL,  plan: plan2, user: mgq, department: hlw, parter: :民生银行, risk: :正常, start_date: '2015-1-6', end_date: '2017-6-6',scale: 100000000, channel_cost: 0.0,  rate: 0.004, asset_price: 0.1, annual: 365)
 project22=Project.create(name: '民生加银资管创赢1号专项资产管理计划', number: :QT91514V,  plan: plan2, user: mgq, department: hlw, parter: :建设银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-3-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1, annual: 365)
-project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: hlw, parter: :建设银行, risk: :正常, start_date: '2016-1-4', end_date: '2017-2-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1, annual: 365)
+project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: hlw, parter: :建设银行, risk: :正常, start_date: '2016-6-4', end_date: '2017-2-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1, annual: 365)
 
 
 Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project1)

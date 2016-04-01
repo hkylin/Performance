@@ -1,1 +1,3 @@
-<%= render :partial => "/homes/projects"%>
+<%= render :partial => "/homes/projects" , :locals => { :projects => @projects, :name => "我创设" } %>
+
+<%= render :partial => "/homes/projects" , :locals => { :projects => current_user.my_projects , :name => "我参与" } %>

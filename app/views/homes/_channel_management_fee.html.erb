@@ -1,15 +1,17 @@
+<!--  一级部门显示员工的考核 -->
 <div class="page-header">
-  <h1>完成情况</h1>
+  <h1>通道情况</h1>
 </div>
-<table class="table table-striped table-hover ">
+
+<table class="table table-striped table-hover" >
   <thead>
     <tr>
       <th></th>
-      <th>全年管理费</th>
-      <th>一季度管理费</th>
-      <th>二季度管理费</th>
-      <th>三季度管理费</th>
-      <th>四季度管理费</th>
+      <th>全年</th>
+      <th>一季度</th>
+      <th>二季度</th>
+      <th>三季度</th>
+      <th>四季度</th>
       <th>当前规模</th>
       <th>年化规模</th>
     </tr>
@@ -27,13 +29,13 @@
     </tr>
     <tr>
       <td><%=object.name%>完成情况</td>
-      <td><%=f2 object.count_income Date.one_year %></td>
-      <td><%=f2 object.count_income Date.first_quarter %></td>
-      <td><%=f2 object.count_income Date.second_quarter %></td>
-      <td><%=f2 object.count_income Date.third_quarter %></td>
-      <td><%=f2 object.count_income Date.fourth_quarter %></td>
-      <td><%=f2 object.count_scale %></td>
-      <td><%=f2 object.count_annual_scale %></td>
+      <td><%=f2 object.channel_income Date.one_year %></td>
+      <td><%=f2 object.channel_income Date.first_quarter %></td>
+      <td><%=f2 object.channel_income Date.second_quarter %></td>
+      <td><%=f2 object.channel_income Date.third_quarter %></td>
+      <td><%=f2 object.channel_income Date.fourth_quarter %></td>
+      <td><%=f2 object.channel_scale %></td>
+      <td><%=f2 object.channel_annual_scale %></td>
     </tr>
   </tbody>
 </table>   
