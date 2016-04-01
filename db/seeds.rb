@@ -31,6 +31,13 @@ jg=Department.create(name: '机构客户中心', sup_department: cf)
 gr=Department.create(name: '个人客户中心', sup_department: cf)
 cpyf=Department.create(name: '产品研发中心', sup_department: cf)
 hzzc=Department.create(name: '合作支持部', sup_department: jh)
+jh1=Department.create(name: '金融合作一部', sup_department: jh)
+jh2=Department.create(name: '金融合作二部', sup_department: jh)
+jh3=Department.create(name: '金融合作三部', sup_department: jh)
+jh4=Department.create(name: '金融合作四部', sup_department: jh)
+jh5=Department.create(name: '金融合作五部', sup_department: jh)
+jhcx1=Department.create(name: '创新业务一部', sup_department: jh)
+jhcx2=Department.create(name: '创新业务二部', sup_department: jh)
 
 mhj=User.create(email: 'mahuijun@msjyamc.com.cn', password: '12345678',username: '马慧军', usertype: 'admin')
 jgr=User.create(email: 'jinguorui@msjyamc.com.cn', password: '12345678', username: '金国瑞', usertype: 'admin')
@@ -43,6 +50,16 @@ spj=User.create(username: :舍蒲京, email: 'shepujing@msjyamc.com.cn', passwor
 
 lf=User.create(username: :梁奉, email: 'liangfeng@msjyamc.com.cn', password: '12345678',usertype: 'admin')
 zyl=User.create(username: :朱永林, email: 'zhuyonglin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+
+
+wjf=User.create(username: :王金凤, email: 'wangjinfeng@msjyamc.com.cn', password: '12345678',usertype: 'admin')
+sws=User.create(username: :史维思, email: 'shiweisi@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+hj=User.create(username: :黄健, email: 'huangjian@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+
+
+usl=User.create(username: :宋琳, email: 'songlin@msjyamc.com.cn', password: '12345678',usertype: 'admin')
+uwt=User.create(username: :王涛, email: 'wangtao@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+ulw=User.create(username: :李炜, email: 'liwei@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 # users=[mhj,jgr]
 # cf.users=users
 # cf.save
@@ -71,6 +88,15 @@ DepartmentUser.create(department: hlw, user: spj)
 
 DepartmentUser.create(department: hzzc, user: lf, role: 'admin')
 DepartmentUser.create(department: hzzc, user: zyl)
+
+DepartmentUser.create(department: jh1, user: wjf, role: 'admin')
+DepartmentUser.create(department: jh1, user: sws)
+DepartmentUser.create(department: jh1, user: hj)
+
+
+DepartmentUser.create(department: jh3, user: usl, role: 'admin')
+DepartmentUser.create(department: jh3, user: uwt)
+DepartmentUser.create(department: jh3, user: ulw)
 # hlw.save
 
 Task.create(name: '互联网金融部考核指标——月月增利', start_date: '2016-1-1', end_date: '2017-1-1',  task_type: Task::TASK_TYPE[1], amount: 120000, taskable: hlw)
