@@ -30,6 +30,7 @@ hlw=Department.create(name: '互联网金融部', sup_department: cf)
 jg=Department.create(name: '机构客户中心', sup_department: cf)
 gr=Department.create(name: '个人客户中心', sup_department: cf)
 cpyf=Department.create(name: '产品研发中心', sup_department: cf)
+hzzc=Department.create(name: '合作支持部', sup_department: jh)
 
 mhj=User.create(email: 'mahuijun@msjyamc.com.cn', password: '12345678',username: '马慧军', usertype: 'admin')
 jgr=User.create(email: 'jinguorui@msjyamc.com.cn', password: '12345678', username: '金国瑞', usertype: 'admin')
@@ -39,6 +40,9 @@ mgq=User.create(username: :马国庆, email: 'maguoqing@msjyamc.com.cn', passwor
 cjx=User.create(username: :陈金鑫, email: 'chenjinxin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 zyj=User.create(username: :张亚军, email: 'zhangyajun@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 spj=User.create(username: :舍蒲京, email: 'shepujing@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+
+lf=User.create(username: :梁奉, email: 'liangfeng@msjyamc.com.cn', password: '12345678',usertype: 'admin')
+zyl=User.create(username: :朱永林, email: 'zhuyonglin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 # users=[mhj,jgr]
 # cf.users=users
 # cf.save
@@ -64,6 +68,9 @@ DepartmentUser.create(department: hlw, user: mgq, role: 'admin')
 DepartmentUser.create(department: hlw, user: cjx)
 DepartmentUser.create(department: hlw, user: zyj)
 DepartmentUser.create(department: hlw, user: spj)
+
+DepartmentUser.create(department: hzzc, user: lf, role: 'admin')
+DepartmentUser.create(department: hzzc, user: zyl)
 # hlw.save
 
 Task.create(name: '互联网金融部考核指标——月月增利', start_date: '2016-1-1', end_date: '2017-1-1',  task_type: Task::TASK_TYPE[1], amount: 120000, taskable: hlw)
