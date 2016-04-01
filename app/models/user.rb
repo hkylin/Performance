@@ -25,6 +25,17 @@ class User < ActiveRecord::Base
   #   t.datetime "updated_at",           null: false
   # end
 
+  #所有我参加的项目，有可能不是我创建的，是我参与的
+  def my_projects 
+    projects=[];
+    cooperations.each do |co|
+      #非我创建，但我参与项目
+      if (co.cooperationable.class == Project && co.cooperationable.user != self)
+        projects << co.cooperationable
+      end
+    end
+    projects
+  end
 
   ################个人绩效考核###项目管理费收入计算###########################
   def count_income(between_date)
@@ -35,11 +46,10 @@ class User < ActiveRecord::Base
       logger.info "类： #{co.cooperationable.class}   "
       # 非集合类资管计划, 项目类，修改类modifiy不在这里，由计划和项目进去
       if (co.cooperationable.class == Project)
-        fee = co.cooperationable.count_income(between_date,self)
-         logger.info "{co.cooperationable.name} 计算的费用= #{fee}"
+        fee = co.cooperationable.count_income(self,between_date)
+        logger.info "{co.cooperationable.name} 计算的费用= #{fee}"
         sum += fee
       end
-     
     end
     sum
   end
@@ -52,7 +62,7 @@ class User < ActiveRecord::Base
       logger.info "类： #{co.cooperationable.class}   "
       # 非集合类资管计划, 项目类，修改类modifiy不在这里，由计划和项目进去
       if (co.cooperationable.class == Project)
-        scale = co.cooperationable.count_scale(dated,self)
+        scale = co.cooperationable.count_scale(self,dated)
         logger.info "{co.cooperationable.name} 计算的费用= #{scale}"
         sum += scale
       end

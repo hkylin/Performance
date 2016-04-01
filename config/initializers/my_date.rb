@@ -7,6 +7,14 @@ class Date
 		[Date.new(2000,1,1), Date.new(2200,1,1)]	
 	end
 
+	def self.year_days
+		Date.new(Date.current.year+1,1,1) - Date.new(Date.current.year,1,1)
+	end
+
+	def self.one_year
+	  [Date.new(Date.current.year,1,1), Date.new(Date.current.year+1,1,1)]
+	end
+
 	def self.first_quarter
 	  [Date.new(Date.current.year,1,1), Date.new(Date.current.year,4,1)]
 	end
@@ -19,10 +27,6 @@ class Date
 	def self.fourth_quarter
 	  [Date.new(Date.current.year,10,1), Date.new(Date.current.year+1,1,1)]
 	end
-	def self.one_year
-	  [Date.new(Date.current.year,1,1), Date.new(Date.current.year+1,1,1)]
-	end
-
 
 	def self.January     
 		[Date.new(Date.current.year,1,1), Date.new(Date.current.year,2,1)]
@@ -60,5 +64,4 @@ class Date
 	def self.December
 		[Date.new(Date.current.year,12,1), Date.new(Date.current.year+1,1,1)]
 	end
-	
 end

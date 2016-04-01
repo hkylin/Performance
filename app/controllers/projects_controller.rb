@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
     @project.rate ||= 0.004
     @project.channel_cost ||= 0.0
     @project.risk ||= Plan::RISK_TYPE[0]
-
+    @project.user ||= current_user
     @project.department = current_user.current_department[0]
     if (@project.cooperations.size == 0)
         @project.cooperations.build

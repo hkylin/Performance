@@ -27,13 +27,13 @@ class Project < ActiveRecord::Base
   end   
 
   ###################项目管理费收入计算###########################
-  def count_income(between_date,userr)
+  def count_income(userr,between_date)
     bt = bt_start_end(between_date)
     ratio = getCoRatio(userr)*(1-channel_cost)
     return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
   end
-  #####################规模收入计算#############################
-  def count_scale(dated,userr)
+  #规模收入计算
+  def count_scale(userr,dated=Date.current)
     if is_contain?(dated)
       ratio = getCoRatio(userr)*(1-channel_cost)
       logger.info "#{name}********"
@@ -42,11 +42,18 @@ class Project < ActiveRecord::Base
       return 0.0
     end
   end
-  ###################项目使用外部计划通道，通道管理费收入计算###########################
+  #年化的规模收入计算
+  def count_annual_scale(userr,between_date=Date.one_year)
+    bt = bt_start_end(between_date)
+    ratio = getCoRatio(userr)*(1-channel_cost)
+    return scale*ratio*(bt[1]-bt[0])/Date.year_days   #计算管理费
+  end
+  #项目使用外部计划通道，通道管理费收入计算
   def passageway_income(between_date)
     bt = bt_start_end(between_date)
     return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
   end
+  #项目使用外部计划通道，通道规模收入计算
   def passageway_scale(dated)
     if is_contain?(dated)
       return scale*channel_cost   #计算管理费

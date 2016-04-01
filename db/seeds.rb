@@ -6,8 +6,6 @@
 # #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 # #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-
 mj=Department.create(name: '民生加银资产管理有限公司')
 cf=Department.create(name: '财富管理事业部', sup_department: mj)
 jh=Department.create(name: '金融合作事业部', sup_department: mj)
@@ -53,11 +51,9 @@ spj=User.create(username: :舍蒲京, email: 'shepujing@msjyamc.com.cn', passwor
 lf=User.create(username: :梁奉, email: 'liangfeng@msjyamc.com.cn', password: '12345678',usertype: 'admin')
 zyl=User.create(username: :朱永林, email: 'zhuyonglin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 
-
 wjf=User.create(username: :王金凤, email: 'wangjinfeng@msjyamc.com.cn', password: '12345678',usertype: 'admin')
 sws=User.create(username: :史维思, email: 'shiweisi@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 hj=User.create(username: :黄健, email: 'huangjian@msjyamc.com.cn', password: '12345678',usertype: 'staff')
-
 
 usl=User.create(username: :宋琳, email: 'songlin@msjyamc.com.cn', password: '12345678',usertype: 'admin')
 uwt=User.create(username: :王涛, email: 'wangtao@msjyamc.com.cn', password: '12345678',usertype: 'staff')
@@ -168,6 +164,12 @@ Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project1)
 Cooperation.create(user: zyj, ratio: 0.4, cooperationable: project1)
 Cooperation.create(user: spj, ratio: 0.3, cooperationable: project1)
 
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project2)
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project3)
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project21)
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project22)
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project23)
+
 pm1=Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2015-2-4', end_date: '2016-1-1',scale: 100000000, rate: 0.004)
 Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004)
 Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2017-1-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
@@ -175,9 +177,15 @@ Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :�
 plan14=Plan.create(name: '44444444444', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0], ownership_type: Plan::OWNERSHIP_TYPE[0], number: 100000114, user: zyj, department: hlw,risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1', scale: 100000000, rate: 0.004)
 project31=Project.create(name: 'project31', plan: plan14, user: zyj, department: hlw, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000,channel_cost: 0.0,  rate: 0.004, asset_price: 0.1)
 project32=Project.create(name: 'project32', plan: plan14, user: zyj, department: hlw, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1)
-Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
-Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
-Modification.create( modificationable: project31,user: zyj, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
+
+Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project31)
+Cooperation.create(user: zyj, ratio: 0.4, cooperationable: project31)
+Cooperation.create(user: spj, ratio: 0.3, cooperationable: project31)
+Cooperation.create(user: zyj, ratio: 1.0, cooperationable: project32)
+
+# Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
+# Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
+# Modification.create( modificationable: project31,user: zyj, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 
 Cooperation.create(user: mgq, ratio: 0.3, cooperationable: pm1)
 Cooperation.create(user: zyj, ratio: 0.4, cooperationable: pm1)

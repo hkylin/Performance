@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>我的项目列表</h1>
+  <h1>我 <%=name%> 的项目列表</h1>
 </div>
 
 <table class = "table table-striped", data-toggle="table" data-search="true"
@@ -16,13 +16,13 @@
       <th data-sortable="true">投资段收益率</th>
       <th data-sortable="true">开始日期</th>
       <th data-sortable="true">结束日期</th>
-      <th data-sortable="true">管理费</th>
       <!-- <th>投资经理</th> -->
       <th>部门</th>
       <th data-sortable="true">费率</th>
       <th data-sortable="true">费用金额</th>
       <th>风险</th>
       <th>规模计算</th>
+      <th>规模年化计算</th>
       <th>收入计算</th>
       <th>通道费用</th>
       <th>合作者</th>
@@ -32,7 +32,7 @@
   </thead>
 
   <tbody>
-    <% @projects.each do |project| %>
+    <% projects.each do |project| %>
       <tr>
         <td><%= link_to project.plan.name, plan_path(project.plan), :class=>"btn btn-link" %></td>
         <td><%= link_to project.name, project_path(project), :class=>"btn btn-link" %></td>
@@ -40,16 +40,16 @@
         <td><%= project.asset_price %></td>
         <td><%= project.start_date %></td>
         <td><%= project.end_date %></td>
-        <td><%= f2 project.count_fee %></td>
         <!-- <td><%= project.investment_manager %></td> -->
         <td><%= project.department.name %></td>
         <td><%= project.rate %></td>
         <td><%= project.fee %></td>
         <td><%= project.risk %></td>
 
-        <td><%= project.count_scale Date.current, current_user%></td>
-        <td><%= project.count_income Date.since_this_year, current_user%></td>
-        <td><%= project.channel_cost%></td>
+        <td><%=f2 project.count_scale current_user%></td>
+        <td><%=f2 project.count_annual_scale current_user %></td>
+        <td><%=f2 project.count_income current_user, Date.since_this_year%></td>
+        <td><%=f2 project.channel_cost%></td>
         <td>
           <% project.cooperations.each do |co|%>
             <%= "#{co.user.username} #{co.ratio}" %>｜

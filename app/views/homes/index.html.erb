@@ -7,4 +7,6 @@
 
 <%= render :partial => "plans"%> 
 
-<%= render :partial => "projects"%>
+<%= render :partial => "projects" , :locals => { :projects => @projects, :name => "创建" } %>
+
+<%= render :partial => "projects" , :locals => { :projects => current_user.my_projects , :name => "参与" } %>

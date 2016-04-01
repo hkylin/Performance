@@ -78,7 +78,7 @@ class Plan < ActiveRecord::Base
       return sum   
     end
   end
-  #################################################################################
+
   def passageway_income  #计算资管计划的通道费用
     sum = 0.0
     projects.each do |p|
