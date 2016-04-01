@@ -39,10 +39,6 @@
     <% end %>
   </div>
 
-
-  
-
-
   <div class="form-group">
     <%= f.label :风险 ,:class => 'control-label col-lg-2' %>
     <% Plan::RISK_TYPE.each do |t| %>
@@ -187,7 +183,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+<!--   <div class="form-group">
     <%= f.label "承揽承做比例", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.label "多人项目请认真确认好团队比例,包括本人,占比合记为 1", :class => 'control-label' %>
@@ -200,7 +196,7 @@
       <%= render '/projects/cooperation_fields', f: op %>
     <%end%>    
     <%=link_to_add_association '增加合作者', f, :cooperations, :class => "btn btn-link"%>
-  </div>
+  </div> -->
 
 
   <div class="form-group">
