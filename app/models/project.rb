@@ -36,6 +36,7 @@ class Project < ActiveRecord::Base
   def count_scale(dated,userr)
     if is_contain?(dated)
       ratio = getCoRatio(userr)*(1-channel_cost)
+      logger.info "#{name}********"
       return scale*ratio   #计算管理费
     else
       return 0.0

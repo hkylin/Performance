@@ -71,10 +71,13 @@ module BT
 
   def getCoRatio(userr)
     cooperations.each do |co|
+      logger.info "#{co.user.name}-----#{co.ratio}"
       if(co.user == userr)
+        logger.info "#{co.user.name}=======#{co.ratio}"
         return co.ratio
       end 
     end
+    return 0.0
   end
 
 end
