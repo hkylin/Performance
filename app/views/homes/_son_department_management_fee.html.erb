@@ -21,7 +21,6 @@
       <% logger.info "==========#{@department.sub_departments.size}=========" %>
       <% @department.sub_departments.each do |department| %>
       <% logger.info "==========#{department.name}=========" %>
-
       <% logger.info department.tasks %>
       <tr>
         <td><%=department.name%>管理费规模</td>
@@ -30,8 +29,8 @@
         <td><%=f2 department.count_income Date.second_quarter  %></td>
         <td><%=f2 department.count_income Date.third_quarter%></td>
         <td><%=f2 department.count_income Date.fourth_quarter%></td>
-        <td><%=f2 department.count_scale_tasks%></td>
-        <td><%=f2 department.count_scale_tasks %></td>
+        <td><%=f2 department.count_scale %></td>
+        <td><%=f2 department.count_annual_scale %></td>
       </tr>
       <tr>
         <td><%=department.name%>考核指标</td>
@@ -40,8 +39,8 @@
         <td><%=f2 department.count_management_fee_tasks/4 %></td>
         <td><%=f2 department.count_management_fee_tasks/4 %></td>
         <td><%=f2 department.count_management_fee_tasks/4 %></td>
-        <td><%=f2 department.count_scale %></td>
-        <td><%=f2 department.count_annual_scale %></td>
+        <td><%=f2 department.count_scale_tasks%></td>
+        <td><%=f2 department.count_scale_tasks %></td>
       </tr>
       <% end %>
   </tbody>
