@@ -11,7 +11,7 @@ class Department < ActiveRecord::Base
   
   # scope :online, -> { published.where('deadline is NULL or deadline > ?', Date.today) }
 
-  def has_sub_departments
+  def has_sub_departments?
      sub_departments.size > 0
   end
 
@@ -47,10 +47,18 @@ class Department < ActiveRecord::Base
 
   end
 
+
   ################个人绩效考核###项目管理费收入计算###########################
   def count_income(between_date)
-    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
     sum = 0.0
+    if has_sub_departments?
+      sub_departments.each do |sub_department|
+        sum += sub_department.count_income(between_date)
+      end
+      return sum
+    end
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
+    
     staff.each do |user|
       sum +=  user.count_income(between_date)
     end
@@ -60,6 +68,12 @@ class Department < ActiveRecord::Base
 
   def channel_income(between_date)
     sum = 0.0
+    if has_sub_departments?
+      sub_departments.each do |sub_department|
+        sum += sub_department.channel_income(between_date)
+      end
+      return sum
+    end
     Project.all.each do |p|
       sum += p.passageway_income(self,between_date)
     end
@@ -69,6 +83,13 @@ class Department < ActiveRecord::Base
   def count_scale(dated=Date.current)
     logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
     sum = 0.0
+    if has_sub_departments?
+      sub_departments.each do |sub_department|
+        sum += sub_department.count_scale(dated)
+      end
+      return sum
+    end
+
     staff.each do |user|
       sum +=  user.count_scale(dated)
     end
@@ -78,6 +99,13 @@ class Department < ActiveRecord::Base
 
   def channel_scale(dated=Date.current)
     sum=0.0
+    if has_sub_departments?
+      sub_departments.each do |sub_department|
+        sum += sub_department.channel_scale(dated)
+      end
+      return sum
+    end
+
     Project.all.each do |p|
       sum += p.passageway_scale(self,dated)
     end
@@ -87,6 +115,12 @@ class Department < ActiveRecord::Base
   def count_annual_scale(between_date=Date.one_year)
     logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
     sum = 0.0
+    if has_sub_departments?
+      sub_departments.each do |sub_department|
+        sum += sub_department.count_annual_scale(between_date)
+      end
+      return sum
+    end
     staff.each do |user|
       sum +=  user.count_annual_scale(between_date)
     end
@@ -96,7 +130,13 @@ class Department < ActiveRecord::Base
 
   def channel_annual_scale(between_date=Date.one_year)
     sum = 0.0
-        Project.all.each do |p|
+    if has_sub_departments?
+      sub_departments.each do |sub_department|
+        sum += sub_department.channel_annual_scale(between_date)
+      end
+      return sum
+    end
+    Project.all.each do |p|
       sum += p.passageway_annual_scale(self,between_date)
     end
     sum

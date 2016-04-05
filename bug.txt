@@ -1,3 +1,22 @@
+price:decimal{8,2}  所有的数据脚本都检查一下
+
+无需注册后台生成用户
+考核指标 后天录入。
+
+项目的录入  先选择资管计划。再录入。 资管计划可以作为下拉列表来进行选择。
+合作者  增加承揽和承做。
+
+
+屏蔽字段：
+投资段收益率
+合作伙伴
+
+
+
+bugUnicorn really pulled ahead in the past two years and has overtaken Passenger as the most used Rails server in production.
+
+ 
+
 	t.string :parter #合作伙伴
     t.string :ownership_type  #归属类型  行内|行外
     t.string :model_type #产品模式
