@@ -30,7 +30,6 @@ RSpec.describe User, type: :model do
 	expect(mgq.count_scale_tasks).to eq(400000)
 	expect(mgq.count_management_fee_tasks).to eq(500000)
 	expect(mgq.count_fee_tasks).to eq(200000)
-	expect(mgq.count_all_type_task).to eq([400000,500000,200000])
 
 	#计划  项目   项目调整
 	plan1=Plan.create(name: '汇赢1号', plan_type: Plan::PLAN_TYPE[1],number: 10000001, user: mgq, department: jh, parter: :民生银行, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004)

@@ -17,20 +17,14 @@
   <% logger.error "----------#{f.options[:html][:method]}------"%>
   
   <div class="form-group">
-    <%= f.label :任务名称, :class => 'control-label col-lg-2' %>
+    <%= f.label :年, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :name, :class => 'form-control' %>
-      <%=f.error_span(:name) %>
+      <%= f.text_field :year, :class => 'form-control' %>
+      <%=f.error_span(:year) %>
     </div>
-    
   </div>
-  <div class="form-group">
-    <%= f.label :指标类型 ,:class => 'control-label col-lg-2' %>
-    <% Task::TASK_TYPE.each do |t| %>
-                        <%= f.radio_button :task_type, t %> 
-                        <%= f.label :task_type, t, :value => t, :class => "inline" %>
-    <% end %>
-  </div>
+
+  
   <div class="form-group">
     <%= f.label :规模, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -38,34 +32,23 @@
       <%=f.error_span(:amount) %>
     </div>
   </div>
- <div class="form-group">
-    <%= f.label :开始日期 ,:class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.date_select :start_date , :class => 'form-control' %>
-      <%=f.error_span(:start_date) %>
-    </div>
-  </div>
+
   <div class="form-group">
-    <%= f.label :结束日期 ,:class => 'control-label col-lg-2' %>
+    <%= f.label :费用, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.date_select :end_date, :class => 'form-control' %>
-      <%=f.error_span(:end_date) %>
+      <%= f.text_field :profit, :class => 'form-control' %>
+      <%=f.error_span(:profit) %>
     </div>
   </div>
+
   <div class="form-group">
-    <%= f.label :描述信息, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :description, :class => 'form-control' %>
-      <%=f.error_span(:description) %>
-    </div>
-  </div>
-<!--   <div class="form-group">
     <%= f.label :taskable_type, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :taskable_type, :class => 'form-control' %>
     </div>
     <%=f.error_span(:taskable_type) %>
   </div>
+  
   <div class="form-group">
     <%= f.label :taskable_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -73,7 +56,7 @@
     </div>
     <%=f.error_span(:taskable_id) %>
   </div>
- -->
+ 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit :提交, :class => 'btn btn-primary' , :data => { :"disable-with" => "请稍等..." } %>

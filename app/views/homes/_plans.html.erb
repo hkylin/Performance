@@ -17,15 +17,16 @@
       <th>风险</th>
       <th>开始日期</th>
       <th>结束日期</th>
-      <th>收费模式</th>
+      <!--<th>收费模式</th>
       <th>前后端收费金额</th>
       <th>投资经理</th>
+      <th>费用金额</th>
+      <th>合  作  者</th>
+    -->
       <th>总管理费</th>
       <th>本年已计提管理费</th>
       <th>部门</th>
       <th>费率</th>
-      <th>费用金额</th>
-      <th>合  作  者</th>
       <th>归属类型</th>
       <th>合作伙伴</th>
       <th>产品模式</th>
@@ -45,19 +46,22 @@
         <td><%= plan.risk %></td>
         <td><%= plan.start_date %></td>
         <td><%= plan.end_date %></td>
+        <!--
         <td><%= plan.charge_type %></td>
         <td><%= plan.charge_amount %></td>
         <td><%= plan.investment_manager %></td>
-        <td><%= f2 plan.whole_plan_fee %></td>
-        <td><%= f2 plan.this_year_fee %></td>
-        <td><%= plan.department.name %></td>
-        <td><%= plan.rate %></td>
         <td><%= plan.fee %></td>
         <td>
           <% plan.cooperations.each do |co|%>
             <%= "#{co.user.username} #{co.ratio}" %>｜
           <% end %>
         </td>
+      -->
+        
+        <td><%= f2 plan.whole_plan_fee %></td>
+        <td><%= f2 plan.this_year_fee %></td>
+        <td><%= plan.department.name %></td>
+        <td><%= plan.rate %></td>
         <td><%= plan.ownership_type %></td>
         <td><%= plan.parter %></td>
         <td><%= plan.model_type %></td>

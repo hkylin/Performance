@@ -49,13 +49,5 @@ RSpec.describe Department, type: :model do
   expect(mgq.count_scale_tasks).to eq(400000)
   expect(mgq.count_management_fee_tasks).to eq(500000)
   expect(mgq.count_fee_tasks).to eq(200000)
-  expect(mgq.count_all_type_task).to eq([400000,500000,200000])
-
-  expect(cjx.count_all_type_task).to eq([500000,400000,100000])
-
-  expect(spj.count_all_type_task).to eq([600000,500000,200000])
-
-  expect(zyj.count_all_type_task).to eq([400000,500000,200000])
-
   end
 end
