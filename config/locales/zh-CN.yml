@@ -297,3 +297,6 @@ zh-CN:
         sub_departments: 下级部门
         department_users: 部门成员
         users: 部门成员
+      cooperation:
+        ratio: 项目贡献比例
+        co_type: 承揽承做类型

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.integer  "cooperationable_id"
     t.string   "cooperationable_type"
     t.decimal  "ratio"
+    t.string   "co_type"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

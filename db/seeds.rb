@@ -138,9 +138,9 @@ plan9=Plan.create(name: '全权委托-后收费4', plan_type: Plan::PLAN_TYPE[0]
 Modification.create( modificationable: plan7, user: mgq, charge_type: Plan::CHARGE_TYPE[1], charge_amount: 10000,  charge_date:'2016-2-1',  risk: :正常, start_date: '2016-2-1', end_date: '2016-10-4',scale: 100000000, rate: 0.004, annual: 365)
 Modification.create( modificationable: plan7, user: mgq, charge_type: Plan::CHARGE_TYPE[0], risk: :正常, start_date: '2016-10-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
 
-Cooperation.create(user: mgq, ratio: 0.3, cooperationable: plan1)
-Cooperation.create(user: zyj, ratio: 0.4, cooperationable: plan1)
-Cooperation.create(user: spj, ratio: 0.3, cooperationable: plan1)
+Cooperation.create(user: mgq, ratio: 0.3, cooperationable: plan1, co_type: Cooperation::CO_TYPE[0])
+Cooperation.create(user: zyj, ratio: 0.4, cooperationable: plan1, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: spj, ratio: 0.3, cooperationable: plan1, co_type: Cooperation::CO_TYPE[1])
 
 
 project1=Project.create(name: '苏州高铁新城经济发展有限公司', number: :QS713003, plan: plan1, user: mgq, department: hlw,parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.0774, annual: 365)
@@ -152,15 +152,15 @@ project22=Project.create(name: '民生加银资管创赢1号专项资产管理�
 project23=Project.create(name: '民生加银资管创赢3号专项资产管理计划', number: :QT91514Z,  plan: plan2, user: mgq, department: hlw, parter: :建设银行, risk: :正常, start_date: '2016-6-4', end_date: '2017-2-4',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1, annual: 365)
 
 
-Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project1)
-Cooperation.create(user: zyj, ratio: 0.4, cooperationable: project1)
-Cooperation.create(user: spj, ratio: 0.3, cooperationable: project1)
+Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project1, co_type: Cooperation::CO_TYPE[0])
+Cooperation.create(user: zyj, ratio: 0.4, cooperationable: project1, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: spj, ratio: 0.3, cooperationable: project1, co_type: Cooperation::CO_TYPE[1])
 
-Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project2)
-Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project3)
-Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project21)
-Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project22)
-Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project23)
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project2, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project3, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project21, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project22, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: mgq, ratio: 1.0, cooperationable: project23, co_type: Cooperation::CO_TYPE[1])
 
 pm1=Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2015-2-4', end_date: '2016-1-1',scale: 100000000, rate: 0.004)
 Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004)
@@ -170,18 +170,18 @@ plan14=Plan.create(name: '44444444444', plan_type: Plan::PLAN_TYPE[1], charge_ty
 project31=Project.create(name: 'project31', plan: plan14, user: zyj, department: hlw, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000,channel_cost: 0.0,  rate: 0.004, asset_price: 0.1)
 project32=Project.create(name: 'project32', plan: plan14, user: zyj, department: hlw, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1)
 
-Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project31)
-Cooperation.create(user: zyj, ratio: 0.4, cooperationable: project31)
-Cooperation.create(user: spj, ratio: 0.3, cooperationable: project31)
-Cooperation.create(user: zyj, ratio: 1.0, cooperationable: project32)
+Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project31, co_type: Cooperation::CO_TYPE[0])
+Cooperation.create(user: zyj, ratio: 0.4, cooperationable: project31, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: spj, ratio: 0.3, cooperationable: project31, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: zyj, ratio: 1.0, cooperationable: project32, co_type: Cooperation::CO_TYPE[0])
 
 # Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 # Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 # Modification.create( modificationable: project31,user: zyj, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 
-Cooperation.create(user: mgq, ratio: 0.3, cooperationable: pm1)
-Cooperation.create(user: zyj, ratio: 0.4, cooperationable: pm1)
-Cooperation.create(user: spj, ratio: 0.3, cooperationable: pm1)
+Cooperation.create(user: mgq, ratio: 0.3, cooperationable: pm1, co_type: Cooperation::CO_TYPE[0])
+Cooperation.create(user: zyj, ratio: 0.4, cooperationable: pm1, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: spj, ratio: 0.3, cooperationable: pm1, co_type: Cooperation::CO_TYPE[1])
 
 # ----Person结构化数据构造----
 # father=Person.create(name: 'mayuhai')

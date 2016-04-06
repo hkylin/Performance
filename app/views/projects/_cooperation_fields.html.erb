@@ -4,6 +4,8 @@
 		<%= f.select :user_id, User.all.collect {|u| [ "#{u.name}", u.id ] } ,:class => 'radio' %>
 		<%= f.label :比例  %>
 		<%= f.text_field :ratio %>
+		<%= f.label '承揽|承做'  %>
+		<%= f.select :co_type , Cooperation::CO_TYPE ,:class => 'radio' %>
 		<%=link_to_remove_association "删除合作者", f ,:class => "btn btn-link"%>
 	</li>
 </div>
