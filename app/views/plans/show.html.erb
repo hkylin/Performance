@@ -60,6 +60,7 @@
         
         <td><%=@plan.model_type %></td>
         <td><%=@plan.notes %></td>
+        <!--
          <td>
           <%= link_to :编辑,
                       edit_plan_path(@plan), :class => 'btn btn-default btn-xs' %>
@@ -69,6 +70,8 @@
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
         </td>
+
+        -->
       </tr>
     
   </tbody>
@@ -79,7 +82,7 @@
 
 
 <% @projects=@plan.projects %>
-<%= render :partial => "/homes/projects" , :locals => { :projects => @projects, :name => "资管计划" } %>
+<%= render :partial => "/homes/projects" , :locals => { :projects => @projects, :name => "资管计划" ,:editable => false} %>
 <%= link_to '新建项目', new_plan_project_path(@plan) ,:class => 'btn btn-primary'%>
 
 <%= render :partial => "/modifications/index", :locals => { :object => @plan} %> 

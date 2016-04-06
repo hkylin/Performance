@@ -217,14 +217,13 @@ zh-CN:
       project: 项目
       plan: 计划
       modification: 调整
+      department: 部门
+      cooperation: 协作
     attributes:
       task:
-        name: 任务名称
-        task_type: 指标类型
+        year: 年度指标
         amount: 规模
-        start_date: 开始时间
-        end_date: 结束是假
-        description: 描述信息
+        profit: 收入
         taskable_type: 任务类型
         taskable_id: 任务者id
         created_at: 添加日期
@@ -289,3 +288,12 @@ zh-CN:
         risk: 风险
         created_at: 添加日期
         updated_at: 更新日期
+      department:
+        sup_department: 上级部门
+        name: 名字
+        parent: 上级部门
+        tasks: 任务列表
+        plans: 计划列表
+        sub_departments: 下级部门
+        department_users: 部门成员
+        users: 部门成员
