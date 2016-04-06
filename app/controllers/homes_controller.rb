@@ -3,6 +3,10 @@ class HomesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    admin_departments=current_user.admin_departments 
+    if(admin_departments.size > 0)
+      redirect_to :action=>'department',:department_id => admin_departments[0].id
+    end
     @plans = current_user.plans
     @projects = current_user.projects
     @tasks = current_user.tasks
