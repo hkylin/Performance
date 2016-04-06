@@ -133,34 +133,26 @@ class User < ActiveRecord::Base
   end
 
   def count_first_task#TODO 任务指标  目前只做了 管理费  ，这是一个必须修改的地方
-    count_management_fee_tasks/4
-  end
-
-  def count_management_fee_tasks_between(start_date, end_date)  
-    count_management_fee_tasks*(Date.new(end_date)-Date.new(start_date))/365
-  end
-  # scale management_fee profit
-
-  def count_all_type_task
-    [count_scale_tasks,count_management_fee_tasks]
+    count_management_fee_tasks/4    
   end
 
   def count_scale_tasks
-    count_tasks(Task::TASK_TYPE[0])
+    tasks.each do |t|
+      if(t.year == Date.current.year)
+        return t.amount
+      end
+    end
+    return 0.0
   end
 
   def count_management_fee_tasks
-    count_tasks(Task::TASK_TYPE[1])
-  end
-  
-
-  def count_tasks(task_type)#TODO 任务指标  目前只做了 管理费  ，这是一个必须修改的地方  
-    scale = 0.0;
-    tasks.each do |task|
-      scale += task.amount if task.task_type == task_type
+    tasks.each do |t|
+      if(t.year == Date.current.year)
+        return t.profit
+      end
     end
-    scale
-  end 
+    return 0.0
+  end
 
   def count_scale_old(at_date)
     sum=0.0

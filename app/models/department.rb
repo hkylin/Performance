@@ -186,35 +186,26 @@ class Department < ActiveRecord::Base
     sum
   end
 
-  
-
-  def count_all_type_task
-    [count_scale_tasks,count_management_fee_tasks,count_fee_tasks]
+  def count_first_task#TODO 任务指标  目前只做了 管理费  ，这是一个必须修改的地方
+    count_management_fee_tasks/4    
   end
 
   def count_scale_tasks
-    count_tasks(Task::TASK_TYPE[0])
+    tasks.each do |t|
+      if(t.year == Date.current.year)
+        return t.amount
+      end
+    end
+    return 0.0
   end
+
   def count_management_fee_tasks
-    count_tasks(Task::TASK_TYPE[1])
-  end
-  def count_fee_tasks
-    count_tasks(Task::TASK_TYPE[2])
+    tasks.each do |t|
+      if(t.year == Date.current.year)
+        return t.profit
+      end
+    end
+    return 0.0
   end
 
-  def count_tasks(task_type)#部门的指标
-    scale = 0.0;
-    tasks.each do |task|
-      scale += task.amount if task.task_type == task_type
-    end
-    scale
-  end 
-
-  def count_staffs_tasks(task_type) #汇总个人的任务  应该用部门单独的任务
-    scale = 0.0;
-    staff.each do |user|
-      scale += user.count_tasks(task_type)
-    end
-    scale
-  end
 end

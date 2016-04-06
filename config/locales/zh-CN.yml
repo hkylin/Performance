@@ -226,7 +226,7 @@ zh-CN:
         end_date: 结束是假
         description: 描述信息
         taskable_type: 任务类型
-        taskable_id: 任务id
+        taskable_id: 任务者id
         created_at: 添加日期
         updated_at: 更新日期
       plan: 
