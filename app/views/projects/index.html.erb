@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1><%= @plan.number %>—资管计划—<%= @plan.name %></h1>
 </div>
-<%= render :partial => "/homes/projects", :locals => { :projects => @projects, :name => "资管计划" } %>
+<%= render :partial => "/homes/projects", :locals => { :projects => @projects, :name => "资管计划" , :editable=> true} %>
 
 <%= link_to '新建项目', new_plan_project_path %> | 
 <%= link_to '资管计划列表', plans_path %>

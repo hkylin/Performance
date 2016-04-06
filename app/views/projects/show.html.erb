@@ -1,136 +1,59 @@
-<p>
-  <strong>Plan:</strong>
-  <%= @project.plan %>
-</p>
+<table class = "table table-striped", data-toggle="table" 
+        data-show-refresh="true"
+        data-show-toggle="true" 
+        data-show-columns="true"
+        data-pagination="true">
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
-
-<p>
-  <strong>投资段收益率:</strong>
-  <%= @project.asset_price %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @project.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @project.end_date %>
-</p>
-
-<p>
-  <strong>Management fee:</strong>
-  <%= @project.management_fee %>
-</p>
-
-<p>
-  <strong>Investment manager:</strong>
-  <%= @project.investment_manager %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @project.department %>
-</p>
-
-<p>
-  <strong>Rate:</strong>
-  <%= @project.rate %>
-</p>
-
-<p>
-  <strong>Fee:</strong>
-  <%= @project.fee %>
-</p>
-
-<p>
-  <strong>规模计算</strong>
-  <%= @project.count_scale current_user %>
-</p>
-<p>
-  <strong>规模年化计算</strong>
-  <%= @project.count_annual_scale current_user %>
-</p>
-<p>
-  <strong>收入计算</strong>
-  <%= @project.count_income current_user, Date.since_this_year %>
-</p>
-<p>
-  <strong>通道费用</strong>
-  <%= @project.channel_cost %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @project.notes %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', plan_projects_path(@project.plan,@project) %> | 
-<%= link_to 'plans', plans_path %>
-
-<%= render :partial => "/modifications/index", :locals => { :object => @project} %>
-
-<div class="page-header">
-  <h1>项目调整列表</h1>
-</div>
-<table class="table table-striped">
   <thead>
     <tr>
+      <th>计划名称</th>
       <th>项目名称</th>
-      <th>项目号</th>
-      <th>开始时间</th>
-      <th>结束时间</th>
-      <th>管理费</th>
-      <th>投资经理</th>
-      <th>费率</th> 
-      <th>费用金额</th>
-      
-      
-      
+      <th data-sortable="true">项目规模</th>
+      <th data-sortable="true">投资段收益率</th>
+      <th data-sortable="true">开始日期</th>
+      <th data-sortable="true">结束日期</th>
+      <th>部门</th>
+      <th data-sortable="true">费率</th>
+      <th>风险</th>
+      <th>规模计算</th>
+      <th>规模年化计算</th>
+      <th>收入计算</th>
+      <th>通道费用</th>
+      <th>合作者</th>
       <th>注释</th>
-      <th colspan="3"></th>
+      <th>操作</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @project.modifications.each do |pm| %>
       <tr>
-        <td><%= @project.name %></td>
-        <td><%= pm.scale %></td>
-        <td><%= pm.start_date %></td>
-        <td><%= pm.end_date %></td>
-        <td><%= pm.management_fee %></td>
-        <td><%= pm.investment_manager %></td>
-        <td><%= pm.rate %></td>
-        <td><%= pm.fee %></td>
-
-        
-
-        <td><%= pm.notes %>
-          |
-          <% pm.cooperations.each do |co|%>
-            <%= "#{co.user.username} #{co.ratio}" %>|
+        <td><%= link_to @project.plan.name, plan_path(@project.plan), :class=>"btn btn-link" %></td>
+        <td><%= link_to @project.name, project_path(@project), :class=>"btn btn-link" %></td>
+        <td><%= @project.scale %></td>
+        <td><%= @project.asset_price %></td>
+        <td><%= @project.start_date %></td>
+        <td><%= @project.end_date %></td>
+        <td><%= @project.department.name %></td>
+        <td><%= @project.rate %></td>
+        <td><%= @project.risk %></td>
+        <td><%=f2 @project.count_scale current_user%></td>
+        <td><%=f2 @project.count_annual_scale current_user %></td>
+        <td><%=f2 @project.count_income current_user, Date.since_this_year%></td>
+        <td><%=f2 @project.channel_cost%></td>
+        <td>
+          <% @project.cooperations.each do |co|%>
+            <%= "#{co.user.username} #{co.ratio}" %>｜
           <% end %>
         </td>
-        
-
-        <td><%= link_to '详情', modification_path(pm) %></td>
-        <td><%= link_to '编辑', edit_modification_path(pm) %></td>
-        <td><%= link_to '删除', modification_path(pm), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= @project.notes %></td>
+          <td><%= link_to '编辑', edit_project_path(@project) , :class => 'btn btn-default btn-xs'%>
+          <%= link_to '删除', project_path(@project), method: :delete, data: { confirm: 'Are you sure?'}, :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
-    <% end %>
   </tbody>
 </table>
 
+<%= render :partial => "/modifications/index", :locals => { :object => @project} %>
 
 <%= link_to '新建 项目调整', new_project_modification_path(@project) %>
-
-
-                                
 
