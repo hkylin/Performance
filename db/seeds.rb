@@ -98,30 +98,22 @@ DepartmentUser.create(department: jh3, user: uwt)
 DepartmentUser.create(department: jh3, user: ulw)
 # hlw.save
 
-Task.create(name: '互联网金融部考核指标——月月增利', start_date: '2016-1-1', end_date: '2017-1-1',  task_type: Task::TASK_TYPE[1], amount: 120000, taskable: hlw)
-task1=Task.create(name: '月月增利', task_type: Task::TASK_TYPE[0], start_date: '2016-1-1', end_date: '2017-1-1', amount: 120000)
-task1.taskable=cf
-task1.save
-task2=Task.create(name: 'magq月月增利', start_date: '2016-1-1', end_date: '2017-1-1',  task_type: Task::TASK_TYPE[0], amount: 120000, taskable: mgq)
-task3=Task.create(name: 'magq月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[0], amount: 160000, taskable: mgq)
-task3=Task.create(name: 'magq月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 200000, taskable: mgq)
-task4=Task.create(name: '马总 月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 240000, taskable: mhj)
-task5=Task.create(name: '金总 月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 240000, taskable: jgr)
-task6=Task.create(name: '财富事业部 月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 200000, taskable: cf)
-
-task7=Task.create(name: '个人客户中心 月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 40000, taskable: gr)
-task8=Task.create(name: '机构客户中心 月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 200000, taskable: jg)
-task8=Task.create(name: '产品研发中心 个人产品', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 200000, taskable: cpyf)
-
-task11=Task.create(name: '陈金鑫 月月增利', start_date: '2016-1-1', end_date: '2017-1-1',  task_type: Task::TASK_TYPE[1], amount: 120000, taskable: cjx)
-task12=Task.create(name: '蒲京 月月增利',   start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 160000, taskable: spj)
-task13=Task.create(name: '张亚军 月月增利', start_date: '2016-1-1', end_date: '2017-1-1', task_type: Task::TASK_TYPE[1], amount: 200000, taskable: zyj)
+task1=Task.create(year: 2016, profit: 20000000, amount: 12000000, taskable: cf)
+task2=Task.create(year: 2016, profit: 20000000, amount: 120000000, taskable: mgq)
+task4=Task.create(year: 2016, profit: 20000000, amount: 240000000, taskable: mhj)
+task5=Task.create(year: 2016, profit: 20000000, amount: 240000000, taskable: jgr)
+task6=Task.create(year: 2016, profit: 20000000, amount: 200000000, taskable: cf)
+task7=Task.create(year: 2016, profit: 20000000, amount: 40000000, taskable: gr)
+task8=Task.create(year: 2016, profit: 20000000, amount: 200000000, taskable: jg)
+task8=Task.create(year: 2016, profit: 20000000, amount: 200000000, taskable: cpyf)
+task11=Task.create(year: 2016, profit: 20000000, amount: 120000000, taskable: cjx)
+task12=Task.create(year: 2016, profit: 20000000, amount: 160000000, taskable: spj)
+task13=Task.create(year: 2016, profit: 20000000, amount: 200000000, taskable: zyj)
 
 #计划  项目   项目调整
 plan1=Plan.create(name: '汇赢1号', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0], ownership_type: Plan::OWNERSHIP_TYPE[0], number: 10000001, user: mgq, department: hlw, parter: :民生银行, risk: :正常, start_date: '2015-1-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
 plan2=Plan.create(name: '保腾1号', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0], ownership_type: Plan::OWNERSHIP_TYPE[0], number: 10000002, user: mgq, department: hlw, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-6-4',scale: 100000000, rate: 0.004, annual: 365)
 plan3=Plan.create(name: '民生加银资管永昌地产集团专项资产管理计划',plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0], ownership_type: Plan::OWNERSHIP_TYPE[0], number: :WDC15015, user: mgq, department: hlw,parter: :民生银行, risk: :正常, start_date: '2014-1-4', end_date: '2018-2-4',scale: 100000000, rate: 0.004, annual: 365)
-
 plan4=Plan.create(name: '全权委托1', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0], ownership_type: Plan::OWNERSHIP_TYPE[0], number: 10000011, user: mhj, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 600000000, rate: 0.004, annual: 365)
 plan5=Plan.create(name: '全权委托2', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0], ownership_type: Plan::OWNERSHIP_TYPE[0], number: 10000012, user: jgr, department: cf, parter: :民生银行, risk: :正常,  start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)
 plan6=Plan.create(name: '全权委托3', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[0], ownership_type: Plan::OWNERSHIP_TYPE[0], number: 10000013, user: jgr, department: cf, parter: :民生银行, risk: :正常, start_date: '2015-2-4', end_date: '2017-2-4',scale: 100000000, rate: 0.004, annual: 365)

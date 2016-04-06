@@ -5,12 +5,9 @@
   <thead>
     <tr>
       <th> ID </th>
-      <th> 指标名称 </th>
-      <th> 指标类型 </th>
-      <th> 数量 </th>
-      <th> 开始时间 </th>
-      <th> 结束时间 </th>
-      <th> 描述 </th>
+      <th> 年 </th>
+      <th> 规模 </th>
+      <th> 收入 </th>
       <th> 创建时间 </th>
       <th> 操作 </th>
     </tr>
@@ -19,12 +16,9 @@
     <% tasks.each do |task| %>
       <tr>
         <td><%= link_to task.id, task_path(task) %></td>
-        <td><%= task.name %></td>
-        <td><%= task.task_type %></td>
+        <td><%= task.year %></td>
         <td><%= task.amount %></td>
-        <td><%= task.start_date %></td>
-        <td><%= task.end_date %></td>
-        <td><%= task.description %></td>
+        <td><%= task.profit %></td>
         <td><%=l task.created_at.to_date %></td>
         <td>
           <%= link_to :编辑,
