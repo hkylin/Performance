@@ -1,12 +1,12 @@
 <%= render :partial => "tasks" , :locals => { :tasks => @tasks } %>
 
 <%= render :partial => "management_fee", :locals => { :object => current_user} %>
-
-<%= high_chart_globals(@chart_globals) %>
-<%= high_chart("some_id", @chart) %>
-
+<!--
+	high_chart_globals(@chart_globals) 
+	high_chart("some_id", @chart) 
+-->
 <%= render :partial => "plans"%> 
 
-<%= render :partial => "projects" , :locals => { :projects => @projects, :name => "我创设" } %>
+<%= render :partial => "projects" , :locals => { :projects => @projects, :name => "我创设" ,:editable => true} %>
 
-<%= render :partial => "projects" , :locals => { :projects => current_user.my_projects , :name => "我参与" } %>
+<%= render :partial => "projects" , :locals => { :projects => current_user.my_projects , :name => "我参与",:editable => false } %>

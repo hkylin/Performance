@@ -7,49 +7,50 @@ class HomesController < ApplicationController
     @projects = current_user.projects
     @tasks = current_user.tasks
     
-    count_fees = current_user.quarters
-    t1=current_user.count_management_fee_tasks.to_i
-    t14=(current_user.count_management_fee_tasks.to_i/4).to_i
-    st = current_user.count_scale_tasks.to_i
-    # tasks=[t1,t14,t14,t14,t14,st,st]
-    tasks=[t1,t14,t14,t14,t14]
-    logger.info "--------------------------------------------"
-    logger.info count_fees
-    logger.info tasks
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(text: "指标与完成情况")
-      f.xAxis(categories: ["全年管理费","一季度管理费", "二季度管理费", "三季度管理费", "四季度管理费","当前规模","年化规模"])
-      f.series(name: "完成情况", yAxis: 0, data: count_fees)
-      f.series(name: "指标", yAxis: 1, data: tasks)
+    
+    # count_fees = current_user.quarters
+    # t1=current_user.count_management_fee_tasks.to_i
+    # t14=(current_user.count_management_fee_tasks.to_i/4).to_i
+    # st = current_user.count_scale_tasks.to_i
+    # # tasks=[t1,t14,t14,t14,t14,st,st]
+    # tasks=[t1,t14,t14,t14,t14]
+    # logger.info "--------------------------------------------"
+    # logger.info count_fees
+    # logger.info tasks
+    # @chart = LazyHighCharts::HighChart.new('graph') do |f|
+    #   f.title(text: "指标与完成情况")
+    #   f.xAxis(categories: ["全年管理费","一季度管理费", "二季度管理费", "三季度管理费", "四季度管理费","当前规模","年化规模"])
+    #   f.series(name: "完成情况", yAxis: 0, data: count_fees)
+    #   f.series(name: "指标", yAxis: 1, data: tasks)
 
-      f.yAxis [
-        {title: {text: "指标", margin: 70} },
-        {title: {text: "完成情况"}, opposite: true},
-      ]
+    #   f.yAxis [
+    #     {title: {text: "指标", margin: 70} },
+    #     {title: {text: "完成情况"}, opposite: true},
+    #   ]
 
-      f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
-      f.chart({defaultSeriesType: "column"})
-    end
+    #   f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
+    #   f.chart({defaultSeriesType: "column"})
+    # end
 
-    @chart_globals = LazyHighCharts::HighChartGlobals.new do |f|
-      f.global(useUTC: false)
-      f.chart(
-        backgroundColor: {
-          linearGradient: [0, 0, 500, 500],
-          stops: [
-            [0, "rgb(255, 255, 255)"],
-            [1, "rgb(240, 240, 255)"]
-          ]
-        },
-        borderWidth: 2,
-        plotBackgroundColor: "rgba(255, 255, 255, .9)",
-        plotShadow: true,
-        plotBorderWidth: 1,
-      )
-      f.lang(thousandsSep: ",")
-      f.colors(["#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354"])
+    # @chart_globals = LazyHighCharts::HighChartGlobals.new do |f|
+    #   f.global(useUTC: false)
+    #   f.chart(
+    #     backgroundColor: {
+    #       linearGradient: [0, 0, 500, 500],
+    #       stops: [
+    #         [0, "rgb(255, 255, 255)"],
+    #         [1, "rgb(240, 240, 255)"]
+    #       ]
+    #     },
+    #     borderWidth: 2,
+    #     plotBackgroundColor: "rgba(255, 255, 255, .9)",
+    #     plotShadow: true,
+    #     plotBorderWidth: 1,
+    #   )
+    #   f.lang(thousandsSep: ",")
+    #   f.colors(["#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354"])
 
-    end
+    # end
 
   end
 
