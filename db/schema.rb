@@ -155,12 +155,9 @@ ActiveRecord::Schema.define(version: 20160308005205) do
   add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "name"
-    t.string   "task_type"
+    t.integer  "year"
     t.decimal  "amount"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.text     "description"
+    t.decimal  "profit"
     t.string   "taskable_type"
     t.integer  "taskable_id"
     t.datetime "created_at",    null: false
