@@ -6,7 +6,7 @@ class PlansController < ApplicationController
   # GET /plans.json
   def index
     # @plans = Plan.where(plan_type: Plan::PLAN_TYPE[0]).all  #单一资金资管计划
-    @plans = current_user.plans
+    @plans = Plan.all
   end
 
   # GET /plans/1

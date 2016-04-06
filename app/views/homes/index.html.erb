@@ -4,8 +4,9 @@
 <!--
 	high_chart_globals(@chart_globals) 
 	high_chart("some_id", @chart) 
+	render :partial => "plans"
 -->
-<%= render :partial => "plans"%> 
+
 
 <%= render :partial => "projects" , :locals => { :projects => @projects, :name => "我创设" ,:editable => true} %>
 
