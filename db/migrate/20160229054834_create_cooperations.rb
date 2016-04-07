@@ -10,5 +10,9 @@ class CreateCooperations < ActiveRecord::Migration
       t.string :co_type
       t.timestamps null: false
     end
+
+    add_index :cooperations, :cooperationable_id
+    add_index :cooperations, :cooperationable_type
+
   end
 end

@@ -21,5 +21,7 @@ class CreateModifications < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :modifications, :modificationable_id
   end
 end

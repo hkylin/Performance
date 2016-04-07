@@ -8,5 +8,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :taskable_id
       t.timestamps null: false
     end
+
+    add_index :tasks, :taskable_id
   end
 end
