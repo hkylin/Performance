@@ -79,18 +79,18 @@ class Plan < ActiveRecord::Base
     end
   end
 
-  def passageway_income  #计算资管计划的通道费用
+  def passageway_income(between_date)  #计算资管计划的通道费用
     sum = 0.0
     projects.each do |p|
-      sum += p.passageway_income
+      sum += p.passageway_income(between_date)
     end
     sum
   end
 
-  def passageway_scale
+  def passageway_scale(dated)
     sum = 0.0
     projects.each do |p|
-      sum += p.passageway_scale
+      sum += p.passageway_scale(dated)
     end
     sum
   end
