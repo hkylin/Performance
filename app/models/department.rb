@@ -5,6 +5,7 @@ class Department < ActiveRecord::Base
   has_many :department_users
   has_many :users, through: :department_users #all include admin and members
   has_many :plans
+  has_many :projects
   # scope :have, -> { where(usertype: 'have') }   #下级部门，马总 have 财富个人中心
   # scope :admin, -> { where(usertype: 'admin') } #所属部门，管理者
   # scope :staff, -> { where(usertype: 'staff') } #所属部门，普通员工
@@ -15,32 +16,36 @@ class Department < ActiveRecord::Base
      sub_departments.size > 0
   end
 
+  scope :members2, -> { users.where("role=? OR role=?", 'admin','have') }
 
   #返回成员
   def members  #shepujing zhangyajun chenjinxin 
-    @members=Array.new 
-    department_users.each do |x|
-      @members << x.user  unless (x.role == 'admin' or x.role == 'have') 
-    end
-    @members
+    # @members=Array.new 
+    # department_users.each do |x|
+    #   @members << x.user  unless (x.role == 'admin' or x.role == 'have') 
+    # end
+    # @members
+    return users.where(role: 'staff')
   end
 
   #返回管理者 适用于场景  哪些领导可以看这个部门的绩效考核
   def admins   #总监 副总监 有权限查看整个部门的  #互联网金融部 mahuijun  jinguorui maguoqing 
-    @admins=Array.new  
-    department_users.each do |x|
-      @admins << x.user  if (x.role == 'admin' or x.role =='have')
-    end
-    @admins
+    # @admins=Array.new  
+    # department_users.each do |x|
+    #   @admins << x.user  if (x.role == 'admin' or x.role =='have')
+    # end
+    # @admins
+    return users.where("role=? OR role=?", 'admin','have')
   end
 
   #管理者与员工   不算上级领导
   def staff   #总监 副总监 有权限查看整个部门的  #互联网金融部 mahuijun  jinguorui maguoqing 
-    @staff=Array.new  
-    department_users.each do |x|
-      @staff << x.user  unless (x.role == 'have')
-    end
-    @staff
+    # @staff=Array.new  
+    # department_users.each do |x|
+    #   @staff << x.user  unless (x.role == 'have')
+    # end
+    # @staff
+    return users.where("role != ?",'have')
   end
 
   def passageway_income
@@ -74,8 +79,8 @@ class Department < ActiveRecord::Base
       end
       return sum
     end
-    Project.all.each do |p|
-      sum += p.passageway_income(self,between_date)
+    projects.each do |p|
+      sum += p.passageway_income(between_date)
     end
     return sum
   end
@@ -106,8 +111,8 @@ class Department < ActiveRecord::Base
       return sum
     end
 
-    Project.all.each do |p|
-      sum += p.passageway_scale(self,dated)
+    projects.each do |p|
+      sum += p.passageway_scale(dated)
     end
     sum
   end
@@ -136,8 +141,8 @@ class Department < ActiveRecord::Base
       end
       return sum
     end
-    Project.all.each do |p|
-      sum += p.passageway_annual_scale(self,between_date)
+    projects.each do |p|
+      sum += p.passageway_annual_scale(between_date)
     end
     sum
   end
