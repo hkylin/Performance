@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.datetime "updated_at",           null: false
   end
 
+  add_index "cooperations", ["cooperationable_id"], name: "index_cooperations_on_cooperationable_id"
+  add_index "cooperations", ["cooperationable_type"], name: "index_cooperations_on_cooperationable_type"
   add_index "cooperations", ["user_id"], name: "index_cooperations_on_user_id"
 
   create_table "department_users", force: :cascade do |t|
@@ -39,7 +41,6 @@ ActiveRecord::Schema.define(version: 20160308005205) do
   create_table "departments", force: :cascade do |t|
     t.integer  "sup_department_id"
     t.string   "name"
-    t.boolean  "parent"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.string   "risk"
   end
 
+  add_index "modifications", ["modificationable_id"], name: "index_modifications_on_modificationable_id"
   add_index "modifications", ["user_id"], name: "index_modifications_on_user_id"
 
   create_table "people", force: :cascade do |t|
@@ -164,6 +166,8 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "tasks", ["taskable_id"], name: "index_tasks_on_taskable_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

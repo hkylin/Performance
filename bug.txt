@@ -1,5 +1,25 @@
 price:decimal{8,2}  所有的数据脚本都检查一下
 
+Post.includes(:category, :comments)
+Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
+Post.includes(:comments).where("comments.visible" => true)
+scope :published, -> { where(published: true) }
+scope :published,               -> { where(published: true) }
+scope :published_and_commented, -> { published.where("comments_count > 0") }
+
+department.projects  使用我们部门资管计划的项目。
+我们的员工参与但是使用其他部门的计划。？这不分怎么提取出来。
+
+是否存在跨部门协作，有自己部门  有别的部门的，别的部门的是主力，利润高。这个时候部门资管计划还收通道费么？
+
+项目的合作者中有我部门员工，但是项目的计划不是我们部门。
+project.
+
+
+
+
+
+
 无需注册后台生成用户
 考核指标 后天录入。
 

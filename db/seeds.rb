@@ -81,21 +81,21 @@ DepartmentUser.create(department: jh, user: czh, role: 'admin')
 #----互联网金融部配置
 DepartmentUser.create(department: hlw, user: mgq, role: 'admin')
 
-DepartmentUser.create(department: hlw, user: cjx)
-DepartmentUser.create(department: hlw, user: zyj)
-DepartmentUser.create(department: hlw, user: spj)
+DepartmentUser.create(department: hlw, user: cjx, role: 'staff')
+DepartmentUser.create(department: hlw, user: zyj, role: 'staff')
+DepartmentUser.create(department: hlw, user: spj, role: 'staff')
 
 DepartmentUser.create(department: hzzc, user: lf, role: 'admin')
-DepartmentUser.create(department: hzzc, user: zyl)
+DepartmentUser.create(department: hzzc, user: zyl, role: 'staff')
 
 DepartmentUser.create(department: jh1, user: wjf, role: 'admin')
-DepartmentUser.create(department: jh1, user: sws)
-DepartmentUser.create(department: jh1, user: hj)
+DepartmentUser.create(department: jh1, user: sws, role: 'staff')
+DepartmentUser.create(department: jh1, user: hj, role: 'staff')
 
 
 DepartmentUser.create(department: jh3, user: usl, role: 'admin')
-DepartmentUser.create(department: jh3, user: uwt)
-DepartmentUser.create(department: jh3, user: ulw)
+DepartmentUser.create(department: jh3, user: uwt, role: 'staff')
+DepartmentUser.create(department: jh3, user: ulw, role: 'staff')
 # hlw.save
 
 task1=Task.create(year: 2016, profit: 20000000, amount: 12000000, taskable: cf)
@@ -167,13 +167,15 @@ Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :�
 Modification.create( modificationable: project1,user: mgq, fee: 0.002, risk: :正常, start_date: '2017-1-1', end_date: '2017-2-4',scale: 100000000, rate: 0.004)
 
 plan14=Plan.create(name: '44444444444', plan_type: Plan::PLAN_TYPE[1], charge_type: Plan::CHARGE_TYPE[0], ownership_type: Plan::OWNERSHIP_TYPE[0], number: 100000114, user: zyj, department: hlw,risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1', scale: 100000000, rate: 0.004)
-project31=Project.create(name: 'project31', plan: plan14, user: zyj, department: hlw, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000,channel_cost: 0.0,  rate: 0.004, asset_price: 0.1)
-project32=Project.create(name: 'project32', plan: plan14, user: zyj, department: hlw, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, channel_cost: 0.0, rate: 0.004, asset_price: 0.1)
-
-Cooperation.create(user: mgq, ratio: 0.3, cooperationable: project31, co_type: Cooperation::CO_TYPE[0])
-Cooperation.create(user: zyj, ratio: 0.4, cooperationable: project31, co_type: Cooperation::CO_TYPE[1])
-Cooperation.create(user: spj, ratio: 0.3, cooperationable: project31, co_type: Cooperation::CO_TYPE[1])
-Cooperation.create(user: zyj, ratio: 1.0, cooperationable: project32, co_type: Cooperation::CO_TYPE[0])
+project31=Project.create(name: 'project31', plan: plan14, user: sws, department: hlw, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000,channel_cost: 0.3,  rate: 0.004, asset_price: 0.1)
+project32=Project.create(name: 'project32', plan: plan14, user: sws, department: hlw, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, channel_cost: 0.4, rate: 0.004, asset_price: 0.1)
+project33=Project.create(name: 'project33', plan: plan14, user: sws, department: jh1, risk: :正常, start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, channel_cost: 0.4, rate: 0.004, asset_price: 0.1)
+Cooperation.create(user: sws, ratio: 0.6, cooperationable: project31, co_type: Cooperation::CO_TYPE[0])
+Cooperation.create(user: zyj, ratio: 0.2, cooperationable: project31, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: spj, ratio: 0.2, cooperationable: project31, co_type: Cooperation::CO_TYPE[1])
+Cooperation.create(user: sws, ratio: 1.0, cooperationable: project32, co_type: Cooperation::CO_TYPE[0])
+Cooperation.create(user: sws, ratio: 0.6, cooperationable: project33, co_type: Cooperation::CO_TYPE[0])
+Cooperation.create(user: sws, ratio: 0.4, cooperationable: project33, co_type: Cooperation::CO_TYPE[1])
 
 # Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)
 # Modification.create( modificationable: project31,user: zyj, risk: :正常,  start_date: '2016-1-1', end_date: '2017-1-1',scale: 100000000, rate: 0.004, fee: 0.002)

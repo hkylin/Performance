@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :cooperations
 
   ROLES = %i[super_admin admin staff]
-
+  
   # create_table "cooperations", force: :cascade do |t|
   #   t.integer  "user_id"
   #   t.integer  "cooperationable_id"
@@ -27,14 +27,25 @@ class User < ActiveRecord::Base
 
   #是我参与,但不是我创建的
   def my_projects 
-    projects=[];
-    cooperations.each do |co|
-      #非我创建，但我参与项目
-      if (co.cooperationable.class == Project && co.cooperationable.user != self)
-        projects << co.cooperationable
-      end
-    end
-    projects
+    # projects=[];
+    # cooperations.each do |co|
+    #   #非我创建，但我参与项目
+    #   if (co.cooperationable.class == Project && co.cooperationable.user != self)
+    #     projects << co.cooperationable
+    #   end
+    # end
+    # puts projects.size
+    # return projects
+
+    projects = Project.includes(:cooperations).where.not(user: self).where(cooperations:{user: self})
+
+    # return Project.includes(:cooperations).where('user!=? AND cooperations.user=? ',self,self)
+    # return Project.includes(:cooperations).where(user: self,cooperations:{user: self})
+    # Post.includes(:comments).where("comments.visible" => true)
+    # return cooperations.includes(:cooperationable).where('cooperationable_type=? AND cooperations.user!=?','Project',self)
+    # Cooperation.includes("cooperations").where(cooperationable_type: 'Project',cooperationable_id )
+    # Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
+    # Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
   end
 
   ################个人绩效考核###项目管理费收入计算###########################

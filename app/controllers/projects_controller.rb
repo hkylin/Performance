@@ -15,7 +15,12 @@ class ProjectsController < ApplicationController
 
   def all
     # @projects = Project.all
-    @projects = current_user.projects
+    # @projects = current_user.projects
+    @projects = Project.includes('cooperations').where(user: current_user)
+
+    # @projects = Project.includes('cooperations').where(user_id: current_user.id)
+    # @projects = Project.includes('cooperations','department','plan').where(user: current_user)
+    # Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
   end
 
   # GET /projects/1
