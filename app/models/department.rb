@@ -16,7 +16,10 @@ class Department < ActiveRecord::Base
      sub_departments.size > 0
   end
 
+
   scope :members2, -> { users.where("role=? OR role=?", 'admin','have') }
+
+
 
   #返回成员
   def members  #shepujing zhangyajun chenjinxin 
@@ -46,10 +49,6 @@ class Department < ActiveRecord::Base
     # end
     # @staff
     return users.where("role != ?",'have')
-  end
-
-  def passageway_income
-
   end
 
 

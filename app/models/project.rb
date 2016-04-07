@@ -17,6 +17,9 @@ class Project < ActiveRecord::Base
   validates_numericality_of :scale, :greater_than_or_equal_to => 30000000 , :message => "最小规模3000万" 
   validates_numericality_of :channel_cost, :greater_than_or_equal_to => 0.0 , :less_than_or_equal_to => 1.0 , :message => "请合理设置通道费用" 
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
+
+
+  scope :cc, -> { where("channel_cost > 0 AND channel_cost <=1") }   
   
   def self.find_departments
   	Department.all.collect { |department| [department.name, department.id] } 
