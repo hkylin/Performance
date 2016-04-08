@@ -40,7 +40,7 @@
       <td><%= at_date %></td>
       <td><%=f2 department.count_scale ad %></td>
     </tr>
-    <% department.staff.each do |user| %>
+    <% department.members.each do |user| %>
     <tr>
       <td><%= user.username %></td>
       <td><%= at_date %></td>

@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @department.staff.each do |user| %>
+    <% @department.members.each do |user| %>
     <tr>
       <td><%=user.username%>管理费规模</td>
       <td><%=f2 user.count_fee Date.one_year %></td>

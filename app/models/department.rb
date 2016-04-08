@@ -3,7 +3,17 @@ class Department < ActiveRecord::Base
   belongs_to :sup_department,class_name: 'Department'
   has_many :tasks, as: :taskable
   has_many :department_users
-  has_many :users, through: :department_users #all include admin and members
+  has_many :users, through: :department_users do  #all include admin and members
+    def staff
+      where("department_users.role=?",'staff') 
+    end
+    def admins
+      where("department_users.role=? OR department_users.role=?", 'admin','have')
+    end
+    def members
+      where("department_users.role=? OR department_users.role=?", 'admin','staff')
+    end
+  end
   has_many :plans
   has_many :projects
   # scope :have, -> { where(usertype: 'have') }   #下级部门，马总 have 财富个人中心
@@ -16,39 +26,19 @@ class Department < ActiveRecord::Base
      sub_departments.size > 0
   end
 
-
-  scope :members2, -> { users.where("role=? OR role=?", 'admin','have') }
-
-
-
   #返回成员
-  def members  #shepujing zhangyajun chenjinxin 
-    # @members=Array.new 
-    # department_users.each do |x|
-    #   @members << x.user  unless (x.role == 'admin' or x.role == 'have') 
-    # end
-    # @members
-    return users.where(role: 'staff')
+  def staff  #shepujing zhangyajun chenjinxin 
+    return users.staff
   end
 
   #返回管理者 适用于场景  哪些领导可以看这个部门的绩效考核
   def admins   #总监 副总监 有权限查看整个部门的  #互联网金融部 mahuijun  jinguorui maguoqing 
-    # @admins=Array.new  
-    # department_users.each do |x|
-    #   @admins << x.user  if (x.role == 'admin' or x.role =='have')
-    # end
-    # @admins
-    return users.where("role=? OR role=?", 'admin','have')
+    return users.admins
   end
 
   #管理者与员工   不算上级领导
-  def staff   #总监 副总监 有权限查看整个部门的  #互联网金融部 mahuijun  jinguorui maguoqing 
-    # @staff=Array.new  
-    # department_users.each do |x|
-    #   @staff << x.user  unless (x.role == 'have')
-    # end
-    # @staff
-    return users.where("role != ?",'have')
+  def members   #总监 副总监 有权限查看整个部门的  #互联网金融部 mahuijun  jinguorui maguoqing 
+    return users.members
   end
 
 

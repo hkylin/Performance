@@ -32,3 +32,13 @@ puts '--------test 22--------'
 Department.find(8).projects.cc.each do |project|
 	puts project.name
 end 
+
+puts '--------members--------'
+puts Department.find(8).users.members.collect{|x| puts x.name}
+puts Department.find(8).users.members.size
+puts '--------staff--------'
+puts Department.find(8).users.staff.collect{|x| puts x.name}
+puts Department.find(8).users.staff.size
+puts '--------admins--------'
+puts Department.find(8).users.admins.collect{|x| puts x.name}
+puts Department.find(8).users.admins.size
