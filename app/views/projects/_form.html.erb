@@ -154,12 +154,15 @@
     </div>
   </div>
   
-  <div>
-    <ul class="list-group">
-    <%= f.fields_for :cooperations do |op| %>
-      <%= render 'cooperation_fields', f: op %>
-    <%end%>    
-    <%=link_to_add_association '增加合作者', f, :cooperations, :class => "btn btn-link"%>
+  <div class="form-group">
+    <%= f.label "合作者", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <ul class="list-group">
+      <%= f.fields_for :cooperations do |op| %>
+        <%= render 'cooperation_fields', f: op %>
+      <%end%>    
+      <%=link_to_add_association '增加合作者', f, :cooperations, :class => "btn btn-link"%>
+    </div>
   </div>
 
   <div class="form-group">

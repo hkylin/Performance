@@ -72,13 +72,6 @@
   <%end%>
 
   <div class="form-group">
-    <%= f.label :管理费, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :management_fee, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:management_fee) %>
-  </div>
-  <div class="form-group">
     <%= f.label :费率, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :rate, :class => 'form-control' %>
@@ -86,11 +79,11 @@
     <%=f.error_span(:rate) %>
   </div>
   <div class="form-group">
-    <%= f.label :费用金额, :class => 'control-label col-lg-2' %>
+    <%= f.label :通道费率 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :fee, :class => 'form-control' %>
+      <%= f.text_field :channel_cost , :class => 'form-control'%>
+      <%=f.error_span(:channel_cost) %>
     </div>
-    <%=f.error_span(:fee) %>
   </div>
   <div class="form-group">
     <%= f.label :备注, :class => 'control-label col-lg-2' %>
@@ -107,15 +100,15 @@
     </div>
   </div>
 
-  <div>
-    <%= f.fields_for :cooperations do |op| %>
-      <%= render 'cooperation_fields', f: op %>
-    <%end%>    
-    <%=link_to link_to_add_association '增加合作者', f, :cooperations , :class => "btn btn-link"%>
-  </div>
-
   <div class="form-group">
-    
+    <%= f.label "合作者", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <ul class="list-group">
+      <%= f.fields_for :cooperations do |op| %>
+        <%= render 'cooperation_fields', f: op %>
+      <%end%>    
+      <%=link_to_add_association '增加合作者', f, :cooperations, :class => "btn btn-link"%>
+    </div>
   </div>
 
   <div class="form-group">

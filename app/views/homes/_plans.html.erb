@@ -25,6 +25,7 @@
     -->
       <th>总管理费</th>
       <th>本年已计提管理费</th>
+      <th>流动性规模</th>
       <th>部门</th>
       <th>费率</th>
       <th>归属类型</th>
@@ -60,6 +61,7 @@
         
         <td><%= f2 plan.whole_plan_fee %></td>
         <td><%= f2 plan.this_year_fee %></td>
+        <td><%= f2 plan.mobility_scale %></td>
         <td><%= plan.department.name %></td>
         <td><%= plan.rate %></td>
         <td><%= plan.ownership_type %></td>
