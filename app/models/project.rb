@@ -30,44 +30,79 @@ class Project < ActiveRecord::Base
   end   
 
   ###################项目管理费收入计算###########################
-  def count_income(userr,between_date)
-    bt = bt_start_end(between_date)
-    ratio = getCoRatio(userr)*(1-channel_cost)
-    return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+  def method_missing(method_name, *args, &block)
+    logger.info "-------Project 调用 method_missing  = #{method_name}-------"
+    sum=0.0
+    modifications.each do |modify|
+      logger.info "-----#{modify}-------"
+      sum = sum + modify.send(method_name, *args, &block)
+    end
+    return sum
   end
+
+  def count_income(userr,between_date)
+    if modifications.size==0 
+      bt = bt_start_end(between_date)
+      ratio = getCoRatio(userr)*(1-channel_cost)
+      return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+    else
+      return mo_count_income(userr,between_date)
+    end
+  end
+
   #规模收入计算
   def count_scale(userr,dated=Date.current)
-    if is_contain?(dated)
-      ratio = getCoRatio(userr)*(1-channel_cost)
-      logger.info "#{name}********"
-      return scale*ratio   #计算管理费
+    if modifications.size==0 
+      if is_contain?(dated)
+        ratio = getCoRatio(userr)*(1-channel_cost)
+        logger.info "#{name}********"
+        return scale*ratio   #计算管理费
+      else
+        return 0.0
+      end
     else
-      return 0.0
+      return mo_count_scale(userr,dated)
     end
   end
   #年化的规模收入计算
   def count_annual_scale(userr,between_date=Date.one_year)
-    bt = bt_start_end(between_date)
-    ratio = getCoRatio(userr)*(1-channel_cost)
-    return scale*ratio*(bt[1]-bt[0])/Date.year_days   #计算管理费
+    if modifications.size==0 
+      bt = bt_start_end(between_date)
+      ratio = getCoRatio(userr)*(1-channel_cost)
+      return scale*ratio*(bt[1]-bt[0])/Date.year_days   #计算管理费
+    else
+      return mo_count_annual_scale(userr,between_date)
+    end
   end
   #项目使用外部计划通道，通道管理费收入计算
   def passageway_income(between_date)
-    bt = bt_start_end(between_date)
-    return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
+    if modifications.size==0 
+      bt = bt_start_end(between_date)
+      return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
+    else
+      return mo_passageway_income(between_date)
+    end
   end
   #项目使用外部计划通道，通道规模收入计算
   def passageway_scale(dated)
-    if (is_contain?(dated))
-      return scale*channel_cost   #计算管理费
+    if modifications.size==0 
+      if (is_contain?(dated))
+        return scale*channel_cost   #计算管理费
+      else
+        return 0.0
+      end
     else
-      return 0.0
+      return mo_passageway_scale(dated)
     end
   end
 
   def passageway_annual_scale(between_date)
+    if modifications.size==0 
       bt = bt_start_end(between_date)
       return scale*channel_cost*(bt[1]-bt[0])/Date.year_days   #计算管理费
+    else
+      return mo_passageway_annual_scale(between_date)
+    end
   end
   ##############################################################
 
@@ -99,6 +134,8 @@ class Project < ActiveRecord::Base
     (bt[1]-bt[0])*scale*rate/365   #计算管理费
   end
 
+# a = [1,2,3,4,5,6] ; b = a.each{|x|, sum += x};
+  # TODO  
   def count_fee_modifys(between_date)
     sum=0.0
     modifications.each do |modify|
