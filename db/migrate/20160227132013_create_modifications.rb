@@ -18,6 +18,7 @@ class CreateModifications < ActiveRecord::Migration
 
       t.string :modificationable_type
       t.integer :modificationable_id
+      t.decimal :channel_cost #使用别的部分的资管计划的费用
 
       t.timestamps null: false
     end
