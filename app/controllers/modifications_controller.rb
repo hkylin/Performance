@@ -36,6 +36,7 @@ class ModificationsController < ApplicationController
     @modification.annual = @modificationable.annual
     @modification.charge_type = Modification::CHARGE_TYPE[0]
     @modification.charge_amount = 0.0
+    @modification.channel_cost = @modificationable.channel_cost if (@modificationable.class == Project)
     @modificationable.cooperations.each do |co|
       co1 = co.dup
       co1.cooperationable = @modification
@@ -139,6 +140,6 @@ class ModificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def modification_params
-      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, :charge_type, :charge_amount, cooperations_attributes: [:id, :user_id, :ratio, :_destroy])    
+      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, :charge_type, :charge_amount, :channel_cost, cooperations_attributes: [:id, :user_id, :ratio, :co_type, :_destroy])    
     end
 end
