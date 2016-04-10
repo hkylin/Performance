@@ -79,6 +79,14 @@ class Plan < ActiveRecord::Base
     end
   end
 
+  def count_plan_scale(dated=Date.current)
+    if is_contain?(dated)
+      return scale
+    else
+      return 0.0
+    end
+  end
+
   def passageway_income(between_date)  #计算资管计划的通道费用
     sum = 0.0
     projects.each do |p|
@@ -94,6 +102,21 @@ class Plan < ActiveRecord::Base
     end
     sum
   end
+
+  #计算计划流动性
+  def mobility_scale(dated=Date.current)
+    if is_contain?(dated)
+      sum = scale  
+      projects.each do |p|
+        sum -= p.scale if p.is_contain?(dated)
+      end
+      return sum
+    else
+      return 0.0
+    end
+  end
+
+
   #################################################################################
 
   def count_fee_between(between_date)
