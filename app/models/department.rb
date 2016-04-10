@@ -16,11 +16,18 @@ class Department < ActiveRecord::Base
   end
   has_many :plans
   has_many :projects
+
+  # Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
+
   # scope :have, -> { where(usertype: 'have') }   #下级部门，马总 have 财富个人中心
   # scope :admin, -> { where(usertype: 'admin') } #所属部门，管理者
   # scope :staff, -> { where(usertype: 'staff') } #所属部门，普通员工
   
   # scope :online, -> { published.where('deadline is NULL or deadline > ?', Date.today) }
+
+  def self.plan_manager?(userr)
+    Department.find_by_name('合作支持部').members.include?(userr)
+  end
 
   def has_sub_departments?
      sub_departments.size > 0
@@ -40,21 +47,23 @@ class Department < ActiveRecord::Base
   def members   #总监 副总监 有权限查看整个部门的  #互联网金融部 mahuijun  jinguorui maguoqing 
     return users.members
   end
-
-
   ################个人绩效考核###项目管理费收入计算###########################
   def count_income(between_date)
+    logger.info "＝＝＝＝＝＝＝＝－－－－－开始部门收入－－－－－＝＝＝＝＝＝"
     sum = 0.0
     if has_sub_departments?
+      logger.info "＝＝＝＝＝＝＝＝－－－－－计算：子部门收入－－－－－＝＝＝＝＝＝"
       sub_departments.each do |sub_department|
         sum += sub_department.count_income(between_date)
       end
       return sum
     end
-    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}规模收入－－－－－＝＝＝＝＝＝"
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算： 用户 #{name}收入－－－－－＝＝＝＝＝＝"
     
-    staff.each do |user|
-      sum +=  user.count_income(between_date)
+    members.each do |user|
+      income = user.count_income(between_date)
+      logger.info "---#{user.name}--income:-#{income}------"
+      sum +=  income
     end
     sum += channel_income(between_date)
     return sum
@@ -135,6 +144,84 @@ class Department < ActiveRecord::Base
     end
     sum
   end
+
+  
+  #####################
+  #该部门名下所有计划规模总和 +/- 与他人合作项目规模占比
+  def count_scale2(dated=Date.current)
+    return count_plans_scale(dated)-count_inproject_outuser_scale(dated)+count_outproject_inuser_scale(dated)
+  end
+  #该部门名下所有计划管理费总和 +/- 与他人合作项目管理费占比
+  def count_income2(between_date=Date.since_this_year)
+    return count_plans_income(between_date)-count_inproject_outuser_income(between_date)+count_outproject_inuser_income(between_date)
+  end
+
+  def count_plans_scale(dated)
+    sum=0.0
+    plans.each do |p|
+      sum+=p.count_plan_scale
+    end
+    return sum
+  end
+  
+  def count_inproject_outuser_scale(dated)
+    sum=0.0
+    projects.cc do |p| #我部带有通道费的项目
+      p.cooperations.each do |c|
+        unless(members.include(c))
+          sum+=p.count_scale(c,dated)
+        end
+      end
+    end
+    return sum
+  end
+
+  def count_outproject_inuser_scale(dated)
+    # projects = Project.includes(:cooperations).where.not(user: self).where(cooperations:{user: self})
+    sum=0.0
+    members.each do |m|
+      projects = Project.includes(:cooperations).where.not(department: self).where(cooperations:{user: m})#外部门项目，但是合作者有我部门员工
+      projects do |p|
+        sum+=p.count_scale(c,dated)#计算该员工规模比例
+      end
+    end 
+    return sum
+  end
+
+    def count_plans_income(between_date)
+    sum=0.0
+    plans.each do |p|
+      sum+=p.this_year_fee
+    end
+    return sum
+  end
+  
+  def count_inproject_outuser_income(between_date)
+    sum=0.0
+    projects.cc do |p| #我部带有通道费的项目
+      p.cooperations.each do |c|
+        unless(members.include(c))
+          sum+=p.count_income(c,between_date)
+        end
+      end
+    end
+    return sum
+  end
+
+  def count_outproject_inuser_income(between_date)
+    # projects = Project.includes(:cooperations).where.not(user: self).where(cooperations:{user: self})
+    sum=0.0
+    members.each do |m|
+      projects = Project.includes(:cooperations).where.not(department: self).where(cooperations:{user: m})#外部门项目，但是合作者有我部门员工
+      projects do |p|
+        sum+=p.count_scale(c,between_date)#计算该员工规模比例
+      end
+    end 
+    return sum
+  end
+
+
+
   ##########################################################################
 
   #统计资管计划管理费
