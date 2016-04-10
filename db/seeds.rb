@@ -38,16 +38,8 @@ jh5=Department.create(name: '金融合作五部', sup_department: jh)
 jhcx1=Department.create(name: '创新业务一部', sup_department: jh)
 jhcx2=Department.create(name: '创新业务二部', sup_department: jh)
 
-mhj=User.create(email: 'mahuijun@msjyamc.com.cn', password: '12345678',username: '马慧军', usertype: 'admin')
-jgr=User.create(email: 'jinguorui@msjyamc.com.cn', password: '12345678', username: '金国瑞', usertype: 'admin')
+
 czh=User.create(email: 'chenzhihua@msjyamc.com.cn', password: '12345678', username: '陈志华', usertype: 'admin')
-
-mgq=User.create(username: :马国庆, email: 'maguoqing@msjyamc.com.cn', password: '12345678', usertype: 'admin')
-
-cjx=User.create(username: :陈金鑫, email: 'chenjinxin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
-zyj=User.create(username: :张亚军, email: 'zhangyajun@msjyamc.com.cn', password: '12345678',usertype: 'staff')
-spj=User.create(username: :舍蒲京, email: 'shepujing@msjyamc.com.cn', password: '12345678',usertype: 'staff')
-
 lf=User.create(username: :梁奉, email: 'liangfeng@msjyamc.com.cn', password: '12345678',usertype: 'admin')
 zyl=User.create(username: :朱永林, email: 'zhuyonglin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 
@@ -58,32 +50,7 @@ hj=User.create(username: :黄健, email: 'huangjian@msjyamc.com.cn', password: '
 usl=User.create(username: :宋琳, email: 'songlin@msjyamc.com.cn', password: '12345678',usertype: 'admin')
 uwt=User.create(username: :王涛, email: 'wangtao@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 ulw=User.create(username: :李炜, email: 'liwei@msjyamc.com.cn', password: '12345678',usertype: 'staff')
-# users=[mhj,jgr]
-# cf.users=users
-# cf.save
 
-#----财富事业部领导配置
-
-DepartmentUser.create(department: cf, user: mhj, role: 'admin')
-DepartmentUser.create(department: cf, user: jgr, role: 'admin')
-DepartmentUser.create(department: jh, user: czh, role: 'admin')
-# DepartmentUser.create(department: jg, user: jgr, role: 'have')
-# DepartmentUser.create(department: jg, user: mhj, role: 'have')
-# DepartmentUser.create(department: gr, user: jgr, role: 'have')
-# DepartmentUser.create(department: gr, user: mhj, role: 'have')
-# DepartmentUser.create(department: cpyf, user: jgr, role: 'have')
-# DepartmentUser.create(department: cpyf, user: mhj, role: 'have')
-# cf.save
-
-#DepartmentUser.create(department: hlw, user: jgr, role: 'have')#have代表管理,直属子部门不再需要，只有跨事业部，跨条线的时候才需要
-#DepartmentUser.create(department: hlw, user: mhj, role: 'have')
-
-#----互联网金融部配置
-DepartmentUser.create(department: hlw, user: mgq, role: 'admin')
-
-DepartmentUser.create(department: hlw, user: cjx, role: 'staff')
-DepartmentUser.create(department: hlw, user: zyj, role: 'staff')
-DepartmentUser.create(department: hlw, user: spj, role: 'staff')
 
 DepartmentUser.create(department: hzzc, user: lf, role: 'admin')
 DepartmentUser.create(department: hzzc, user: zyl, role: 'staff')
@@ -96,6 +63,44 @@ DepartmentUser.create(department: jh1, user: hj, role: 'staff')
 DepartmentUser.create(department: jh3, user: usl, role: 'admin')
 DepartmentUser.create(department: jh3, user: uwt, role: 'staff')
 DepartmentUser.create(department: jh3, user: ulw, role: 'staff')
+
+
+mhj=User.create(email: 'mahuijun@msjyamc.com.cn', password: '12345678',username: '马慧军', usertype: 'admin')
+jgr=User.create(email: 'jinguorui@msjyamc.com.cn', password: '12345678', username: '金国瑞', usertype: 'admin')
+mgq=User.create(username: :马国庆, email: 'maguoqing@msjyamc.com.cn', password: '12345678', usertype: 'admin')
+cjx=User.create(username: :陈金鑫, email: 'chenjinxin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+zyj=User.create(username: :张亚军, email: 'zhangyajun@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+spj=User.create(username: :舍蒲京, email: 'shepujing@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+
+DepartmentUser.create(department: cf, user: mhj, role: 'admin')
+DepartmentUser.create(department: cf, user: jgr, role: 'admin')
+DepartmentUser.create(department: jh, user: czh, role: 'admin')
+
+#----互联网金融部配置
+DepartmentUser.create(department: hlw, user: mgq, role: 'admin')
+DepartmentUser.create(department: hlw, user: cjx, role: 'staff')
+DepartmentUser.create(department: hlw, user: zyj, role: 'staff')
+DepartmentUser.create(department: hlw, user: spj, role: 'staff')
+
+
+# users=[mhj,jgr]
+# cf.users=users
+# cf.save
+
+#----财富事业部领导配置
+
+# DepartmentUser.create(department: jg, user: jgr, role: 'have')
+# DepartmentUser.create(department: jg, user: mhj, role: 'have')
+# DepartmentUser.create(department: gr, user: jgr, role: 'have')
+# DepartmentUser.create(department: gr, user: mhj, role: 'have')
+# DepartmentUser.create(department: cpyf, user: jgr, role: 'have')
+# DepartmentUser.create(department: cpyf, user: mhj, role: 'have')
+# cf.save
+
+#DepartmentUser.create(department: hlw, user: jgr, role: 'have')#have代表管理,直属子部门不再需要，只有跨事业部，跨条线的时候才需要
+#DepartmentUser.create(department: hlw, user: mhj, role: 'have')
+
+
 # hlw.save
 
 task1=Task.create(year: 2016, profit: 20000000, amount: 12000000, taskable: cf)
