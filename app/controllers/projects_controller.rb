@@ -64,6 +64,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.plan=@plan
+    @project.user = current_user
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: '成功创建新项目' }
