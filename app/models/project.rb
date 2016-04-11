@@ -55,7 +55,7 @@ class Project < ActiveRecord::Base
     if modifications.size==0 
       if is_contain?(dated)
         ratio = getCoRatio(userr)*(1-channel_cost)
-        logger.info "#{name}********"
+        logger.info "#{name}***规模：#{scale}     用户：#{userr.name}    比例：#{ratio}***"
         return scale*ratio   #计算管理费
       else
         return 0.0

@@ -128,4 +128,114 @@ RSpec.describe Department, type: :model do
     puts jh.count_scale2
     puts jh.count_income2
   end
+
+
+  it 'should test count_scale2' do
+    # # This file should contain all the record creation needed to seed the database with its default values.
+    # # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+    # #
+    # # Examples:
+    # #
+    # #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+    # #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+    mj=Department.create(name: '民生加银资产管理有限公司')
+    cf=Department.create(name: '财富管理事业部', sup_department: mj)
+    jh=Department.create(name: '金融合作事业部', sup_department: mj)
+    qj=Department.create(name: '企业金融事业部', sup_department: mj)
+
+    Department.create(name: '资本市场小组', sup_department: qj)
+    Department.create(name: '综合管理部', sup_department: qj)
+    yg=Department.create(name: '业务管理部', sup_department: mj)
+
+    hlw=Department.create(name: '互联网金融部', sup_department: cf)
+    jg=Department.create(name: '机构客户中心', sup_department: cf)
+    gr=Department.create(name: '个人客户中心', sup_department: cf)
+    cpyf=Department.create(name: '产品研发中心', sup_department: cf)
+
+    hzzc=Department.create(name: '合作支持部', sup_department: jh)
+    jh1=Department.create(name: '金融合作一部', sup_department: jh)
+    jh2=Department.create(name: '金融合作二部', sup_department: jh)
+    jh3=Department.create(name: '金融合作三部', sup_department: jh)
+    jh4=Department.create(name: '金融合作四部', sup_department: jh)
+    jh5=Department.create(name: '金融合作五部', sup_department: jh)
+    jhcx1=Department.create(name: '创新业务一部', sup_department: jh)
+    jhcx2=Department.create(name: '创新业务二部', sup_department: jh)
+
+    czh=User.create(email: 'chenzhihua@msjyamc.com.cn', password: '12345678', username: '陈志华', usertype: 'admin')
+    lf=User.create(username: :梁奉, email: 'liangfeng@msjyamc.com.cn', password: '12345678',usertype: 'admin')
+    zyl=User.create(username: :朱永林, email: 'zhuyonglin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+
+    wjf=User.create(username: :王金凤, email: 'wangjinfeng@msjyamc.com.cn', password: '12345678',usertype: 'admin')
+    sws=User.create(username: :史维思, email: 'shiweisi@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+    hj=User.create(username: :黄健, email: 'huangjian@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+
+    usl=User.create(username: :宋琳, email: 'songlin@msjyamc.com.cn', password: '12345678',usertype: 'admin')
+    uwt=User.create(username: :王涛, email: 'wangtao@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+    ulw=User.create(username: :李炜, email: 'liwei@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+
+    DepartmentUser.create(department: hzzc, user: lf, role: 'admin')
+    DepartmentUser.create(department: hzzc, user: zyl, role: 'staff')
+
+    DepartmentUser.create(department: jh1, user: wjf, role: 'admin')
+    DepartmentUser.create(department: jh1, user: sws, role: 'staff')
+    DepartmentUser.create(department: jh1, user: hj, role: 'staff')
+
+    DepartmentUser.create(department: jh3, user: usl, role: 'admin')
+    DepartmentUser.create(department: jh3, user: uwt, role: 'staff')
+    DepartmentUser.create(department: jh3, user: ulw, role: 'staff')
+
+    mhj=User.create(email: 'mahuijun@msjyamc.com.cn', password: '12345678',username: '马慧军', usertype: 'admin')
+    jgr=User.create(email: 'jinguorui@msjyamc.com.cn', password: '12345678', username: '金国瑞', usertype: 'admin')
+    mgq=User.create(username: :马国庆, email: 'maguoqing@msjyamc.com.cn', password: '12345678', usertype: 'admin')
+    cjx=User.create(username: :陈金鑫, email: 'chenjinxin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+    zyj=User.create(username: :张亚军, email: 'zhangyajun@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+    spj=User.create(username: :舍蒲京, email: 'shepujing@msjyamc.com.cn', password: '12345678',usertype: 'staff')
+
+    DepartmentUser.create(department: cf, user: mhj, role: 'admin')
+    DepartmentUser.create(department: cf, user: jgr, role: 'admin')
+    DepartmentUser.create(department: jh, user: czh, role: 'admin')
+    DepartmentUser.create(department: hlw, user: mgq, role: 'admin')
+    DepartmentUser.create(department: hlw, user: cjx, role: 'staff')
+    DepartmentUser.create(department: hlw, user: zyj, role: 'staff')
+    DepartmentUser.create(department: hlw, user: spj, role: 'staff')
+
+    task1=Task.create(year: 2016, profit: 20000000, amount: 12000000, taskable: cf)
+    task2=Task.create(year: 2016, profit: 20000000, amount: 120000000, taskable: mgq)
+    task4=Task.create(year: 2016, profit: 20000000, amount: 240000000, taskable: mhj)
+    task5=Task.create(year: 2016, profit: 20000000, amount: 240000000, taskable: jgr)
+    task6=Task.create(year: 2016, profit: 20000000, amount: 200000000, taskable: cf)
+    task7=Task.create(year: 2016, profit: 20000000, amount: 40000000, taskable: gr)
+    task8=Task.create(year: 2016, profit: 20000000, amount: 200000000, taskable: jg)
+    task8=Task.create(year: 2016, profit: 20000000, amount: 200000000, taskable: cpyf)
+    task11=Task.create(year: 2016, profit: 20000000, amount: 120000000, taskable: cjx)
+    task12=Task.create(year: 2016, profit: 20000000, amount: 160000000, taskable: spj)
+    task13=Task.create(year: 2016, profit: 20000000, amount: 200000000, taskable: zyj)
+    plan1=Plan.create(name: '金和1号', plan_type: Plan::PLAN_TYPE[0], charge_type: Plan::CHARGE_TYPE[1], ownership_type: Plan::OWNERSHIP_TYPE[1],charge_amount:10000, charge_date:'2016-4-6', number: 10000032, user: lf, department: jh2, parter: :民生银行, risk: :正常, start_date: '2016-4-1', end_date: '2016-6-28',scale: 800000000, rate: 0.004, annual: 360)
+
+
+    project1=Project.create(name: '苏州高铁新城经济发展有限公司1', number: :QS713003, plan: plan1, user: usl, department: jh2,parter: :民生银行, risk: :正常, start_date: '2016-4-1', end_date: '2016-6-28',scale: 800000000, channel_cost: 0.5, rate: 0.004, annual: 360)
+
+    Cooperation.create(user: usl, ratio: 0.3, cooperationable: project1, co_type: Cooperation::CO_TYPE[0])
+    Cooperation.create(user: wjf, ratio: 0.7, cooperationable: project1, co_type: Cooperation::CO_TYPE[1])
+    puts "-------jh1-------"
+    puts jh1.count_scale2
+    jh1.members.each do |m|
+        puts m.name
+    end
+    puts jh1.count_inproject_outuser_scale(Date.current)
+    puts jh1.count_outproject_inuser_scale(Date.current)
+    puts jh1.count_income2
+    puts "-------jh2-------"
+    puts jh2.count_scale2
+    puts jh2.count_inproject_outuser_scale(Date.current)
+    puts jh2.count_outproject_inuser_scale(Date.current)
+    puts jh2.count_income2
+    puts "-------jh3-------"
+    puts jh3.count_scale2
+    puts jh3.count_inproject_outuser_scale(Date.current)
+    puts jh3.count_outproject_inuser_scale(Date.current)
+    puts jh3.count_income2
+
+  end
 end

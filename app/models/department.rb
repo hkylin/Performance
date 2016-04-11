@@ -151,13 +151,13 @@ class Department < ActiveRecord::Base
   def count_scale2(dated=Date.current)
     sum = 0.0
     if has_sub_departments?
-      logger.info "＝＝＝＝＝＝＝＝－－－－－计算：子部门收入－－－－－＝＝＝＝＝＝"
+      logger.info "＝＝＝＝#{self.name}＝＝＝＝－－－－－计算：子部门规模－－－－－＝＝＝＝＝＝"
       sub_departments.each do |sub_department|
         sum += sub_department.count_scale2(dated)
       end
       return sum
     end
-    logger.info "＝＝＝＝＝＝＝＝－－－－－计算：部门规模－－－－－＝＝＝＝＝＝"
+    logger.info "＝＝＝＝＝＝#{self.name}＝＝－－－－－计算：部门规模－－－－－＝＝＝＝＝＝"
     return count_plans_scale(dated)-count_inproject_outuser_scale(dated)+count_outproject_inuser_scale(dated)
   end
   #该部门名下所有计划管理费总和 +/- 与他人合作项目管理费占比
@@ -198,11 +198,15 @@ class Department < ActiveRecord::Base
 
   def count_outproject_inuser_scale(dated)
     # projects = Project.includes(:cooperations).where.not(user: self).where(cooperations:{user: self})
+    logger.info "＝＝＝＝＝＝＝＝－－－－－count_outproject_inuser_scale计算规模：begining－－－－－＝＝＝＝＝＝"
     sum=0.0
     members.each do |m|
+      logger.info "＝＝＝＝＝＝＝＝－－－－－count_outproject_inuser_scale 内部协作者#{m}－－－－－＝＝＝＝＝＝"    
       projects = Project.includes(:cooperations).where.not(department: self).where(cooperations:{user: m})#外部门项目，但是合作者有我部门员工
-      projects do |p|
-        sum+=p.count_scale(m,dated)#计算该员工规模比例
+      logger.info "＝＝＝＝＝＝＝＝－－－－－count_outproject_inuser_scale 内部协作者#{m} 项目数 #{projects.size}－－－－－＝＝＝＝＝＝"    
+      projects.each do |p|
+      logger.info "＝＝＝＝＝＝＝＝－－－－－count_outproject_inuser_scale 外部项目#{p.name},内部协作者#{m}－－－－－＝＝＝＝＝＝"    
+        sum+=p.count_scale(m,dated)#计算该员工规模比例coun
       end
     end 
     logger.info "＝＝＝＝＝＝＝＝－－－－－count_outproject_inuser_scale计算规模：#{sum}－－－－－＝＝＝＝＝＝"
@@ -236,8 +240,8 @@ class Department < ActiveRecord::Base
     sum=0.0
     members.each do |m|
       projects = Project.includes(:cooperations).where.not(department: self).where(cooperations:{user: m})#外部门项目，但是合作者有我部门员工
-      projects do |p|
-        sum+=p.count_scale(m,between_date)#计算该员工规模比例
+      projects.each  do |p|
+        sum+=p.count_income(m,between_date)#计算该员工规模比例
       end
     end 
     logger.info "count_outproject_inuser_income#{sum}－－－－－＝＝＝＝＝＝"
