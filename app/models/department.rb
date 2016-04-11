@@ -149,17 +149,33 @@ class Department < ActiveRecord::Base
   #####################
   #该部门名下所有计划规模总和 +/- 与他人合作项目规模占比
   def count_scale2(dated=Date.current)
+    sum = 0.0
+    if has_sub_departments?
+      logger.info "＝＝＝＝＝＝＝＝－－－－－计算：子部门收入－－－－－＝＝＝＝＝＝"
+      sub_departments.each do |sub_department|
+        sum += sub_department.count_scale2(dated)
+      end
+      return sum
+    end
     return count_plans_scale(dated)-count_inproject_outuser_scale(dated)+count_outproject_inuser_scale(dated)
   end
   #该部门名下所有计划管理费总和 +/- 与他人合作项目管理费占比
   def count_income2(between_date=Date.since_this_year)
+    sum = 0.0
+    if has_sub_departments?
+      logger.info "＝＝＝＝＝＝＝＝－－－－－计算：子部门收入－－－－－＝＝＝＝＝＝"
+      sub_departments.each do |sub_department|
+        sum += sub_department.count_income2(between_date)
+      end
+      return sum
+    end
     return count_plans_income(between_date)-count_inproject_outuser_income(between_date)+count_outproject_inuser_income(between_date)
   end
 
   def count_plans_scale(dated)
     sum=0.0
     plans.each do |p|
-      sum+=p.count_plan_scale
+      sum+=p.count_plan_scale(dated)
     end
     return sum
   end
