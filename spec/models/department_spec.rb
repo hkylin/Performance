@@ -218,24 +218,27 @@ RSpec.describe Department, type: :model do
 
     Cooperation.create(user: usl, ratio: 0.3, cooperationable: project1, co_type: Cooperation::CO_TYPE[0])
     Cooperation.create(user: wjf, ratio: 0.7, cooperationable: project1, co_type: Cooperation::CO_TYPE[1])
-    puts "-------jh1-------"
-    puts jh1.count_scale2
-    jh1.members.each do |m|
-        puts m.name
-    end
-    puts jh1.count_inproject_outuser_scale(Date.current)
-    puts jh1.count_outproject_inuser_scale(Date.current)
-    puts jh1.count_income2
+    # puts "-------jh1-------"
+    # puts jh1.count_scale2
+    # jh1.members.each do |m|
+    #     puts m.name
+    # end
+    # puts jh1.count_inproject_outuser_scale(Date.current)
+    # puts jh1.count_outproject_inuser_scale(Date.current)
+    # puts jh1.count_income2
     puts "-------jh2-------"
-    puts jh2.count_scale2
+    # puts jh2.count_scale2
+    jh2.projects.cc.each do |p|
+        puts p.name
+    end
     puts jh2.count_inproject_outuser_scale(Date.current)
-    puts jh2.count_outproject_inuser_scale(Date.current)
-    puts jh2.count_income2
-    puts "-------jh3-------"
-    puts jh3.count_scale2
-    puts jh3.count_inproject_outuser_scale(Date.current)
-    puts jh3.count_outproject_inuser_scale(Date.current)
-    puts jh3.count_income2
+    # puts jh2.count_outproject_inuser_scale(Date.current)
+    # puts jh2.count_income2
+    # puts "-------jh3-------"
+    # puts jh3.count_scale2
+    # puts jh3.count_inproject_outuser_scale(Date.current)
+    # puts jh3.count_outproject_inuser_scale(Date.current)
+    # puts jh3.count_income2
 
   end
 end

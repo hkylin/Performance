@@ -160,20 +160,7 @@ class Department < ActiveRecord::Base
     logger.info "＝＝＝＝＝＝#{self.name}＝＝－－－－－计算：部门规模－－－－－＝＝＝＝＝＝"
     return count_plans_scale(dated)-count_inproject_outuser_scale(dated)+count_outproject_inuser_scale(dated)
   end
-  #该部门名下所有计划管理费总和 +/- 与他人合作项目管理费占比
-  def count_income2(between_date=Date.since_this_year)
-    sum = 0.0
-    if has_sub_departments?
-      logger.info "＝＝＝＝＝＝＝＝－－－－－计算：子部门收入－－－－－＝＝＝＝＝＝"
-      sub_departments.each do |sub_department|
-        sum += sub_department.count_income2(between_date)
-      end
-      return sum
-    end
-    logger.info "＝＝＝＝＝＝＝＝－－－－－计算：部门收入－－－－－＝＝＝＝＝＝"
-    return count_plans_income(between_date)-count_inproject_outuser_income(between_date)+count_outproject_inuser_income(between_date)
-  end
-
+  
   def count_plans_scale(dated)
     sum=0.0
     plans.each do |p|
@@ -185,10 +172,14 @@ class Department < ActiveRecord::Base
   
   def count_inproject_outuser_scale(dated)
     sum=0.0
-    projects.cc do |p| #我部带有通道费的项目
+    logger.info "＝＝＝＝＝＝＝＝－－－－－count_inproject_outuser_scale计算规模：begining－－－－－＝＝＝＝＝＝"
+    projects.cc.each do |p| #我部带有通道费的项目
+      logger.info "------#{p.name}------"
       p.cooperations.each do |c|
-        unless(members.include(c))
-          sum+=p.count_scale(c,dated)
+        logger.info "------#{c.user.name}------"
+        unless(members.include?(c.user))
+          logger.info "-----外部用户-#{c.user.name}------"
+          sum+=p.count_scale(c.user,dated)
         end
       end
     end
@@ -213,6 +204,20 @@ class Department < ActiveRecord::Base
     return sum
   end
 
+  #该部门名下所有计划管理费总和 +/- 与他人合作项目管理费占比
+  def count_income2(between_date=Date.since_this_year)
+    sum = 0.0
+    if has_sub_departments?
+      logger.info "＝＝＝＝＝＝＝＝－－－－－计算：子部门收入－－－－－＝＝＝＝＝＝"
+      sub_departments.each do |sub_department|
+        sum += sub_department.count_income2(between_date)
+      end
+      return sum
+    end
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算：部门收入－－－－－＝＝＝＝＝＝"
+    return count_plans_income(between_date)-count_inproject_outuser_income(between_date)+count_outproject_inuser_income(between_date)
+  end
+
   def count_plans_income(between_date)
     sum=0.0
     plans.each do |p|
@@ -224,10 +229,10 @@ class Department < ActiveRecord::Base
   
   def count_inproject_outuser_income(between_date)
     sum=0.0
-    projects.cc do |p| #我部带有通道费的项目
+    projects.cc.each do |p| #我部带有通道费的项目
       p.cooperations.each do |c|
-        unless(members.include(c))
-          sum+=p.count_income(c,between_date)
+        unless(members.include?(c.user))
+          sum+=p.count_income(c.user,between_date)
         end
       end
     end
