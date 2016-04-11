@@ -93,7 +93,7 @@ class Department < ActiveRecord::Base
       return sum
     end
 
-    staff.each do |user|
+    members.each do |user|
       sum +=  user.count_scale(dated)
     end
     sum += channel_scale(dated)
@@ -124,7 +124,7 @@ class Department < ActiveRecord::Base
       end
       return sum
     end
-    staff.each do |user|
+    members.each do |user|
       sum +=  user.count_annual_scale(between_date)
     end
     sum += channel_annual_scale(between_date)
@@ -255,7 +255,7 @@ class Department < ActiveRecord::Base
     startd=between_date[0]
     endd=between_date[1]
     sum=0.0
-    staff.each do |user|
+    members.each do |user|
       sum += user.count_plan_manage_fee(startd,endd)
     end
     sum
@@ -265,7 +265,7 @@ class Department < ActiveRecord::Base
     startd=between_date[0]
     endd=between_date[1]
     sum=0.0
-    staff.each do |user|
+    members.each do |user|
       sum += user.count_fee_between(startd,endd)
     end
     sum
@@ -279,7 +279,7 @@ class Department < ActiveRecord::Base
 
   def count_scale_old(at_date)
     sum=0.0
-    staff.each do |user|
+    members.each do |user|
       sum += user.count_scale(at_date)
     end
     sum
@@ -287,7 +287,7 @@ class Department < ActiveRecord::Base
 
   def count_fee_between(startd,endd)  #计算个人的计划与项目的管理费
     sum=0.0
-    staff.each do |user|
+    members.each do |user|
       sum += user.count_fee_between(startd,endd)
     end
     sum
