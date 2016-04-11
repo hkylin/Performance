@@ -15,6 +15,8 @@
         <th>四季度管理费</th>
         <th>当前规模</th>
         <th>年化规模</th>
+        <th>全年管理费1</th>
+        <th>当前规模1</th>
       </tr>
     </thead>
     <tbody>
@@ -41,6 +43,8 @@
         <td><%=f2 department.count_income Date.fourth_quarter%></td>
         <td><%=f2 department.count_scale %></td>
         <td><%=f2 department.count_annual_scale %></td>
+        <td><%=f2 object.count_income2 Date.one_year %></td>
+        <td><%=f2 object.count_scale2 %></td>
       </tr>
       
       <% end %>
