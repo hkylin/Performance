@@ -173,7 +173,7 @@ class Department < ActiveRecord::Base
   def count_inproject_outuser_scale(dated)
     sum=0.0
     logger.info "＝＝＝＝＝＝＝＝－－－－－count_inproject_outuser_scale计算规模：begining－－－－－＝＝＝＝＝＝"
-    projects.cc.each do |p| #我部带有通道费的项目
+    projects.each do |p| #我部带有通道费的项目
       logger.info "------#{p.name}------"
       p.cooperations.each do |c|
         logger.info "------#{c.user.name}------"
@@ -229,7 +229,7 @@ class Department < ActiveRecord::Base
   
   def count_inproject_outuser_income(between_date)
     sum=0.0
-    projects.cc.each do |p| #我部带有通道费的项目
+    projects.each do |p| #我部带有通道费的项目
       p.cooperations.each do |c|
         unless(members.include?(c.user))
           sum+=p.count_income(c.user,between_date)
