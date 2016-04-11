@@ -191,7 +191,7 @@ class Department < ActiveRecord::Base
     def count_plans_income(between_date)
     sum=0.0
     plans.each do |p|
-      sum+=p.this_year_fee
+      sum+=p.count_plan_manage_fee(between_date)
     end
     return sum
   end
