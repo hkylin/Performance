@@ -198,7 +198,7 @@ class Department < ActiveRecord::Base
     members.each do |m|
       projects = Project.includes(:cooperations).where.not(department: self).where(cooperations:{user: m})#外部门项目，但是合作者有我部门员工
       projects do |p|
-        sum+=p.count_scale(c,dated)#计算该员工规模比例
+        sum+=p.count_scale(m,dated)#计算该员工规模比例
       end
     end 
     return sum
@@ -230,7 +230,7 @@ class Department < ActiveRecord::Base
     members.each do |m|
       projects = Project.includes(:cooperations).where.not(department: self).where(cooperations:{user: m})#外部门项目，但是合作者有我部门员工
       projects do |p|
-        sum+=p.count_scale(c,between_date)#计算该员工规模比例
+        sum+=p.count_scale(m,between_date)#计算该员工规模比例
       end
     end 
     return sum
