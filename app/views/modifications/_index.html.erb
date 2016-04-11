@@ -46,7 +46,7 @@
 
 <% logger.info   "----------------#{object.class.to_s}------------------"%>
 <% if object.class.to_s =='Project'%>
-  <%= link_to '新建 调整', new_project_modification_path(object) %>
+  <%= link_to '新建 调整', new_project_modification_path(object) , :class=>"btn btn-link"%>
 <%else%>
-  <%= link_to '新建 调整', new_plan_modification_path(object) %>
+  <%= link_to '新建 调整', new_plan_modification_path(object) , :class=>"btn btn-link"%>
 <%end%>

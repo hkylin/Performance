@@ -16,7 +16,7 @@
       <th><%= model_class.human_attribute_name(:fee) %></th>
       <th><%= model_class.human_attribute_name(:notes) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%= '行为' %></th>
     </tr>
   </thead>
   <tbody>
@@ -47,14 +47,14 @@
   </tbody>
 </table>
 <% if @modificationable.class.to_s == 'Project'%>
- <%= link_to :新建—项目调整,
-             new_project_modification_path(@modificationable),
-             :class => 'btn btn-primary' %> |
- <%= link_to '当前资管计划的项目列表', plan_projects_path(@modificationable.plan) %> |
- <%= link_to '我的资管计划表', plans_path %>
+   <%= link_to :新建—项目调整,
+               new_project_modification_path(@modificationable),
+               :class => 'btn btn-primary' %> |
+   <%= link_to '当前资管计划的项目列表', plan_projects_path(@modificationable.plan), :class=>'btn btn-link' %> |
+   <%= link_to '我的资管计划表', plans_path, :class=>'btn btn-link' %>
  <%else%>
- <%= link_to :新建—计划调整,
-             new_plan_modification_path(@modificationable),
-             :class => 'btn btn-primary' %> |
- <%= link_to '我的资管计划表', plans_path %>
+   <%= link_to :新建—计划调整,
+               new_plan_modification_path(@modificationable),
+               :class => 'btn btn-primary' , :class=>'btn btn-link'%> |
+   <%= link_to '我的资管计划表', plans_path %>
  <%end%>

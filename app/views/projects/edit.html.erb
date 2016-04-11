@@ -2,5 +2,5 @@
 
 <%= render 'form2' %>
 
-<%= link_to 'Show', project_path(@project) %> |
-<%= link_to 'Back', projects_path(@plan) %>
+<%= link_to '显示项目', project_path(@project), :class=>"btn btn-link" %> |
+<%= link_to '我的项目列表',  "/projects/all", :class=>"btn btn-link" %>

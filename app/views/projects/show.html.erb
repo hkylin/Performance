@@ -1,3 +1,6 @@
+<div class="page-header">
+  <h1><%=@project.name%>——项目</h1>
+</div>
 <table class = "table table-striped", data-toggle="table" 
         data-show-toggle="true" 
         data-show-columns="true">
@@ -26,7 +29,7 @@
   <tbody>
       <tr>
         <td><%= link_to @project.plan.name, plan_path(@project.plan), :class=>"btn btn-link" %></td>
-        <td><%= link_to @project.name, project_path(@project), :class=>"btn btn-link" %></td>
+        <td><%= @project.name %></td>
         <td><%= @project.scale %></td>
         <td><%= @project.asset_price %></td>
         <td><%= @project.start_date %></td>
@@ -52,6 +55,3 @@
 </table>
 
 <%= render :partial => "/modifications/index", :locals => { :object => @project} %>
-
-<%= link_to '新建 项目调整', new_project_modification_path(@project) %>
-

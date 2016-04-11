@@ -77,12 +77,13 @@
   </tbody>
 </table>
 <!-- <%= link_to 'Projects', plan_projects_path(@plan) %> |  -->
-<%= link_to '编辑', edit_plan_path(@plan) %> |
-<%= link_to '返回', plans_path %>
+<%= link_to '编辑', edit_plan_path(@plan), :class=>"btn btn-link" %> |
+<%= link_to '返回', plans_path, :class=>"btn btn-link" %>
 
 
 <% @projects=@plan.projects %>
 <%= render :partial => "/homes/projects" , :locals => { :projects => @projects, :name => "资管计划" ,:editable => false} %>
 <%= link_to '新建项目', new_plan_project_path(@plan) ,:class => 'btn btn-primary'%>
-
-<%= render :partial => "/modifications/index", :locals => { :object => @plan} %> 
+<!--
+  <%= render :partial => "/modifications/index", :locals => { :object => @plan} %> 
+-->
