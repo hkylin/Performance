@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
       # 非集合类资管计划, 项目类，修改类modifiy不在这里，由计划和项目进去
       if (co.cooperationable.class == Project)
         fee = co.cooperationable.count_income(self,between_date)
-        logger.info "{co.cooperationable.name} 计算的费用= #{fee}"
+        logger.info "#{co.cooperationable.name} 计算费用= #{fee}"
         sum += fee
       end
     end
@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     cooperations.each do |co|
       if (co.cooperationable.class == Project)
         scale = co.cooperationable.count_scale(self,dated)
-        logger.info "{co.cooperationable.name} 计算的费用= #{scale}"
+        logger.info "#{co.cooperationable.name} 计算规模= #{scale}"
         sum += scale
       end
     end
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
     cooperations.each do |co|
       if (co.cooperationable.class == Project)
         scale = co.cooperationable.count_annual_scale(self,between_date)
-        logger.info "{co.cooperationable.name} 计算的费用= #{scale}"
+        logger.info "#{co.cooperationable.name} 计算年华规模= #{scale}"
         sum += scale
       end
     end

@@ -157,6 +157,7 @@ class Department < ActiveRecord::Base
       end
       return sum
     end
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算：部门规模－－－－－＝＝＝＝＝＝"
     return count_plans_scale(dated)-count_inproject_outuser_scale(dated)+count_outproject_inuser_scale(dated)
   end
   #该部门名下所有计划管理费总和 +/- 与他人合作项目管理费占比
@@ -169,6 +170,7 @@ class Department < ActiveRecord::Base
       end
       return sum
     end
+    logger.info "＝＝＝＝＝＝＝＝－－－－－计算：部门收入－－－－－＝＝＝＝＝＝"
     return count_plans_income(between_date)-count_inproject_outuser_income(between_date)+count_outproject_inuser_income(between_date)
   end
 
@@ -177,6 +179,7 @@ class Department < ActiveRecord::Base
     plans.each do |p|
       sum+=p.count_plan_scale(dated)
     end
+    logger.info "＝＝＝＝＝＝＝＝－－－－－count_plans_scale计算规模：#{sum}－－－－－＝＝＝＝＝＝"
     return sum
   end
   
@@ -189,6 +192,7 @@ class Department < ActiveRecord::Base
         end
       end
     end
+    logger.info "＝＝＝＝＝＝＝＝－－－－－count_inproject_outuser_scale计算规模：#{sum}－－－－－＝＝＝＝＝＝"
     return sum
   end
 
@@ -201,14 +205,16 @@ class Department < ActiveRecord::Base
         sum+=p.count_scale(m,dated)#计算该员工规模比例
       end
     end 
+    logger.info "＝＝＝＝＝＝＝＝－－－－－count_outproject_inuser_scale计算规模：#{sum}－－－－－＝＝＝＝＝＝"
     return sum
   end
 
-    def count_plans_income(between_date)
+  def count_plans_income(between_date)
     sum=0.0
     plans.each do |p|
       sum+=p.count_plan_manage_fee(between_date)
     end
+    logger.info "count_plans_income#{sum}－－－－－＝＝＝＝＝＝"
     return sum
   end
   
@@ -221,6 +227,7 @@ class Department < ActiveRecord::Base
         end
       end
     end
+    logger.info "count_inproject_outuser_income#{sum}－－－－－＝＝＝＝＝＝"
     return sum
   end
 
@@ -233,10 +240,9 @@ class Department < ActiveRecord::Base
         sum+=p.count_scale(m,between_date)#计算该员工规模比例
       end
     end 
+    logger.info "count_outproject_inuser_income#{sum}－－－－－＝＝＝＝＝＝"
     return sum
   end
-
-
 
   ##########################################################################
 
