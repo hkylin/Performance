@@ -62,7 +62,7 @@ class ModificationsController < ApplicationController
   def create
     @modification = Modification.new(modification_params)
     @modification.modificationable = find_modificationable
-
+    @modification.channel_cost=0.0 if (@modification.modificationable.class == Plan)
     respond_to do |format|
       if @modification.save
         format.html { redirect_to @modification, notice: '成功创建项目跳转' }
@@ -94,12 +94,16 @@ class ModificationsController < ApplicationController
   # DELETE /modifications/1
   # DELETE /modifications/1.json
   def destroy
-    logger.info modification_params
     @modificationable=@modification.modificationable
+    is_project = (@modificationable.class == Project)
     @modification.destroy
+
     respond_to do |format|
-      format.html { redirect_to project_modifications_url(@modificationable), notice: '项目更改将被删除.' }
-      format.json { head :no_content }
+      if(is_project)
+        format.html { redirect_to project_modifications_url(@modificationable), notice: '项目更改将被删除.' }
+      else
+        format.html { redirect_to plan_modifications_url(@modificationable), notice: '项目更改将被删除.' }
+      end
     end
   end
 
@@ -140,6 +144,6 @@ class ModificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def modification_params
-      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, :charge_type, :charge_amount, :channel_cost, cooperations_attributes: [:id, :user_id, :ratio, :co_type, :_destroy])    
+      params.require(:modification).permit(:project_id, :scale, :start_date, :end_date, :management_fee, :rate, :fee, :annual, :risk,:notes, :charge_type, :charge_amount,:charge_date, :channel_cost, cooperations_attributes: [:id, :user_id, :ratio, :co_type, :_destroy])    
     end
 end

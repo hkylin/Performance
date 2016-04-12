@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1>调整列表</h1>
 </div>
-<table class="table table-striped">
+<table class="table table-striped", data-toggle="table">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -12,8 +12,8 @@
       <th><%= model_class.human_attribute_name(:end_date) %></th>
       <th><%= model_class.human_attribute_name(:charge_type) %></th>
       <th><%= model_class.human_attribute_name(:charge_amount) %></th>
+      <th><%= model_class.human_attribute_name(:charge_date) %></th>
       <th><%= model_class.human_attribute_name(:rate) %></th>
-      <th><%= model_class.human_attribute_name(:fee) %></th>
       <th><%= model_class.human_attribute_name(:notes) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%= '行为' %></th>
@@ -29,8 +29,8 @@
         <td><%= modification.end_date %></td>
         <td><%= modification.charge_type %></td>
         <td><%= modification.charge_amount %></td>
+        <td><%= modification.charge_date %></td>
         <td><%= modification.rate %></td>
-        <td><%= modification.fee %></td>
         <td><%= modification.notes %></td>
         <td><%=l modification.created_at %></td>
         <td>

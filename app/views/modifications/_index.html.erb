@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>调整列表</h1>
 </div>
-<table class="table table-striped">
+<table class="table table-striped" , data-toggle="table">
   <thead>
     <tr>
       <th>名称</th>
@@ -10,8 +10,8 @@
       <th>结束时间</th>
       <th>收费模式</th>
       <th>前后端收费金额</th>
+      <th>固定费用提取日期</th>
       <th>费率</th> 
-      <th>费用金额</th>
       <th>注释</th>
       <th colspan="3"></th>
     </tr>
@@ -26,8 +26,8 @@
         <td><%= pm.end_date %></td>
         <td><%= pm.charge_type %></td>
         <td><%= pm.charge_amount %></td>
+        <td><%= pm.charge_date %></td>
         <td><%= pm.rate %></td>
-        <td><%= pm.fee %></td>
         <td><%= pm.notes %>
           |
           <% pm.cooperations.each do |co|%>

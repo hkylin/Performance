@@ -80,11 +80,19 @@ class Plan < ActiveRecord::Base
   end
 
   def count_plan_scale(dated=Date.current)
-    if is_contain?(dated)
-      return scale
-    else
-      return 0.0
+    if modifications.size == 0
+      if is_contain?(dated)
+        return scale
+      else
+        return 0.0
+      end
     end
+    modifications.each do |mo|
+      if mo.is_contain?(dated)
+        return mo.scale
+      end
+    end   
+    return 0.0   
   end
 
   def passageway_income(between_date)  #计算资管计划的通道费用
@@ -105,15 +113,12 @@ class Plan < ActiveRecord::Base
 
   #计算计划流动性
   def mobility_scale(dated=Date.current)
-    if is_contain?(dated)
-      sum = scale  
-      projects.each do |p|
-        sum -= p.scale if p.is_contain?(dated)
+    scale1=count_plan_scale(dated)
+    return 0.0 if (scale1==0.0)
+    projects.each do |p|
+        scale1 -= p.count_full_scale if p.is_contain?(dated)
       end
-      return sum
-    else
-      return 0.0
-    end
+    return scale1
   end
 
 

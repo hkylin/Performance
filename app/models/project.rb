@@ -64,6 +64,23 @@ class Project < ActiveRecord::Base
       return mo_count_scale(userr,dated)
     end
   end
+
+  def count_full_scale(dated=Date.current)
+    if modifications.size==0 
+      if is_contain?(dated)
+        return scale   #计算管理费
+      else
+        return 0.0
+      end
+    else
+      modifications.each do |mo|
+        if mo.is_contain?(dated)
+          return mo.scale
+        end
+      end
+      return 0.0
+    end
+  end
   #年化的规模收入计算
   def count_annual_scale(userr,between_date=Date.one_year)
     if modifications.size==0 
