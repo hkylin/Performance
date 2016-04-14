@@ -7,8 +7,8 @@
   <thead>
     <tr>
       <th>部门</th>
-      <th>全年管理费</th>
       <th>当前管理费</th>
+      <th>全年管理费</th>
       <th>一季度管理费</th>
       <th>二季度管理费</th>
       <th>三季度管理费</th>
@@ -30,8 +30,8 @@
       </tr>
     <tr>
         <td><%=user.name%>完成情况</td>
-        <td><%=f2 user.count_income Date.one_year %></td>
         <td><%=f2 user.count_income Date.since_this_year %></td>
+        <td><%=f2 user.count_income Date.one_year %></td>
         <td><%=f2 user.count_income Date.first_quarter %></td>
         <td><%=f2 user.count_income Date.second_quarter  %></td>
         <td><%=f2 user.count_income Date.third_quarter%></td>
