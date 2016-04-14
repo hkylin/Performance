@@ -5,15 +5,13 @@
   <thead>
     <tr>
       <th></th>
+      <th>当前管理费</th>
       <th>全年管理费</th>
-      <th>一季度管理费1</th>
-      <th>二季度管理费1</th>
-      <th>三季度管理费1</th>
-      <th>四季度管理费1</th>
-      <th>当前规模</th>
-      <th>年化规模</th>
-      <th>全年管理费1</th>
-      <th>当前规模1</th>
+      <th>一季度管理费</th>
+      <th>二季度管理费</th>
+      <th>三季度管理费</th>
+      <th>四季度管理费</th>
+      <th>规模</th>
     </tr>
   </thead>
   <tbody>
@@ -21,26 +19,22 @@
       <% logger.info "＝＝＝＝＝＝＝＝－－－－－考核指标－－－－－＝＝＝＝＝＝"%>
       <td><%=object.name%>考核指标</td>
       <td><%=f2 object.count_management_fee_tasks %></td>
-      <td><%=f2 object.count_management_fee_tasks/4 %></td>
-      <td><%=f2 object.count_management_fee_tasks/4 %></td>
-      <td><%=f2 object.count_management_fee_tasks/4 %></td>
-      <td><%=f2 object.count_management_fee_tasks/4 %></td>
-      <td><%=f2 object.count_scale_tasks%></td>
-      <td><%=f2 object.count_scale_tasks %></td>
       <td><%=f2 object.count_management_fee_tasks %></td>
+      <td><%=f2 object.count_management_fee_tasks/4 %></td>
+      <td><%=f2 object.count_management_fee_tasks/4 %></td>
+      <td><%=f2 object.count_management_fee_tasks/4 %></td>
+      <td><%=f2 object.count_management_fee_tasks/4 %></td>
       <td><%=f2 object.count_scale_tasks%></td>
     </tr>
     <tr>
       <% logger.info "＝＝＝＝＝＝＝＝－－－－－完成情况－－－－－＝＝＝＝＝＝"%>
       <td><%=object.name%>完成情况</td>
-      <td><%=f2 object.count_income Date.one_year %></td>
+      <td><%=f2 object.count_income2 Date.since_this_year %></td>
+      <td><%=f2 object.count_income2 Date.one_year %></td>
       <td><%=f2 object.count_income2 Date.first_quarter %></td>
       <td><%=f2 object.count_income2 Date.second_quarter %></td>
       <td><%=f2 object.count_income2 Date.third_quarter %></td>
       <td><%=f2 object.count_income2 Date.fourth_quarter %></td>
-      <td><%=f2 object.count_scale %></td>
-      <td><%=f2 object.count_annual_scale %></td>
-      <td><%=f2 object.count_income2 Date.one_year %></td>
       <td><%=f2 object.count_scale2 %></td>
     </tr>
   </tbody>

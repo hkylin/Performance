@@ -16,6 +16,9 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @task.year = Date.current.year
+    @task.amount=0
+    @task.profit=2000000
   end
 
   def new_user_task

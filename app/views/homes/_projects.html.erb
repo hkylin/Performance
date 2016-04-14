@@ -13,7 +13,7 @@
       <th>计划名称</th>
       <th>项目名称</th>
       <th data-sortable="true">项目规模</th>
-      <th data-sortable="true">投资段收益率</th>
+      <!-- <th data-sortable="true">投资段收益率</th> -->
       <th data-sortable="true">开始日期</th>
       <th data-sortable="true">结束日期</th>
       <!-- 
@@ -25,7 +25,7 @@
       
       <th>风险</th>
       <th>规模计算</th>
-      <th>规模年化计算</th>
+      <!-- <th>规模年化计算</th> -->
       <th>收入计算</th>
       <th>通道费用</th>
       <th>合作者</th>
@@ -42,7 +42,7 @@
         <td><%= link_to project.plan.name, plan_path(project.plan), :class=>"btn btn-link" %></td>
         <td><%= link_to project.name, project_path(project), :class=>"btn btn-link" %></td>
         <td><%= project.scale %></td>
-        <td><%= project.asset_price %></td>
+        <!-- <td><%= project.asset_price %></td> -->
         <td><%= project.start_date %></td>
         <td><%= project.end_date %></td>
         <!-- 
@@ -53,7 +53,7 @@
         <td><%= project.rate %></td>
         <td><%= project.risk %></td>
         <td><%=f2 project.count_scale current_user%></td>
-        <td><%=f2 project.count_annual_scale current_user %></td>
+        <!-- <td><%=f2 project.count_annual_scale current_user %></td> -->
         <td><%=f2 project.count_income current_user, Date.since_this_year%></td>
         <td><%=f2 project.channel_cost%></td>
         <td>
