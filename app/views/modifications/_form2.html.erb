@@ -86,7 +86,8 @@
       <%=f.error_span(:rate) %>
     </div>
   </div>
-<% if params[:project_id] %>
+
+<% if @is_project %>
   <div class="form-group">
     <%= f.label :通道费率 ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -113,7 +114,7 @@
   </div>
 
 
-<% if params[:project_id] %>
+<% if @is_project %>
   <div class="form-group">
     <%= f.label "承揽承做比例", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -136,7 +137,7 @@
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit :更新, :class => 'btn btn-primary' %>
-      <% if params[:project_id] %>
+      <% if @is_project %>
         <%= link_to :取消,
                 project_modifications_path(@modificationable), :class => 'btn btn-default' %>
       <%else%>

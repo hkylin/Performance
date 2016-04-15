@@ -23,6 +23,7 @@ class ModificationsController < ApplicationController
   def new
     @modification = Modification.new
     @modificationable = find_modificationable
+    @is_project = (@modificationable.class == Project)
     logger.info "==========#{@modificationable}======"
     @modification.modificationable = @modificationable
     logger.info "==========#{@modification}======"

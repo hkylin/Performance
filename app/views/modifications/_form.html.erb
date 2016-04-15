@@ -15,15 +15,14 @@
     </div>
   <% end %>
 
-<%logger.info '====begin=====-------------'%>
+  <%logger.info '====begin=====-------------'%>
+  
   <div class="form-group">
     <%= f.label "名称", :class => 'control-label col-lg-2' %>
    <div class="col-lg-10">
      <%= f.label "#{@modificationable.name}", :class => 'control-label' %>
     </div>
   </div>
-
-  
 
 <div class="form-group">
     <%= f.label :规模, :class => 'control-label col-lg-2' %>
@@ -87,7 +86,7 @@
     </div>
   </div>
 
-  <% if params[:project_id] %>
+  <% if @is_project %>
     <div class="form-group">
       <%= f.label :通道费率 ,:class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
@@ -128,7 +127,7 @@
     </div>
   </div>
 
-<% if params[:project_id] %>
+<% if @is_project %>
   <div class="form-group">
     <%= f.label "承揽承做比例", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -151,7 +150,7 @@
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit :新建—调整, :class => 'btn btn-primary' %>
-      <% if params[:project_id] %>
+      <% if @is_project %>
         <%= link_to :取消,
                 project_modifications_path(@modificationable), :class => 'btn btn-default' %>
       <%else%>
