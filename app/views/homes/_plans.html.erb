@@ -10,7 +10,7 @@
        data-show-columns="true">
   <thead>
     <tr>
-      <th>资管计划编号</th>
+      <!-- <th>资管计划编号</th> -->
       <th>资管计划名称</th>
       <th>资管计划类型</th>
       <th>规模</th>
@@ -39,8 +39,8 @@
   <tbody>
     <% @plans.each do |plan| %>
       <tr>
-        <td><%= link_to plan.number, plan_path(plan), :class=>"btn btn-link" %></td>
-        <td><%= plan.name %></td>
+        <!-- <td><%= link_to plan.number, plan_path(plan), :class=>"btn btn-link" %></td> -->
+        <td><%= link_to plan.name, plan_path(plan), :class=>"btn btn-link" %></td>
         <!-- <td><%= link_to plan.name, plan_path(plan), :class=>"btn btn-link" %></td> -->
         <td><%= plan.plan_type %></td>
         <td><%= plan.scale %></td>

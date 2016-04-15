@@ -5,7 +5,6 @@
 <table class="table table-striped" , data-toggle="table">
   <thead>
     <tr>
-      <th>编号</th>
       <th>名称</th>
       <th>类型</th>
       <th>规模</th>
@@ -35,8 +34,7 @@
   <tbody>
     
       <tr>
-        <td><%= link_to @plan.number, plan_path(@plan), :class=>"btn btn-link" %></td>
-        <td><%=@plan.name %></td>
+        <td><%=link_to @plan.name , plan_path(@plan), :class=>"btn btn-link" %></td>
         <td><%=@plan.plan_type %></td>
         <td><%=@plan.scale %></td>
         <td><%=@plan.start_date %></td>
