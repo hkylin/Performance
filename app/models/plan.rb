@@ -60,7 +60,22 @@ class Plan < ActiveRecord::Base
 
   #资管计划的全部费用，开始时间到结束时间
   def whole_plan_fee
-    return count_plan_manage_fee([start_date,end_date])
+    return count_whole_plan_manage_fee
+  end
+
+  def count_whole_plan_manage_fee  #计算个人的计划与项目的管理费
+    logger.info "=========------开始计算资管计划－－#{name}管理费：----包含修改次数：#{modifications.size}---=========="
+    if modifications.size == 0
+      return count_manage_fee([start_date,end_date])
+    else
+      sum = 0.0
+      modifications.each do |mo|
+        fee = mo.count_manage_fee([mo.start_date,mo.end_date])
+        logger.info "======---------#{mo}--------#{fee}---------=========="
+        sum += fee
+      end   
+      return sum   
+    end
   end
 
   #计算管理费收入
