@@ -1,0 +1,2 @@
+Plan.destroy_all
+Modification.destroy_all
