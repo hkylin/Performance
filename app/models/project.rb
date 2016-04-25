@@ -1,4 +1,4 @@
-projectclass Project < ActiveRecord::Base
+class Project < ActiveRecord::Base
   include BT
 
   belongs_to :user
@@ -22,11 +22,11 @@ projectclass Project < ActiveRecord::Base
   scope :cc, -> { where("channel_cost > 0 AND channel_cost <=1") }   
   
   def self.find_departments
-  	Department.all.collect { |department| [department.name, department.id] } 
+    Department.all.collect { |department| [department.name, department.id] } 
   end
 
   def self.find_plans
-  	Plan.all.collect { |plan| [plan.name, plan.id] } 
+    Plan.all.collect { |plan| [plan.name, plan.id] } 
   end   
 
   ###################项目管理费收入计算###########################
@@ -82,12 +82,13 @@ projectclass Project < ActiveRecord::Base
         return 0.0
       end
     else
+      sum=0.0
       modifications.each do |mo|
         if mo.is_contain?(dated)
-          return mo.scale
+          sum += mo.scale
         end
       end
-      return 0.0
+      return sum
     end
   end
   #年化的规模收入计算
@@ -219,7 +220,4 @@ projectclass Project < ActiveRecord::Base
     end_date-start_date
   end
 
-
-
 end
-
