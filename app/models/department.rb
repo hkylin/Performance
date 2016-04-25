@@ -223,7 +223,7 @@ class Department < ActiveRecord::Base
     plans.each do |p|
       sum+=p.count_plan_manage_fee(between_date)
     end
-    logger.info "count_plans_income#{sum}－－－－－＝＝＝＝＝＝"
+    logger.info "count_plans_income   #{sum}－－－－－＝＝＝＝＝＝"
     return sum
   end
   

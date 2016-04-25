@@ -102,12 +102,13 @@ class Plan < ActiveRecord::Base
         return 0.0
       end
     end
+    sum = 0.0
     modifications.each do |mo|
       if mo.is_contain?(dated)
-        return mo.scale
+        sum += mo.scale
       end
     end   
-    return 0.0   
+    return sum
   end
 
   def passageway_income(between_date)  #计算资管计划的通道费用
