@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+projectclass Project < ActiveRecord::Base
   include BT
 
   belongs_to :user
@@ -42,9 +42,18 @@ class Project < ActiveRecord::Base
 
   def count_income(userr,between_date)
     if modifications.size==0 
-      bt = bt_start_end(between_date)
       ratio = getCoRatio(userr)*(1-channel_cost)
-      return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+      if(annual!=0)
+        bt = bt_start_end(between_date)
+        return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+      else
+        sum=0.0
+        bts = bt_start_ends(between_date)
+        bts.each do |x|
+          sum+=(x[1]-x[0])*scale*rate*ratio/x[2]   #计算管理费
+        end
+        return sum
+      end
     else
       return mo_count_income(userr,between_date)
     end
@@ -82,7 +91,7 @@ class Project < ActiveRecord::Base
     end
   end
   #年化的规模收入计算
-  def count_annual_scale(userr,between_date=Date.one_year)
+  def count_annual_scale(userr,between_date=Date.one_year) #delme?
     if modifications.size==0 
       bt = bt_start_end(between_date)
       ratio = getCoRatio(userr)*(1-channel_cost)
@@ -94,8 +103,17 @@ class Project < ActiveRecord::Base
   #项目使用外部计划通道，通道管理费收入计算
   def passageway_income(between_date)
     if modifications.size==0 
-      bt = bt_start_end(between_date)
-      return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
+      if(annual!=0)
+        bt = bt_start_end(between_date)
+        return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
+      else
+        sum=0.0
+        bts = bt_start_ends(between_date)
+        bts.each do |x|
+          sum+=(x[1]-x[0])*scale*rate*channel_cost/x[2]   #计算管理费
+        end
+        return sum
+      end
     else
       return mo_passageway_income(between_date)
     end
@@ -113,7 +131,7 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def passageway_annual_scale(between_date)
+  def passageway_annual_scale(between_date)#delme?
     if modifications.size==0 
       bt = bt_start_end(between_date)
       return scale*channel_cost*(bt[1]-bt[0])/Date.year_days   #计算管理费
@@ -125,7 +143,7 @@ class Project < ActiveRecord::Base
 
 
   #通过cooperation计算，只计算单一计划，集合类计划不计算
-  def count_co_fee_between(between_date,userr)
+  def count_co_fee_between(between_date,userr) #delme?
     count_co_fee_self(between_date,userr)
   end
 

@@ -32,6 +32,7 @@ class Plan < ActiveRecord::Base
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
 
   after_initialize :default_values
+  #annual  ==0  按照实际天数计算
 
   def default_values
     return unless new_record?
@@ -159,10 +160,19 @@ class Plan < ActiveRecord::Base
   def count_co_fee_self(between_date,userr)
     logger.info "=========------开始计算计划:  #{name}----#{modifications.size}---=========="
     if modifications.size == 0
-      bt = bt_start_end(between_date)
-      logger.info(bt)
       ratio = getCoRatio(userr)
-      return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+      if annual!=0    #是否是按照年实际天数计算
+        bt = bt_start_end(between_date)
+        logger.info(bt)
+        return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+      else
+        sum=0.0
+        bts = bt_start_ends(between_date)
+        bts.each do |x|
+          sum+=(x[1]-x[0])*scale*rate*ratio/x[2]   #计算管理费
+        end
+        return sum
+      end
     else
       sum = 0.0
       modifications.each do |mo|
@@ -191,26 +201,8 @@ class Plan < ActiveRecord::Base
   
 
 protected
-  # def bt_start_end(between_date)
-  #   #组织参数
-  #   if(startd>=end_date)  #项目不在范围内,项目在查找周期之前
-  #     return 0
-  #   end
-  #   if(start_date >= endd)  #项目不在范围内,项目在查找周期之后
-  #     return 0
-  #   end
-  #   if((start_date-startd).to_i >0 )
-  #     startd=start_date
-  #   end
-  #   if((endd-end_date).to_i >0 )
-  #     endd=end_date
-  #   end 
-  #   [between_date] 
-  # end
 
-
-
-  def count_fee_self(between_date) #计算单一计划管理费
+  def count_fee_self(between_date) #计算单一计划管理费    DELME?
     # bt=bt_start_end(between_date)
     # (bt[1]-bt[0])*scale*rate/annual   #计算管理费
 

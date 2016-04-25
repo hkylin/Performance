@@ -140,7 +140,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label '年化——计算天数 365|360' ,:class => 'control-label col-lg-2' %>
+    <%= f.label '年化——计算天数 365|360|0当年实际天数' ,:class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <% if (@plan.annual==nil) %>
         <%= f.text_field :annual, :value => '365', :class => 'form-control' %>

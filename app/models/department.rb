@@ -255,7 +255,7 @@ class Department < ActiveRecord::Base
 
   ##########################################################################
 
-  #统计资管计划管理费
+  #统计部门员工的资管计划管理费---应该不用了
   def count_plan_manage_fee(between_date)
     startd=between_date[0]
     endd=between_date[1]
