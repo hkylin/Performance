@@ -7,12 +7,11 @@
     <tr>
       <th>名称</th>
       <th>类型</th>
-      <th>规模</th>
       <th>开始日期</th>
       <th>结束日期</th>
-      
       <th>总管理费</th>
       <th>本年已计提管理费</th>
+      <th>当前规模</th>
       <th>流动性规模</th>
       
       <th>部门</th>
@@ -37,11 +36,11 @@
       <tr>
         <td><%=link_to @plan.name , plan_path(@plan), :class=>"btn btn-link" %></td>
         <td><%=@plan.plan_type %></td>
-        <td><%=@plan.scale %></td>
         <td><%=@plan.start_date %></td>
         <td><%=@plan.end_date %></td>
         <td><%= f2 @plan.m_whole_fee %></td>
         <td><%= f2 @plan.m_year_fee %></td>
+        <td><%= f2 @plan.m_scale %></td>
         <td><%= f2 @plan.mm_scale %></td>
         <td><%=@plan.department.name %></td>
         <td><%=@plan.rate %></td>
