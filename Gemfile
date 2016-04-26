@@ -1,5 +1,6 @@
 source 'https://ruby.taobao.org'
-
+gem 'sidekiq'
+gem 'sidetiq'
 gem 'cancancan', '~> 1.10'
 gem 'rolify'
 gem 'rails_admin'

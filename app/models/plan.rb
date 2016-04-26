@@ -53,6 +53,13 @@ class Plan < ActiveRecord::Base
     # end
   end
 
+  def back_calc
+      self.m_whole_fee = whole_plan_fee 
+      self.m_year_fee = this_year_fee 
+      self.mm_scale = mobility_scale 
+      logger.info "back_calc-----#{self.name}   #{self.m_whole_fee}"
+  end
+
 ###########################计算计划的费用，支持分段，修改##############################
   #今年以来的资管计划已经计提的费用  
   def this_year_fee

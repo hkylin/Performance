@@ -24,6 +24,29 @@ class Department < ActiveRecord::Base
   # scope :staff, -> { where(usertype: 'staff') } #所属部门，普通员工
   
   # scope :online, -> { published.where('deadline is NULL or deadline > ?', Date.today) }
+  def back_calc
+      if has_sub_departments?
+        logger.info "＝＝＝＝＝＝＝＝－－－－－计算：子部门收入－－－－－＝＝＝＝＝＝"
+        sub_departments.each do |sub_department|
+          sub_department.back_calc
+          sub_department.save
+        end
+      end
+      self.income_current = count_income2 Date.since_this_year 
+      self.income_year = count_income2 Date.one_year 
+      self.income_q1 = count_income2 Date.first_quarter 
+      self.income_q2 = count_income2 Date.second_quarter 
+      self.income_q3 = count_income2 Date.third_quarter 
+      self.income_q4 = count_income2 Date.fourth_quarter 
+      self.scale_current = count_scale2
+      self.channel_income_current = channel_income Date.since_this_year 
+      self.channel_income_year = channel_income Date.one_year 
+      self.channel_income_q1 = channel_income Date.first_quarter 
+      self.channel_income_q2 = channel_income Date.second_quarter 
+      self.channel_income_q3 = channel_income Date.third_quarter 
+      self.channel_income_q4 = channel_income Date.fourth_quarter 
+      self.channel_scale_current = channel_scale
+  end
 
   def self.plan_manager?(userr)
     Department.find_by_name('合作支持部').members.include?(userr)

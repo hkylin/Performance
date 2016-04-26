@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308005205) do
+ActiveRecord::Schema.define(version: 20160426125017) do
 
   create_table "cooperations", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,11 +41,23 @@ ActiveRecord::Schema.define(version: 20160308005205) do
   create_table "departments", force: :cascade do |t|
     t.integer  "sup_department_id"
     t.string   "name"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.decimal  "income_current"
+    t.decimal  "income_year"
+    t.decimal  "income_q1"
+    t.decimal  "income_q2"
+    t.decimal  "income_q3"
+    t.decimal  "income_q4"
+    t.decimal  "scale_current"
+    t.decimal  "channel_income_current"
+    t.decimal  "channel_income_year"
+    t.decimal  "channel_income_q1"
+    t.decimal  "channel_income_q2"
+    t.decimal  "channel_income_q3"
+    t.decimal  "channel_income_q4"
+    t.decimal  "channel_scale_current"
   end
-
-  add_index "departments", ["sup_department_id"], name: "index_departments_on_sup_department_id"
 
   create_table "modifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -103,6 +115,10 @@ ActiveRecord::Schema.define(version: 20160308005205) do
     t.datetime "updated_at",                       null: false
     t.integer  "annual",             default: 365
     t.string   "risk"
+    t.decimal  "m_whole_fee"
+    t.decimal  "m_year_fee"
+    t.decimal  "m_scale"
+    t.decimal  "mm_scale"
   end
 
   add_index "plans", ["department_id"], name: "index_plans_on_department_id"

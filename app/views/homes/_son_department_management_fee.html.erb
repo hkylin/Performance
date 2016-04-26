@@ -34,13 +34,13 @@
       </tr>
       <tr>
         <td><%=department.name%>完成情况</td>
-        <td><%=f2 department.count_income2 Date.since_this_year %></td>
-        <td><%=f2 department.count_income2 Date.one_year %></td>
-        <td><%=f2 department.count_income2 Date.first_quarter %></td>
-        <td><%=f2 department.count_income2 Date.second_quarter  %></td>
-        <td><%=f2 department.count_income2 Date.third_quarter%></td>
-        <td><%=f2 department.count_income2 Date.fourth_quarter%></td>
-        <td><%=f2 department.count_scale2 %></td>
+        <td><%=f2 department.income_current %></td>
+        <td><%=f2 department.income_year %></td>
+        <td><%=f2 department.income_q1 %></td>
+        <td><%=f2 department.income_q2 %></td>
+        <td><%=f2 department.income_q3 %></td>
+        <td><%=f2 department.income_q4 %></td>
+        <td><%=f2 department.scale_current %></td>
       </tr>
       <% end %>
   </tbody>
