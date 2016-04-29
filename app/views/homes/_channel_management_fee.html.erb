@@ -27,8 +27,10 @@
       <td><%=f2 object.count_management_fee_tasks/4 %></td>
       <td><%=f2 object.count_scale_tasks%></td>
     </tr>
+
     <tr>
       <td><%=object.name%>完成情况</td>
+      <!--
       <td><%=f2 object.channel_income_current %></td>
       <td><%=f2 object.channel_income_year %></td>
       <td><%=f2 object.channel_income_q1 %></td>
@@ -36,6 +38,14 @@
       <td><%=f2 object.channel_income_q3 %></td>
       <td><%=f2 object.channel_income_q4 %></td>
       <td><%=f2 object.channel_scale_current %></td>
+      -->
+      <td><%=f2 object.channel_income Date.since_this_year %></td>
+      <td><%=f2 object.channel_income Date.one_year %></td>
+      <td><%=f2 object.channel_income Date.first_quarter %></td>
+      <td><%=f2 object.channel_income Date.second_quarter %></td>
+      <td><%=f2 object.channel_income Date.third_quarter %></td>
+      <td><%=f2 object.channel_income Date.fourth_quarter %></td>
+      <td><%=f2 object.channel_scale %></td>
     </tr>
   </tbody>
 </table>   

@@ -37,10 +37,16 @@
         <td><%=@plan.plan_type %></td>
         <td><%=@plan.start_date %></td>
         <td><%=@plan.end_date %></td>
+        <!--
         <td><%= f2 @plan.m_whole_fee %></td>
         <td><%= f2 @plan.m_year_fee %></td>
         <td><%= f2 @plan.m_scale %></td>
         <td><%= f2 @plan.mm_scale %></td>
+        -->
+        <td><%= f2 @plan.whole_plan_fee %></td>
+        <td><%= f2 @plan.this_year_fee %></td>
+        <td><%= f2 @plan.count_plan_scale %></td>
+        <td><%= f2 @plan.mobility_scale %></td>
         <td><%=@plan.department.name %></td>
         <td><%=@plan.rate %></td>
         <!-- 

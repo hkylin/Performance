@@ -29,6 +29,14 @@
     <tr>
       <% logger.info "＝＝＝＝＝＝＝＝－－－－－完成情况－－－－－＝＝＝＝＝＝"%>
       <td><%=object.name%>完成情况</td>
+      <td><%=f2 object.count_income2 Date.since_this_year %></td>
+      <td><%=f2 object.count_income2 Date.one_year %></td>
+      <td><%=f2 object.count_income2 Date.first_quarter %></td>
+      <td><%=f2 object.count_income2 Date.second_quarter %></td>
+      <td><%=f2 object.count_income2 Date.third_quarter %></td>
+      <td><%=f2 object.count_income2 Date.fourth_quarter %></td>
+      <td><%=f2 object.count_scale2 %></td>
+      <!--
       <td><%=f2 object.income_current %></td>
       <td><%=f2 object.income_year %></td>
       <td><%=f2 object.income_q1 %></td>
@@ -36,6 +44,7 @@
       <td><%=f2 object.income_q3 %></td>
       <td><%=f2 object.income_q4 %></td>
       <td><%=f2 object.scale_current %></td>
+      -->
     </tr>
   </tbody>
 </table>   
