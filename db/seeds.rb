@@ -12,11 +12,9 @@ hzzc=Department.create(name: '合作支持部', sup_department: jh)
 
 chenzhihua =User.create(username: :陈志华, email: 'chenzhihua@msjyamc.com.cn', password: '12345678', usertype: 'admin')
 fuyingxin =User.create(username: :傅颖新 ,email: 'fuyingxin@msjyamc.com.cn', password: '12345678',usertype: 'staff')
-dengliping =User.create(username: :邓丽平 ,email: 'dengliping@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 
 DepartmentUser.create(department: jh, user: chenzhihua, role: 'admin')
 DepartmentUser.create(department: jh, user: fuyingxin, role: 'admin')
-DepartmentUser.create(department: jh, user: dengliping, role: 'admin')
 
 wangjinfeng =User.create(username: :王金凤 ,email: 'wangjinfeng@msjyamc.com.cn', password: '12345678',usertype: 'staff')
 shiweisi =User.create(username: :史维思 ,email: 'shiweisi@msjyamc.com.cn', password: '12345678',usertype: 'staff')
