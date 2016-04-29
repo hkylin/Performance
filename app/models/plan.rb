@@ -56,8 +56,8 @@ class Plan < ActiveRecord::Base
   def back_calc
       self.m_whole_fee = whole_plan_fee 
       self.m_year_fee = this_year_fee 
-      self.mm_scale = mobility_scale 
       self.m_scale = count_plan_scale
+      self.mm_scale = mobility_scale 
       logger.info "back_calc-----#{self.name}   #{self.m_whole_fee}"
   end
 
