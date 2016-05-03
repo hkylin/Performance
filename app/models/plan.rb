@@ -172,10 +172,12 @@ class Plan < ActiveRecord::Base
       if annual!=0    #是否是按照年实际天数计算
         bt = bt_start_end(between_date)
         logger.info(bt)
+        return 0 if (bt==0)
         return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
       else
         sum=0.0
         bts = bt_start_ends(between_date)
+        return 0 if (bts==0)
         bts.each do |x|
           sum+=(x[1]-x[0])*scale*rate*ratio/x[2]   #计算管理费
         end

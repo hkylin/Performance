@@ -45,10 +45,12 @@ class Project < ActiveRecord::Base
       ratio = getCoRatio(userr)*(1-channel_cost)
       if(annual!=0)
         bt = bt_start_end(between_date)
+        return 0 if (bt==0)
         return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
       else
         sum=0.0
         bts = bt_start_ends(between_date)
+        return 0 if (bts==0)
         bts.each do |x|
           sum+=(x[1]-x[0])*scale*rate*ratio/x[2]   #计算管理费
         end
@@ -106,10 +108,12 @@ class Project < ActiveRecord::Base
     if modifications.size==0 
       if(annual!=0)
         bt = bt_start_end(between_date)
+        return 0 if (bt==0)
         return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
       else
         sum=0.0
         bts = bt_start_ends(between_date)
+        return 0 if (bts==0)
         bts.each do |x|
           sum+=(x[1]-x[0])*scale*rate*channel_cost/x[2]   #计算管理费
         end

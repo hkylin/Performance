@@ -1,6 +1,8 @@
 module BT
   #对于按年计提的计算，应该是按照年做区间，返回数组[[start,end,annual]] 调用bt_start_end的时候，做判断，调用这个还是正常的调用前面的那个
   def bt_start_ends(bt)
+    bt=bt_start_end(bt)
+    return 0 if (bt==0)
     rt=Array.new
     a=bt[0].year
     b=bt[1].year
@@ -80,11 +82,13 @@ module BT
   def count_rate_manage_fee(between_date)
     if annual!=0
       bt = bt_start_end(between_date)
+      return 0 if(bt==0)
       fee = (bt[1]-bt[0])*scale*rate/annual   #计算管理费
       return fee
     else
       sum=0.0
       bts = bt_start_ends(between_date)
+      return 0 if(bts==0)
       bts.each do |x|
         sum+=(x[1]-x[0])*scale*rate/x[2]   #计算管理费
       end

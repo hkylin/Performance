@@ -70,10 +70,12 @@ class Modification < ActiveRecord::Base
   def passageway_income(between_date)
     if(annual!=0)
       bt = bt_start_end(between_date)
+      return 0 if (bt==0)
       return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
     else
       sum=0.0
       bts = bt_start_ends(between_date)
+      return 0 if (bts==0)
       bts.each do |x|
         sum+=(x[1]-x[0])*scale*rate*channel_cost/x[2]   #计算管理费
       end
