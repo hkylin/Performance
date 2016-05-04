@@ -1,14 +1,29 @@
 <div class="page-header">
   <h1>我的资管计划列表</h1>
 </div>
+
+
 <%= link_to :新建资管计划,
             new_plan_path,
             :class => 'btn btn-primary' %>
-<table class="table table-striped" , data-toggle="table" data-search="true"
+
+<%= search_form_for @search, html: {class: "navbar-form navbar-right"} do |f|  %>
+  <div class="form-group">
+    <%= f.search_field :name_cont, class: "form-control", placeholder: "输入计划名"  %>
+    <%= f.submit "搜索", class: "btn btn-warning"  %>
+
+    <!--%=sort_link(@search, :name)  %-->
+  </div>
+<% end %>
+
+<table class="table table-striped" , data-toggle="table">
+      <!--
+       data-search="true"
        data-show-refresh="true"
        data-show-toggle="true" 
        data-pagination="true"
        data-show-columns="true">
+       -->
   <thead>
     <tr>
       <!-- <th>资管计划编号</th> -->
@@ -17,9 +32,10 @@
       <th>风险</th>
       <th>开始日期</th>
       <th>结束日期</th>
+      <th>计划管理人</th>
       <!--<th>收费模式</th>
       <th>前后端收费金额</th>
-      <th>投资经理</th>
+      
       <th>费用金额</th>
       <th>合  作  者</th>
     -->
@@ -47,10 +63,10 @@
         <td><%= plan.risk %></td>
         <td><%= plan.start_date %></td>
         <td><%= plan.end_date %></td>
+        <td><%= plan.user.username %></td>
         <!--
         <td><%= plan.charge_type %></td>
         <td><%= plan.charge_amount %></td>
-        <td><%= plan.investment_manager %></td>
         <td><%= plan.fee %></td>
         <td>
           <% plan.cooperations.each do |co|%>
@@ -87,4 +103,6 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @plans, renderer: BootstrapPagination::Rails %>
+
 <br>

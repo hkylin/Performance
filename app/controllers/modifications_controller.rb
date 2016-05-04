@@ -63,6 +63,7 @@ class ModificationsController < ApplicationController
   def create
     @modification = Modification.new(modification_params)
     @modification.modificationable = find_modificationable
+    @modification.name = @modification.modificationable.name
     @modification.channel_cost=0.0 if (@modification.modificationable.class == Plan)
     respond_to do |format|
       if @modification.save

@@ -6,8 +6,23 @@ class PlansController < ApplicationController
   # GET /plans.json
   def index
     # @plans = Plan.where(plan_type: Plan::PLAN_TYPE[0]).all  #单一资金资管计划
-    @plans = Plan.all
+
+    # @q = Plan.ransack(params[:q])
+    # @plans = @q.result(distinct: true)
+
+    @search = Plan.ransack(params[:q])
+    # @search.sorts = 'name asc' if @search.sorts.empty?
+    @plans = @search.result.paginate(:page => params[:page],:per_page => 8)
+
+    # @plans = Plan.paginate(:page => params[:page], :per_page => 20).order("created_at desc")
   end
+
+  # def search
+  #   @q = Plan.ransack(params[:q])
+  #   @plans = @q.result(distinct: true)
+  # end
+
+  # end
 
   # GET /plans/1
   # GET /plans/1.json

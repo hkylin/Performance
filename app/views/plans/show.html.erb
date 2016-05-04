@@ -15,10 +15,11 @@
       <th>流动性规模</th>
       <th>部门</th>
       <th>费率</th>
+      <th>计划管理人</th>
       <!-- 
       <th><%= model_class.human_attribute_name(:charge_type) %></th>
       <th><%= model_class.human_attribute_name(:charge_amount) %></th>
-      <th>投资经理</th>
+      
       <th>费用金额</th>
       <th>合作者</th> 
     -->
@@ -49,10 +50,11 @@
         <td><%= f2 @plan.mobility_scale %></td>
         <td><%=@plan.department.name %></td>
         <td><%=@plan.rate %></td>
+        <td><%=@plan.user.username %></td>
         <!-- 
         <td><%=@plan.charge_type %></td>
         <td><%=@plan.charge_amount %></td>
-        <td><%=@plan.investment_manager %></td>
+        
         <td><%=@plan.fee %></td>
         <td>|
           <% @plan.cooperations.each do |co|%>
