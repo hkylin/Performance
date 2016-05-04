@@ -86,7 +86,7 @@ def createModification(pland)
 	puts "createModification"
 	liangfeng = User.find_by_email('liangfeng@msjyamc.com.cn')
 	plan = Plan.find_by_name(pland.name)
-	Modification.create!( modificationable: plan,user: liangfeng, name: pland.name, charge_type: pland.charge_type, risk: pland.risk, start_date: pland.start_date, end_date: pland.end_date,scale: pland.scale, rate: pland.rate, annual: pland.annual, channel_cost: 0.0)
+	Modification.create!( modificationable: plan,user: liangfeng, name: pland.name, charge_type: pland.charge_type,charge_date: pland.charge_date,charge_amount: pland.charge_amount, risk: pland.risk, start_date: pland.start_date, end_date: pland.end_date,scale: pland.scale, rate: pland.rate, annual: pland.annual, channel_cost: 0.0)
 end 
 
 def createPlan(pland)
