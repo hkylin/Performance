@@ -9,7 +9,7 @@
 
 <%= search_form_for @search, html: {class: "navbar-form navbar-right"} do |f|  %>
   <div class="form-group">
-    <%= f.search_field :name_cont, class: "form-control", placeholder: "输入计划名"  %>
+    <%= f.search_field :name_or_parter_or_model_type_cont, class: "form-control", placeholder: "输入计划名"  %>
     <%= f.submit "搜索", class: "btn btn-warning"  %>
 
     <!--%=sort_link(@search, :name)  %-->
