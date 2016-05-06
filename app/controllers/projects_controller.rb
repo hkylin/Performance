@@ -38,6 +38,7 @@ class ProjectsController < ApplicationController
     @project.charge_type = Project::CHARGE_TYPE[0]
     @project.scale ||= 30000000.0
     @project.rate ||= 0.004
+    @project.charge_amount ||= 0.0
     @project.channel_cost ||= 0.0
     @project.risk ||= Plan::RISK_TYPE[0]
     @project.user ||= current_user
