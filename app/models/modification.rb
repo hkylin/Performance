@@ -37,14 +37,21 @@ class Modification < ActiveRecord::Base
     ratio = getCoRatio(userr)*(1-channel_cost)
     if(annual!=0)
       bt = bt_start_end(between_date)
-      return (bt[1]-bt[0])*scale*rate*ratio/annual   #计算管理费
+      income=(bt[1]-bt[0])*scale*rate/annual   #计算管理费
+      if (is_contain_charge_date?(between_date))
+          income += charge_amount
+      end
+      return income * ratio   #计算管理费
     else
       sum=0.0
       bts = bt_start_ends(between_date)
       bts.each do |x|
-        sum+=(x[1]-x[0])*scale*rate*ratio/x[2]   #计算管理费
+        sum+=(x[1]-x[0])*scale*rate/x[2]   #计算管理费
       end
-      return sum
+      if (is_contain_charge_date?(between_date))
+          sum += charge_amount
+      end
+      return sum * ratio
     end
   end
 
@@ -71,15 +78,22 @@ class Modification < ActiveRecord::Base
     if(annual!=0)
       bt = bt_start_end(between_date)
       return 0 if (bt==0)
-      return (bt[1]-bt[0])*scale*rate*channel_cost/annual   #计算管理费
+      income = (bt[1]-bt[0])*scale*rate/annual   #计算管理费
+      if (is_contain_charge_date?(between_date))
+          income += charge_amount
+      end
+      return income * channel_cost
     else
       sum=0.0
       bts = bt_start_ends(between_date)
       return 0 if (bts==0)
       bts.each do |x|
-        sum+=(x[1]-x[0])*scale*rate*channel_cost/x[2]   #计算管理费
+        sum+=(x[1]-x[0])*scale*rate/x[2]   #计算管理费
       end
-      return sum
+      if (is_contain_charge_date?(between_date))
+          sum += charge_amount
+      end
+      return sum * channel_cost
     end
   end
   #项目使用外部计划通道，通道规模收入计算
