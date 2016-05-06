@@ -54,7 +54,6 @@
   </div>
   
   <%logger.info @is_project %>
-  <% unless  @is_project %>
     <div class="form-group">
       <%= f.label :收费模式 ,:class => 'control-label col-lg-2' %>
       <% Plan::CHARGE_TYPE.each do |t| %>
@@ -76,7 +75,6 @@
         <%=f.error_span(:charge_date) %>
       </div>
     </div>
-  <%end%>
   
 
   <div class="form-group">
