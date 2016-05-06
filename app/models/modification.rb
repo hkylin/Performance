@@ -38,7 +38,7 @@ class Modification < ActiveRecord::Base
     if(annual!=0)
       bt = bt_start_end(between_date)
       income=(bt[1]-bt[0])*scale*rate/annual   #计算管理费
-      if (is_contain_charge_date?(between_date))
+      if (is_charge_computer?(between_date))
           income += charge_amount
       end
       return income * ratio   #计算管理费
@@ -48,7 +48,7 @@ class Modification < ActiveRecord::Base
       bts.each do |x|
         sum+=(x[1]-x[0])*scale*rate/x[2]   #计算管理费
       end
-      if (is_contain_charge_date?(between_date))
+      if (is_charge_computer?(between_date))
           sum += charge_amount
       end
       return sum * ratio
@@ -79,7 +79,7 @@ class Modification < ActiveRecord::Base
       bt = bt_start_end(between_date)
       return 0 if (bt==0)
       income = (bt[1]-bt[0])*scale*rate/annual   #计算管理费
-      if (is_contain_charge_date?(between_date))
+      if (is_charge_computer?(between_date))
           income += charge_amount
       end
       return income * channel_cost
@@ -90,7 +90,7 @@ class Modification < ActiveRecord::Base
       bts.each do |x|
         sum+=(x[1]-x[0])*scale*rate/x[2]   #计算管理费
       end
-      if (is_contain_charge_date?(between_date))
+      if (is_charge_computer?(between_date))
           sum += charge_amount
       end
       return sum * channel_cost

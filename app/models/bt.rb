@@ -64,6 +64,11 @@ module BT
     end
   end
 
+  def is_charge_computer?(between_date)
+     ((charge_type == Plan::CHARGE_TYPE[1])||(charge_type == Plan::CHARGE_TYPE[2])) && is_contain_charge_date?(between_date)
+  end
+
+
   def count_manage_fee(between_date)
     startd=between_date[0]
     endd=between_date[1]
