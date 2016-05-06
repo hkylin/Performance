@@ -27,7 +27,7 @@ class Plan < ActiveRecord::Base
   # validates_presence_of :department
   validates_presence_of :start_date, :end_date, :name, :scale, :plan_type, :rate   , :message => "不能为空" # 最少 2 #, :parter
   validates_length_of :name, :minimum => 4 ,:message => "名称最少4个字节", :allow_blank => true 
-  validates_numericality_of :scale, :greater_than_or_equal_to => 1000000, :message => "最小规模100万",:allow_blank => true  # 最少 2 
+  # validates_numericality_of :scale, :greater_than_or_equal_to => 1000000, :message => "最小规模100万",:allow_blank => true  # 最少 2 
   # validates_uniqueness_of :number,  :on => :create, :message => "计划编号不唯一" 
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
 
