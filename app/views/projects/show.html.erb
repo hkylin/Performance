@@ -17,7 +17,6 @@
       <th data-sortable="true">费率</th>
       <th>风险</th>
       <th>规模计算</th>
-      <th>规模年化计算</th>
       <th>收入计算</th>
       <th>通道费用</th>
       <th>合作者</th>
@@ -38,7 +37,6 @@
         <td><%= @project.rate %></td>
         <td><%= @project.risk %></td>
         <td><%=f2 @project.count_scale current_user%></td>
-        <td><%=f2 @project.count_annual_scale current_user %></td>
         <td><%=f2 @project.count_income current_user, Date.since_this_year%></td>
         <td><%=f2 @project.channel_cost%></td>
         <td>

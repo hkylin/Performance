@@ -12,6 +12,9 @@ class Project < ActiveRecord::Base
   RISK_TYPE = %w(正常 风险)  
   validates_inclusion_of :risk, in: RISK_TYPE
 
+  CHARGE_TYPE = %w(普通 前端收费 后端收费)  
+  validates_inclusion_of :charge_type, in: CHARGE_TYPE  
+
   validates_presence_of :plan_id, :start_date, :end_date, :name, :rate   , :message => "不能为空" # 最少 2 
   validates_length_of :name, :minimum => 2 , :message => "名称最少4个字节", :allow_blank => true  
   validates_numericality_of :scale, :greater_than_or_equal_to => 30000000 , :message => "最小规模3000万" 

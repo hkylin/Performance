@@ -1,7 +1,7 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # before_action :plan_manager, only: [:show, :edit, :update, :destroy]
+  # before_action :plan_manager?, only: [:show, :edit, :update, :destroy]
   # GET /plans
   # GET /plans.json
   def index
@@ -44,12 +44,22 @@ class PlansController < ApplicationController
 
   # GET /plans/1/edit
   def edit
+    unless Department.plan_manager?(current_user)
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return 
+    end
+
     @departments=Plan.find_departments
   end
 
   # POST /plans
   # POST /plans.json
   def create
+    unless Department.plan_manager?(current_user)
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return
+    end
+
     @plan = Plan.new(plan_params)
     @plan.user=current_user
     respond_to do |format|
@@ -66,6 +76,10 @@ class PlansController < ApplicationController
   # PATCH/PUT /plans/1
   # PATCH/PUT /plans/1.json
   def update
+    unless Department.plan_manager?(current_user)
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return 
+    end
     respond_to do |format|
       if @plan.update(plan_params)
         format.html { redirect_to @plan, notice: '资管计划已更新.' }
@@ -80,6 +94,10 @@ class PlansController < ApplicationController
   # DELETE /plans/1
   # DELETE /plans/1.json
   def destroy
+    unless Department.plan_manager?(current_user)
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return 
+    end
     @plan.destroy
     respond_to do |format|
       format.html { redirect_to plans_url, notice: '资管计划将被删除！' }
