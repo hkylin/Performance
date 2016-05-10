@@ -14,7 +14,9 @@ class Modification < ActiveRecord::Base
   validates_inclusion_of :charge_type, in: CHARGE_TYPE
 
   validates_presence_of :start_date, :end_date, :scale, :rate , :message => "不能为空" # 最少 2 #, :parter
-  validates_numericality_of :scale, :greater_than_or_equal_to => 1000000, :message => "最小规模100万",:allow_blank => true  # 最少 2 
+  # validates_numericality_of :scale, :greater_than_or_equal_to => 1000000, :message => "最小规模100万",:allow_blank => true  # 最少 2 
+  validates_numericality_of :scale
+  validates_numericality_of :charge_amount
   # :reject_if => :all_blank
   # reject_if: proc { |attributes| attributes['ratio'].blank? || attributes['ratio'].to_f > 1.0}
   #TODO 如果超过1.0 不保存记录  但是也没有错误提示

@@ -30,6 +30,8 @@ class Plan < ActiveRecord::Base
   # validates_numericality_of :scale, :greater_than_or_equal_to => 1000000, :message => "最小规模100万",:allow_blank => true  # 最少 2 
   # validates_uniqueness_of :number,  :on => :create, :message => "计划编号不唯一" 
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
+  validates_numericality_of :scale
+  validates_numericality_of :charge_amount
 
   after_initialize :default_values
   #annual  ==0  按照实际天数计算
