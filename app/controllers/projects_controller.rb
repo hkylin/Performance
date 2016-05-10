@@ -23,6 +23,21 @@ class ProjectsController < ApplicationController
     # Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
   end
 
+  def department
+    @department=Department.find (params[:department_id])  #解决传递参数问题
+    admin_departments=current_user.admin_departments
+    if ( admin_departments.size > 0 )
+      ids=admin_departments.collect{|x| x.id}
+      logger.debug("----------#{ids}----------")
+      if(ids.include?(params[:department_id].to_i))
+        @projects = Project.includes('cooperations').where(cooperations: { user: @department.users })
+        return
+      else
+        redirect_to homes_index_path, notice: '越权访问' 
+      end
+    end
+  end
+
   # GET /projects/1
   # GET /projects/1.json
   def show
