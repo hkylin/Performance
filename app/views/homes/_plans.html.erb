@@ -2,18 +2,44 @@
   <h1>我的资管计划列表</h1>
 </div>
 
-
+<% if @is_manager %>
 <%= link_to :新建资管计划,
             new_plan_path,
             :class => 'btn btn-primary' %>
-
+<% end %>
 <%= search_form_for @search, html: {class: "navbar-form navbar-right"} do |f|  %>
   <div class="form-group">
-    <%= f.search_field :name_or_parter_or_model_type_cont, class: "form-control", placeholder: "输入计划名"  %>
+    
+
+    <%= f.label :计划类型 %>
+    <%= f.select :plan_type_cont, options_for_select([[Plan::PLAN_TYPE[0], Plan::PLAN_TYPE[0]], [Plan::PLAN_TYPE[1], Plan::PLAN_TYPE[1]]]), include_blank: true  %>
+
+    <%= f.label :计划管理人 %>
+    <%= f.select :user_id_eq, options_from_collection_for_select(Department.find_by_name('合作支持部').members, "id", "name", @search.user_id_eq), include_blank: true  %>
+
+    
+    <%= f.label :部门 %>
+    <!--%= f.search_field :department_name_eq , class: "form-control"%-->
+    <%= f.select :department_id_eq, options_from_collection_for_select(Department.all, "id", "name", @search.department_id_eq), include_blank: true  %>
+    </div>
+    <div class="form-group">
+
+    <%= f.label :资管计划名 %>
+    <%= f.search_field :name_cont , class: "form-control"%>
+
+
+    <%= f.label :合作伙伴 %>
+    <%= f.search_field :parter_cont , class: "form-control"%>
+
+    <%= f.label :产品模式 %>
+    <%= f.search_field :model_type_cont , class: "form-control"%>
+
     <%= f.submit "搜索", class: "btn btn-warning"  %>
 
     <!--%=sort_link(@search, :name)  %-->
+    
   </div>
+
 <% end %>
 
 <table class="table table-striped" , data-toggle="table"
@@ -35,11 +61,13 @@
   <thead>
     <tr>
       <!-- <th>资管计划编号</th> -->
+
+    
       <th>资管计划名称</th>
       <th>资管计划类型</th>
       <th>风险</th>
-      <th>开始日期</th>
-      <th>结束日期</th>
+      <th><%= sort_link(@search, :start_date, '开始日期', default_order: :desc) %></th>
+      <th><%= sort_link(@search, :end_date, '结束日期', default_order: :desc) %></th>
       <th>计划管理人</th>
       <!--<th>收费模式</th>
       <th>前后端收费金额</th>

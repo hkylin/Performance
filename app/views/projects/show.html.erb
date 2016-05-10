@@ -21,7 +21,10 @@
       <th>通道费用</th>
       <th>合作者</th>
       <th>注释</th>
-      <th>操作</th>
+      
+      <%if @can_edit%>
+       <th>操作</th>
+      <%end%>
     </tr>
   </thead>
 
@@ -45,11 +48,15 @@
           <% end %>
         </td>
         <td><%= @project.notes %></td>
+        <%if @can_edit%>
+       
+      
           <td><%= link_to '编辑', edit_project_path(@project) , :class => 'btn btn-default btn-xs'%>
           <%= link_to '删除', project_path(@project), method: :delete, data: { confirm: 'Are you sure?'}, :class => 'btn btn-xs btn-danger' %>
         </td>
+        <%end%>
       </tr>
   </tbody>
 </table>
-
-<%= render :partial => "/modifications/index", :locals => { :object => @project} %>
+<!-- 删除项目的调整列表  -->
+<!-- %= render :partial => "/modifications/index", :locals => { :object => @project} % -->

@@ -34,4 +34,11 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.authorize_with do 
+    unless (current_user && (current_user.email=='liangfeng@msjyamc.com.cn')||(current_user.email=='zhuyonglin@msjyamc.com.cn'))
+      flash[:alert] = "You must be admin!" 
+      redirect_to plans_path
+    end 
+end
 end

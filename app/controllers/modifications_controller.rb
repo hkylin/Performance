@@ -17,10 +17,15 @@ class ModificationsController < ApplicationController
   # GET /modifications/1
   # GET /modifications/1.json
   def show
+     
   end
 
   # GET /modifications/new
   def new
+    unless @is_manager
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return
+    end
     @modification = Modification.new
     @modificationable = find_modificationable
     @is_project = (@modificationable.class == Project)
@@ -49,6 +54,10 @@ class ModificationsController < ApplicationController
 
   # GET /modifications/1/edit
   def edit
+    unless @is_manager
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return
+    end
     # @select_projects=Modification.find_projects()
     @modificationable = @modification.modificationable
     @is_project = (@modificationable.class == Project)
@@ -61,6 +70,10 @@ class ModificationsController < ApplicationController
   # POST /modifications
   # POST /modifications.json
   def create
+    unless @is_manager
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return
+    end
     @modification = Modification.new(modification_params)
     @modification.modificationable = find_modificationable
     @modification.name = @modification.modificationable.name
@@ -79,6 +92,10 @@ class ModificationsController < ApplicationController
   # PATCH/PUT /modifications/1
   # PATCH/PUT /modifications/1.json
   def update
+    unless @is_manager
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return
+    end
     # @select_projects=Modification.find_projects()
     logger.info modification_params
     @modificationable = @modification.modificationable
@@ -96,6 +113,10 @@ class ModificationsController < ApplicationController
   # DELETE /modifications/1
   # DELETE /modifications/1.json
   def destroy
+    unless @is_manager
+      redirect_to plans_path, notice: '您没有权限修改计划' 
+      return
+    end
     @modificationable=@modification.modificationable
     is_project = (@modificationable.class == Project)
     @modification.destroy
@@ -142,6 +163,7 @@ class ModificationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_modification
       @modification = Modification.find(params[:id])
+      @is_manager=Department.plan_manager?(current_user)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

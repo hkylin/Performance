@@ -13,7 +13,9 @@
       <th>固定费用提取日期</th>
       <th>费率</th> 
       <th>注释</th>
-      <th colspan="3"></th>
+      <%if @is_manager %>
+        <th colspan="3"></th>
+      <%end%>
     </tr>
   </thead>
 
@@ -35,10 +37,12 @@
           <% end %>
         </td>
         
-
+      <%if @is_manager %>
         <td><%= link_to '详情', modification_path(pm) %></td>
         <td><%= link_to '编辑', edit_modification_path(pm) %></td>
-        <td><%= link_to '删除', modification_path(pm), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '删除', modification_path(pm), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      <%end%>
       </tr>
     <% end %>
   </tbody>

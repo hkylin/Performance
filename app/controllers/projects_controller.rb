@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    
   end
 
   # GET /projects/new
@@ -57,6 +58,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    unless(@can_edit)
+      # redirect_to :action=>'all',:department_id =>admin_departments[0].id
+      redirect_to :action=>'all' , notice: '你无权利编辑此项目，只有创建者拥有此权利'
+      return
+    end
     @departments=Plan.find_departments
     @plan=@project.plan
   end
@@ -81,6 +87,10 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    unless(@can_edit)
+      redirect_to :action=>'all', notice: '你无权利编辑此项目，只有创建者拥有此权利'
+      return
+    end
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to project_path(@project), notice: '项目已经被更新！' }
@@ -95,10 +105,17 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    unless(@can_edit)
+      redirect_to projects_all_path, notice: '你无权利删除此项目，只有创建者拥有此权利'
+      return
+    end
+
     @plan=@project.plan
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to plan_projects_url(@plan), notice: '项目将被删除，其相关的项目修改也将会被删除！' }
+      # format.html { redirect_to plan_projects_url(@plan), notice: '项目将被删除，其相关的项目修改也将会被删除！' }
+      format.html { redirect_to projects_all_path, notice: '项目已删除！' }
+      #直接显示路径是否可以？ 'projects/all'
       format.json { head :no_content }
     end
   end
@@ -111,6 +128,10 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
+      @can_edit = false
+      if( @project.user == current_user )
+        @can_edit = true
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

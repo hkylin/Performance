@@ -9,7 +9,7 @@ class PlansController < ApplicationController
 
     # @q = Plan.ransack(params[:q])
     # @plans = @q.result(distinct: true)
-
+    @is_manager=Department.plan_manager?(current_user)
     @search = Plan.ransack(params[:q])
     # @search.sorts = 'name asc' if @search.sorts.empty?
     @plans = @search.result.paginate(:page => params[:page],:per_page => 8)
@@ -109,6 +109,7 @@ class PlansController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_plan
       @plan = Plan.find(params[:id])
+      @is_manager=Department.plan_manager?(current_user)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

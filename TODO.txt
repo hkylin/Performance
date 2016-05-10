@@ -1,3 +1,62 @@
+1、admin问题
+2、项目导出admin导出没有姓名
+3\  项目 不能随便被别人修改  删除。
+4、还是要发布成生产环境的
+
+1、增加周期性任务
+2、增加计算字段，可以不显示，但是计算结果字段必须保留
+3、在计算值与显示之间怎么做（统计都哪些字段是必须显示的）
+
+Department:
+  当前管理费
+  全年管理费
+  一季度管理费
+  二季度管理费
+  四季度管理费
+  规模
+
+      <td><%=f2 object.count_income2 Date.since_this_year %></td>
+      <td><%=f2 object.count_income2 Date.one_year %></td>
+      <td><%=f2 object.count_income2 Date.first_quarter %></td>
+      <td><%=f2 object.count_income2 Date.second_quarter %></td>
+      <td><%=f2 object.count_income2 Date.third_quarter %></td>
+      <td><%=f2 object.count_income2 Date.fourth_quarter %></td>
+      <td><%=f2 object.count_scale2 %></td>
+
+      <td><%=f2 object.count_income Date.since_this_year %></td>
+      <td><%=f2 object.count_income Date.one_year %></td>
+      <td><%=f2 object.count_income Date.first_quarter %></td>
+      <td><%=f2 object.count_income Date.second_quarter %></td>
+      <td><%=f2 object.count_income Date.third_quarter %></td>
+      <td><%=f2 object.count_income Date.fourth_quarter %></td>
+      <td><%=f2 object.count_scale %></td>
+
+  通道情况？
+    当前管理费
+    全年管理费
+    一季度管理费
+    二季度管理费
+    四季度管理费
+    规模
+
+  计划：
+      总管理费、本年已计提管理费、流动性计算
+
+      列表的时候   规模  只是显示第一次，没有显示modify的累计，这肯定是不对的，部门累计规模的时候检查一下。
+
+      <td><%= f2 plan.whole_plan_fee %></td>
+      <td><%= f2 plan.this_year_fee %></td>
+      <td><%= f2 plan.mobility_scale %></td>
+
+      m_whole_fee = whole_plan_fee 
+      m_year_fee = this_year_fee 
+      m_scale = mobility_scale 
+
+ rails g migration add_calc_to_plans
+
+
+
+
 
 TODO
 
@@ -98,6 +157,7 @@ rails g scaffold cooperation user:references modification:references ratio:decim
 
 #migration
 rake db:drop ; rake db:create ; rake db:migrate; rake db:seed
+rake db:rollback
 add_column :users, :username, :string
 
 ＃运行命令
@@ -378,3 +438,16 @@ Rails c 测试route
 
 
 app.project_modifications_path(Project.last.id)
+
+
+
+1、组织结构
+     模型 “部门”与”用户”是一个多对多的关系。一个用户有可能主管事业部兼管其它部门。
+
+在新建“计划”的时候，
+    会有一个部门的选项，我用的是下拉列表，我想在新建的时候是用户的从属部门（可以是其它部门）。
+但是编辑的时候，还是要显示用户实际设置的部门。
+        
+    会有一个计划负责人的选项，也用的是下拉列表，由于公司有200多人，简单的下拉列表体验会非常的差。
+        想实现：   1、下拉列表，默认是自己，大部分情况应该满足了。新建与编辑的问题同上。
+                            2、用户单独选择的时候想配合一个搜索框，可以依据用户输入，调整下拉列表。例如用户输入“王”，应该王姓的员工都显示出来。
