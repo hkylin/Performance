@@ -32,6 +32,7 @@ class PlansController < ApplicationController
   # GET /plans/new
   def new
     @plan = Plan.new
+    @plan.charge_amount=0.0
     @plan.department = current_user.current_department[0]
     if (@plan.cooperations.size == 0)
         @plan.cooperations.build
