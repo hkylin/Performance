@@ -22,6 +22,7 @@ class ModificationsController < ApplicationController
 
   # GET /modifications/new
   def new
+    @is_manager=Department.plan_manager?(current_user)
     unless @is_manager
       redirect_to plans_path, notice: '您没有权限修改计划' 
       return
@@ -70,6 +71,7 @@ class ModificationsController < ApplicationController
   # POST /modifications
   # POST /modifications.json
   def create
+    @is_manager=Department.plan_manager?(current_user)
     unless @is_manager
       redirect_to plans_path, notice: '您没有权限修改计划' 
       return
