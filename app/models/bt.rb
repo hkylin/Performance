@@ -104,7 +104,7 @@ module BT
   #计算带有一次性提取的费用（前收费，后收费）  
   def count_fixed_manage_fee(between_date)
     fee = count_rate_manage_fee(between_date)
-    if (is_contain_charge_date?(between_date))
+    if (is_contain_charge_date?(between_date) && charge_amount)
       fee += charge_amount
     end
     return fee
