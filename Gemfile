@@ -6,6 +6,7 @@ gem 'rolify'
 gem 'will_paginate-bootstrap'
 gem 'rails_admin'
 gem 'ransack'
+gem 'ekuseru'
 
 # gem 'rails_admin', github: 'pencilcheck/rails_admin', branch: 'master'
 gem 'therubyracer'

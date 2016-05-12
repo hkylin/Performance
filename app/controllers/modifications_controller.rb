@@ -49,8 +49,9 @@ class ModificationsController < ApplicationController
       co1.cooperationable = @modification
       @modification.cooperations << co1
     end
-    logger.info "==========#{@modification}======"
-    logger.info '==========3======'
+    logger.info "===================================="
+    logger.info "==========#{@modification.class}===#{@modification}======"
+    logger.info "==========#{@modificationable.class}===#{@modificationable}======"
   end
 
   # GET /modifications/1/edit

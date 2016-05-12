@@ -23,6 +23,21 @@ class ProjectsController < ApplicationController
     # Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
   end
 
+  def excel
+    unless (current_user && (current_user.email=='liangfeng@msjyamc.com.cn')||(current_user.email=='zhuyonglin@msjyamc.com.cn'))
+      redirect_to plans_path, notice: '您没有权限导出项目列表计划' 
+      return
+    end
+    # @all_data = Project.includes('cooperations').all
+    respond_to do |format|  
+      # format.csv { send_data "\xEF\xBB\xBF"<<Project.to_csv.force_encoding("ASCII-8BIT") }  
+
+      format.csv { send_data Project.to_csv }  
+      # format.csv { send_data Project.to_csv.encode("iso-8859-1"), :type => 'text/csv; charset=iso-8859-1; header=present' }
+      #   send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("ASCII-8BIT")
+    end  
+  end
+
   def department
     @department=Department.find (params[:department_id])  #解决传递参数问题
     admin_departments=current_user.admin_departments
@@ -30,7 +45,11 @@ class ProjectsController < ApplicationController
       ids=admin_departments.collect{|x| x.id}
       logger.debug("----------#{ids}----------")
       if(ids.include?(params[:department_id].to_i))
-        @projects = Project.includes('cooperations').where(cooperations: { user: @department.users })
+        if @department.has_sub_departments?
+          @projects = Project.includes('cooperations').where(cooperations: { user: @department.grandsons })
+        else
+          @projects = Project.includes('cooperations').where(cooperations: { user: @department.users })
+        end
         return
       else
         redirect_to homes_index_path, notice: '越权访问' 
