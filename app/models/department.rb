@@ -24,6 +24,18 @@ class Department < ActiveRecord::Base
   # scope :staff, -> { where(usertype: 'staff') } #所属部门，普通员工
   
   # scope :online, -> { published.where('deadline is NULL or deadline > ?', Date.today) }
+
+  #事业部层面得到所有成员
+  def grandsons  
+    grandsons = Array.new
+    sub_departments.each do |sub_department|
+      sub_department.users.each do |u|
+        grandsons << u
+      end
+    end
+    return grandsons
+  end
+
   def back_calc
       if has_sub_departments?
         logger.info "＝＝＝＝＝＝＝＝－－－－－计算：子部门收入－－－－－＝＝＝＝＝＝"
