@@ -4,7 +4,7 @@ class Modification < ActiveRecord::Base
   # belongs_to :project
   belongs_to :modificationable, polymorphic: true
   belongs_to :user
-  validates_associated :modificationable
+  # validates_associated :modificationable #到底是什么意思？
   # has_many :cooperations
   has_many :cooperations, as: :cooperationable, dependent: :destroy, inverse_of: :cooperationable
 
