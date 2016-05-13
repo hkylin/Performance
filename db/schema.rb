@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426125017) do
+ActiveRecord::Schema.define(version: 20160506002112) do
 
   create_table "cooperations", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,23 +41,25 @@ ActiveRecord::Schema.define(version: 20160426125017) do
   create_table "departments", force: :cascade do |t|
     t.integer  "sup_department_id"
     t.string   "name"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.decimal  "income_current"
-    t.decimal  "income_year"
-    t.decimal  "income_q1"
-    t.decimal  "income_q2"
-    t.decimal  "income_q3"
-    t.decimal  "income_q4"
-    t.decimal  "scale_current"
-    t.decimal  "channel_income_current"
-    t.decimal  "channel_income_year"
-    t.decimal  "channel_income_q1"
-    t.decimal  "channel_income_q2"
-    t.decimal  "channel_income_q3"
-    t.decimal  "channel_income_q4"
-    t.decimal  "channel_scale_current"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.decimal  "income_current",         default: 0.0
+    t.decimal  "income_year",            default: 0.0
+    t.decimal  "income_q1",              default: 0.0
+    t.decimal  "income_q2",              default: 0.0
+    t.decimal  "income_q3",              default: 0.0
+    t.decimal  "income_q4",              default: 0.0
+    t.decimal  "scale_current",          default: 0.0
+    t.decimal  "channel_income_current", default: 0.0
+    t.decimal  "channel_income_year",    default: 0.0
+    t.decimal  "channel_income_q1",      default: 0.0
+    t.decimal  "channel_income_q2",      default: 0.0
+    t.decimal  "channel_income_q3",      default: 0.0
+    t.decimal  "channel_income_q4",      default: 0.0
+    t.decimal  "channel_scale_current",  default: 0.0
   end
+
+  add_index "departments", ["sup_department_id"], name: "index_departments_on_sup_department_id"
 
   create_table "modifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -115,10 +117,10 @@ ActiveRecord::Schema.define(version: 20160426125017) do
     t.datetime "updated_at",                       null: false
     t.integer  "annual",             default: 365
     t.string   "risk"
-    t.decimal  "m_whole_fee"
-    t.decimal  "m_year_fee"
-    t.decimal  "m_scale"
-    t.decimal  "mm_scale"
+    t.decimal  "m_whole_fee",        default: 0.0
+    t.decimal  "m_year_fee",         default: 0.0
+    t.decimal  "m_scale",            default: 0.0
+    t.decimal  "mm_scale",           default: 0.0
   end
 
   add_index "plans", ["department_id"], name: "index_plans_on_department_id"
@@ -145,6 +147,9 @@ ActiveRecord::Schema.define(version: 20160426125017) do
     t.datetime "updated_at",                       null: false
     t.integer  "annual",             default: 365
     t.string   "risk"
+    t.string   "charge_type"
+    t.decimal  "charge_amount",      default: 0.0
+    t.date     "charge_date"
   end
 
   add_index "projects", ["department_id"], name: "index_projects_on_department_id"
