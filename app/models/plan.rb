@@ -31,7 +31,7 @@ class Plan < ActiveRecord::Base
   # validates_uniqueness_of :number,  :on => :create, :message => "计划编号不唯一" 
   validates_uniqueness_of :name , :on => :create,:message => "计划名称不唯一" 
   validates_numericality_of :scale
-  validates_numericality_of :charge_amount
+  # validates_numericality_of :charge_amount
 
   after_initialize :default_values
   #annual  ==0  按照实际天数计算

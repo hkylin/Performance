@@ -51,7 +51,7 @@
   <div class="form-group">
     <%= f.label :结束日期, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.date_select :end_date,  end_year: 2099, :class => 'form-control' %>
+      <%= f.date_select :end_date, start_year: 2012,   end_year: 2099, :class => 'form-control' %>
       <%=f.error_span(:end_date) %>
     </div>
   </div>
