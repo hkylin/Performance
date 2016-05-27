@@ -57,7 +57,7 @@
       <tr>
         <td><%= link_to project.plan.name, plan_path(project.plan), :class=>"btn btn-link" %></td>
         <td><%= link_to project.name, project_path(project), :class=>"btn btn-link" %></td>
-        <td><%= project.scale %></td>
+        <td><%=f2 project.scale %></td>
         <!-- <td><%= project.asset_price %></td> -->
         <td><%= project.start_date %></td>
         <td><%= project.end_date %></td>
