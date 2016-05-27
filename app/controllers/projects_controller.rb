@@ -46,10 +46,12 @@ class ProjectsController < ApplicationController
       logger.debug("----------#{ids}----------")
       if(ids.include?(params[:department_id].to_i))
         if @department.has_sub_departments?
-          @projects = Project.includes('cooperations').where(cooperations: { user: @department.grandsons })
+          @dp_projects = Project.includes('cooperations').where(cooperations: { user: @department.grandsons })
         else
-          @projects = Project.includes('cooperations').where(cooperations: { user: @department.users })
+          @dp_projects = Project.includes('cooperations').where(cooperations: { user: @department.users })
         end
+        @search = @dp_projects.ransack(params[:q])
+        @projects = @search.result.paginate(:page => params[:page],:per_page => 8)
         return
       else
         redirect_to homes_index_path, notice: '越权访问' 
