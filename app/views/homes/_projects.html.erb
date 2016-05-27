@@ -27,6 +27,11 @@
       <th>规模计算</th>
       <!-- <th>规模年化计算</th> -->
       <th>收入计算</th>
+      <th>全年收入</th>
+      <th>一季度收入</th>
+      <th>二季度收入</th>
+      <th>三季度收入</th>
+      <th>四季度收入</th>
       <th>通道费用</th>
       <th>合作者</th>
       <th>注释</th>
@@ -55,6 +60,11 @@
         <td><%=f2 project.count_scale current_user%></td>
         <!-- <td><%=f2 project.count_annual_scale current_user %></td> -->
         <td><%=f2 project.count_income current_user, Date.since_this_year%></td>
+        <td><%=f2 project.count_income current_user, Date.one_year%></td>
+        <td><%=f2 project.count_income current_user, Date.first_quarter%></td>
+        <td><%=f2 project.count_income current_user, Date.second_quarter%></td>
+        <td><%=f2 project.count_income current_user, Date.third_quarter%></td>
+        <td><%=f2 project.count_income current_user, Date.fourth_quarter%></td>
         <td><%=f2 project.channel_cost%></td>
         <td>
           <% project.cooperations.each do |co|%>
