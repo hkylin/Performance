@@ -12,6 +12,7 @@ module ApplicationHelper
   end
 
   def f2(decimal_data)
-		format("%0.2f",decimal_data) 
+		# format("%0.2f",decimal_data) 
+    number_to_currency(decimal_data, :unit=>"￥")
   end
 end
