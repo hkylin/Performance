@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'homes/user/:user_id' => 'homes#user'
   get 'projects/all'
   get 'projects/excel'
+  get 'plans/excel'
   get 'projects/department/:department_id' => 'projects#department'
   root 'homes#index'
   resources :cooperations

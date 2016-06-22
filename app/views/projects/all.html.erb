@@ -6,6 +6,8 @@
 <% if (current_user && (current_user.email=='liangfeng@msjyamc.com.cn')||(current_user.email=='zhuyonglin@msjyamc.com.cn')) %>
 <p> 
   
-  <%= link_to "Download", projects_excel_path(format: "csv"), :class=>"btn btn-link"  %> 
+  <%= link_to "Download Projects", projects_excel_path(format: "csv"), :class=>"btn btn-link"  %> 
+  <%= link_to "Download Plans", plans_excel_path(format: "csv"), :class=>"btn btn-link"  %> 
+  
 </p>
 <% end %>

@@ -2,6 +2,18 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   # before_action :plan_manager?, only: [:show, :edit, :update, :destroy]
+
+
+  def excel
+    unless (current_user && (current_user.email=='liangfeng@msjyamc.com.cn')||(current_user.email=='zhuyonglin@msjyamc.com.cn'))
+      redirect_to plans_path, notice: '您没有权限导出项目列表计划' 
+      return
+    end
+    respond_to do |format|  
+      format.csv { send_data Plan.to_csv }  
+    end  
+  end
+  
   # GET /plans
   # GET /plans.json
   def index
