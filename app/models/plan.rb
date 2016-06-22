@@ -63,6 +63,51 @@ class Plan < ActiveRecord::Base
       logger.info "back_calc-----#{self.name}   #{self.m_whole_fee}"
   end
 
+  def self.to_csv(options = {})
+    csv_res=CSV.generate(options) do |csvv|
+      names = %w[资管计划编号 资管计划名称 资管计划类型 收费模式 前后端收费金额 固定费用收取日期 规模 成立日期 到期日 管理费 投资经理 部门 管理费率 费用金额 计划创建者 合作伙伴 备注 归属类型 产品模式 年化 风险 总管理费 本年已计提管理费 一季度管理费 二季度管理费 三季度管理费 四季度管理费 当前规模 流动性规模 添加日期 更新日期]
+
+      csvv << names
+        Plan.all.each do |p|
+            csv=Array.new
+            csv << p.number
+            csv << p.name
+            csv << p.plan_type
+            csv << p.charge_type
+            csv << p.charge_amount
+            csv << p.charge_date
+            csv << p.scale
+            csv << p.start_date
+            csv << p.end_date
+            csv << p.management_fee
+            csv << p.investment_manager
+            csv << p.department_id
+            csv << p.rate
+            csv << p.fee
+            csv << p.user_id
+            csv << p.parter
+            csv << p.notes
+            csv << p.ownership_type
+            csv << p.model_type
+            csv << p.annual     
+            csv << p.risk
+            csv << p.m_whole_fee
+            csv << p.m_year_fee
+            csv << count_plan_manage_fee(Date.first_quarter)
+            csv << count_plan_manage_fee(Date.second_quarter)
+            csv << count_plan_manage_fee(Date.third_quarter)
+            csv << count_plan_manage_fee(Date.fourth_quarter)
+            csv << p.m_scale
+            csv << p.mm_scale
+            csv << p.created_at
+            csv << p.updated_at
+
+            csvv << csv
+          end
+      end
+    end
+  end
+
 ###########################计算计划的费用，支持分段，修改##############################
   #今年以来的资管计划已经计提的费用  
   def this_year_fee
