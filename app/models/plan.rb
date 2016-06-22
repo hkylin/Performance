@@ -93,10 +93,10 @@ class Plan < ActiveRecord::Base
             csv << p.risk
             csv << p.m_whole_fee
             csv << p.m_year_fee
-            csv << count_plan_manage_fee(Date.first_quarter)
-            csv << count_plan_manage_fee(Date.second_quarter)
-            csv << count_plan_manage_fee(Date.third_quarter)
-            csv << count_plan_manage_fee(Date.fourth_quarter)
+            csv << p.count_plan_manage_fee(Date.first_quarter)
+            csv << p.count_plan_manage_fee(Date.second_quarter)
+            csv << p.count_plan_manage_fee(Date.third_quarter)
+            csv << p.count_plan_manage_fee(Date.fourth_quarter)
             csv << p.m_scale
             csv << p.mm_scale
             csv << p.created_at
