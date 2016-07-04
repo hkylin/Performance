@@ -255,8 +255,8 @@ class Project < ActiveRecord::Base
 
   def self.my_to_csv(my_projects,have_me_projects,current_user)
     options = {
-        col_sep: ";",
-        row_sep: "\n",
+        # col_sep: ";",
+        # row_sep: "\n",
         # encoding: 'ISO-8859-1'
         encoding: Encoding::UTF_8
     }
