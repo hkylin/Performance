@@ -165,12 +165,21 @@ class Project < ActiveRecord::Base
 
 #REF http://michael-roshen.iteye.com/blog/1668296
 #REF http://duyw.github.io/blog/2014/01/29/rails-dao-chu-csv/
-  def self.to_csv(options = {})
+  def self.to_csv(datas)
+    # options = {}
+    options = {
+        # col_sep: ";",
+        # row_sep: "\n",
+        # encoding: 'ISO-8859-1'
+        encoding: Encoding::UTF_8
+        # encoding: 'UTF-8'
+    }
+
     csv_res=CSV.generate(options) do |csvv|
       names=%w[项目编号 项目名称 资管计划 成立日期 到期日 规模 管理费率 收费模式 前后端收费金额 固定费用收取日期 部门 合作伙伴 备注 通道费率 年化 风险 协作者 比例 协作类型 规模计算 收入计算 通道费用 添加日期 更新日期]
 
       csvv << names
-        Project.includes('cooperations').all.each do |p|
+        datas.each do |p|
           p.cooperations.each do |co|
             csv=Array.new
             csv << p.id
@@ -209,6 +218,59 @@ class Project < ActiveRecord::Base
   end
 
   ##############################################################
+  def self.csv_line(csvv,datas,current_user)
+    datas.each do |p|
+      p.cooperations.each do |co|
+        if co.user.id == current_user.id
+          csv=Array.new
+          csv << p.id
+          csv << p.name.force_encoding("UTF-8")
+          csv << p.plan.name.force_encoding("UTF-8")
+          csv << p.start_date
+          csv << p.end_date
+          csv << p.scale
+          csv << p.rate
+          csv << p.charge_type
+          csv << p.charge_amount
+          csv << p.charge_date
+          csv << p.department.name.force_encoding("UTF-8")
+          csv << p.parter
+          csv << p.notes
+          csv << p.channel_cost
+          csv << p.annual
+          csv << p.risk
+          csv << co.user.name.force_encoding("UTF-8")
+          csv << co.ratio
+          csv << co.co_type
+          csv << p.count_scale(co.user)
+          csv << p.count_income(co.user, Date.since_this_year)
+          csv << p.channel_cost
+          csv << p.created_at
+          csv << p.updated_at
+          csvv << csv
+        end
+      end
+    end
+  end
+
+  def self.my_to_csv(my_projects,have_me_projects,current_user)
+    options = {
+        col_sep: ";",
+        row_sep: "\n",
+        # encoding: 'ISO-8859-1'
+        encoding: Encoding::UTF_8
+    }
+
+    csv_res=CSV.generate(options) do |csvv|
+      names=%w[项目编号 项目名称 资管计划 成立日期 到期日 规模 管理费率 收费模式 前后端收费金额 固定费用收取日期 部门 合作伙伴 备注 通道费率 年化 风险 协作者 比例 协作类型 规模计算 收入计算 通道费用 添加日期 更新日期]
+      csvv << names
+      csv_line(csvv,my_projects,current_user)
+      csv_line(csvv,have_me_projects,current_user)
+      csvv
+    end
+  end
+
+
 
 
   #通过cooperation计算，只计算单一计划，集合类计划不计算

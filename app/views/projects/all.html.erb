@@ -4,10 +4,11 @@
 <%= render :partial => "/homes/projects" , :locals => { :projects => current_user.my_projects , :name => "我参与", :editable => false} %>
 
 <% if (current_user && (current_user.email=='liangfeng@msjyamc.com.cn')||(current_user.email=='zhuyonglin@msjyamc.com.cn')) %>
-<p> 
-  
-  <%= link_to "Download Projects", projects_excel_path(format: "csv"), :class=>"btn btn-link"  %> 
-  <%= link_to "Download Plans", plans_excel_path(format: "csv"), :class=>"btn btn-link"  %> 
-  
+<p>
+  <%= link_to "Download Plans", plans_excel_path(format: "csv"), :class=>"btn btn-link"  %>
+  <%= link_to "下载所有项目", projects_excel_path(format: "csv"), :class=>"btn btn-link"  %>
 </p>
 <% end %>
+<p>
+<%= link_to "下载我创建或参与的项目", projects_excel_path(format: "csv"), :class=>"btn btn-link"  %>
+</p>

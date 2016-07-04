@@ -23,19 +23,45 @@ class ProjectsController < ApplicationController
     # Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
   end
 
-  def excel
-    unless (current_user && (current_user.email=='liangfeng@msjyamc.com.cn')||(current_user.email=='zhuyonglin@msjyamc.com.cn'))
-      redirect_to plans_path, notice: '您没有权限导出项目列表计划' 
-      return
+  def render_csv_header(filename = nil)
+    filename ||= params[:action]
+    filename += '.csv'
+    if request.env['HTTP_USER_AGENT'] =~ /msie/i
+      headers['Pragma'] = 'public'
+      headers["Content-type"] = "text/plain"
+      headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
+      headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+      headers['Expires'] = "0"
+    else
+      headers["Content-Type"] ||= 'text/csv'
+      headers["Content-Disposition"] = "attachment; filename=\"#{filename}\""
     end
-    # @all_data = Project.includes('cooperations').all
-    respond_to do |format|  
-      # format.csv { send_data "\xEF\xBB\xBF"<<Project.to_csv.force_encoding("ASCII-8BIT") }  
+  end
 
-      format.csv { send_data Project.to_csv }  
-      # format.csv { send_data Project.to_csv.encode("iso-8859-1"), :type => 'text/csv; charset=iso-8859-1; header=present' }
-      #   send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("ASCII-8BIT")
-    end  
+
+  def excel
+    if (current_user && (current_user.email=='liangfeng@msjyamc.com.cn')||(current_user.email=='zhuyonglin@msjyamc.com.cn'))
+      # redirect_to plans_path, notice: '您没有权限导出项目列表计划' 
+      @datas = Project.includes('cooperations').all
+      respond_to do |format|
+        # format.csv { send_data "\xEF\xBB\xBF"<<Project.to_csv.force_encoding("ASCII-8BIT") }
+        format.csv { send_data Project.to_csv(@datas) }
+        # format.csv { send_data Project.to_csv.encode("iso-8859-1"), :type => 'text/csv; charset=iso-8859-1; header=present' }
+        #   send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("ASCII-8BIT")
+      end
+    else
+      @datas = Project.includes('cooperations').where(user: current_user)
+      respond_to do |format|
+        # format.csv { send_data "\xEF\xBB\xBF"<<Project.to_csv.force_encoding("ASCII-8BIT") }
+        format.csv do
+          render_csv_header "#{current_user.name}创建或参与的项目"
+          csv_res = Project.my_to_csv(current_user.my_projects,@datas,current_user)
+          send_data "\xEF\xBB\xBF"<<csv_res
+        end
+        # format.csv { send_data Project.to_csv.encode("iso-8859-1"), :type => 'text/csv; charset=iso-8859-1; header=present' }
+        #   send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("ASCII-8BIT")
+      end
+    end
   end
 
   def department
