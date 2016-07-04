@@ -63,7 +63,10 @@ class Plan < ActiveRecord::Base
       logger.info "back_calc-----#{self.name}   #{self.m_whole_fee}"
   end
 
-  def self.to_csv(options = {})
+  def self.to_csv()
+    options = {
+        encoding: Encoding::UTF_8
+    }
     csv_res=CSV.generate(options) do |csvv|
       names = %w[资管计划编号 资管计划名称 资管计划类型 收费模式 前后端收费金额 固定费用收取日期 规模 成立日期 到期日 管理费 投资经理 部门 管理费率 费用金额 计划创建者 合作伙伴 备注 归属类型 产品模式 年化 风险 总管理费 本年已计提管理费 一季度管理费 二季度管理费 三季度管理费 四季度管理费 当前规模 流动性规模 添加日期 更新日期]
       csvv << names
