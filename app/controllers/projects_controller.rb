@@ -45,7 +45,11 @@ class ProjectsController < ApplicationController
       @datas = Project.includes('cooperations').all
       respond_to do |format|
         # format.csv { send_data "\xEF\xBB\xBF"<<Project.to_csv.force_encoding("ASCII-8BIT") }
-        format.csv { send_data Project.to_csv(@datas) }
+        format.csv do 
+          render_csv_header "全部项目列表"
+          csv_res =  Project.to_csv(@datas) 
+          send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("UTF-8")
+        end
         # format.csv { send_data Project.to_csv.encode("iso-8859-1"), :type => 'text/csv; charset=iso-8859-1; header=present' }
         #   send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("ASCII-8BIT")
       end
@@ -56,7 +60,7 @@ class ProjectsController < ApplicationController
         format.csv do
           render_csv_header "#{current_user.name}创建或参与的项目"
           csv_res = Project.my_to_csv(current_user.my_projects,@datas,current_user)
-          send_data "\xEF\xBB\xBF"<<csv_res
+          send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("UTF-8")
         end
         # format.csv { send_data Project.to_csv.encode("iso-8859-1"), :type => 'text/csv; charset=iso-8859-1; header=present' }
         #   send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("ASCII-8BIT")

@@ -4,16 +4,36 @@ class PlansController < ApplicationController
   # before_action :plan_manager?, only: [:show, :edit, :update, :destroy]
 
 
+  def render_csv_header(filename = nil)
+    filename ||= params[:action]
+    filename += '.csv'
+    if request.env['HTTP_USER_AGENT'] =~ /msie/i
+      headers['Pragma'] = 'public'
+      headers["Content-type"] = "text/plain"
+      headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
+      headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+      headers['Expires'] = "0"
+    else
+      headers["Content-Type"] ||= 'text/csv'
+      headers["Content-Disposition"] = "attachment; filename=\"#{filename}\""
+    end
+  end
+
+
   def excel
     unless (current_user && (current_user.email=='liangfeng@msjyamc.com.cn')||(current_user.email=='zhuyonglin@msjyamc.com.cn'))
-      redirect_to plans_path, notice: '您没有权限导出项目列表计划' 
+      redirect_to plans_path, notice: '您没有权限导出计划列表权限' 
       return
     end
     respond_to do |format|  
-      format.csv { send_data Plan.to_csv }  
+      format.csv do
+          render_csv_header "全部计划列表"
+          csv_res = Plan.to_csv
+          send_data "\xEF\xBB\xBF"<<csv_res.force_encoding("UTF-8")
+      end
     end  
   end
-  
+
   # GET /plans
   # GET /plans.json
   def index
